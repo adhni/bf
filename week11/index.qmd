@@ -10,7 +10,7 @@ source(here::here("course_info.R"))
 ## Tutorial exercises
 
 -   Complete Exercises 1-7 from [Section 7.10 of the book](https://otexts.com/fpp3/regression-exercises.html).
-<!-- -   [Tutorial learning objectives](tute-lo.qmd). -->
+-   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 11 Tutorial Solution.html](Week11.html){download="Week 11 Tutorial Solution.html"} -->
 
 ## What you will learn this week

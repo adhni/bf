@@ -1,23 +1,9 @@
-# Tutorial learning objectives - Week 7
+# Tutorial learning objectives - Week 11
 
 By the end of this tutorial, you should be able to:
 
-1. **Explain the Intuition Behind Exponential Smoothing** 
+1. Able to perform time series regression models, including how trend and seasonal components are incorporated as regressors.
 
-  - Describe how exponential smoothing captures trend and seasonality.
+2. Apply piecewise linear functions to model structural changes in trend within a time series.
 
-  - Interpret the roles of smoothing parameters and initial states in forecasting.
-
-2. **Compare Exponential Smoothing with Benchmark Models**
-
-  - Identify similarities and differences between exponential smoothing and simpler models such as the mean and naïve forecasts.
-
-  - Recognize scenarios where exponential smoothing offers an advantage over these benchmark models.
-
-3. **Understand ETS Model Components**
-
-  - Distinguish between additive and multiplicative forms of error, trend, and seasonality.
-
-  - Explain how these components work together in an ETS model.
-
-  - Analyze how smoothing parameters and initial states affect model behavior and forecast outputs.
+3. Use Fourier terms to represent and model complex seasonal patterns in time series regression.

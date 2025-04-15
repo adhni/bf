@@ -10,7 +10,7 @@ source(here::here("course_info.R"))
 ## Tutorial exercises
 
 -   Complete Exercises 9-13 from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
-<!-- -   [Tutorial learning objectives](tute-lo.qmd). -->
+-   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 10 Tutorial Solution.html](Week10.html){download="Week 10 Tutorial Solution.html"} -->
 
 ## What you will learn this week
