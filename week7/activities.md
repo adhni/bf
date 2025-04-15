@@ -21,3 +21,4 @@ What are the features of these series in terms of stationarity and what operatio
       - Section A: Q2, Q3
       - Section B: Q1, Q2, Q3 (a-f) 
       - Section C: all questions
+      - Solutions [[week7_Exam2023_solutions.pdf](week7_Exam2023_solutions.pdf)]
