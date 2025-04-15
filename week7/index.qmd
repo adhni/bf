@@ -38,7 +38,7 @@ show_slides(week)
 ## Seminar code
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week7_incomplete.R](week7_incomplete.R){download="week7_incomplete.R"}
+<i class="bi bi-download"></i> [week7.R](week7.R){download="week7.R"}
 :::
 
 
