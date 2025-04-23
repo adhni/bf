@@ -13,7 +13,7 @@ library(fpp3)
 ```
 
 
-For the tasks that follow you will be modelling the **original data without any transformations** performed (even if you previously deemed it necessary). For questions 1 to 5 use the training data, i.e., ignore the last two years of your data.
+For the tasks that follow you will be modelling the **original data without any transformations** performed (even if you previously deemed it necessary). 
 
 ## Question 1
 
@@ -35,7 +35,7 @@ For the tasks that follow you will be modelling the **original data without any 
 \newpage
 ## Question 3
 
-*Plot the residuals from the model and comment on these (no more than 50 words). Perform some diagnostic checks and comment on whether you are satisfied with the fit of the model. (Make sure you state all relevant information for any hypothesis test you perform such as the null hypothesis, the degrees of freedom, the decision, etc.). (10 marks)*
+*Plot the residuals from the model and comment on these (no more than 50 words). Perform some diagnostic checks and comment on whether you are satisfied with the fit of the model (no more than 50 words). (Make sure you state all relevant information for any hypothesis test you perform such as the null hypothesis, the degrees of freedom, the decision, etc.). (10 marks)*
 
 ```{r}
 
