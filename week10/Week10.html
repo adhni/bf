@@ -3227,6 +3227,8 @@ window.Quarto = {
   <li><a href="#fpp3-9.11-ex11" id="toc-fpp3-9.11-ex11" class="nav-link active" data-scroll-target="#fpp3-9.11-ex11">fpp3 9.11, Ex11</a></li>
   <li><a href="#fpp3-9.11-ex12" id="toc-fpp3-9.11-ex12" class="nav-link" data-scroll-target="#fpp3-9.11-ex12">fpp3 9.11, Ex12</a></li>
   <li><a href="#fpp3-9.11-ex13" id="toc-fpp3-9.11-ex13" class="nav-link" data-scroll-target="#fpp3-9.11-ex13">fpp3 9.11, Ex13</a></li>
+  <li><a href="#fpp3-9.11-ex15" id="toc-fpp3-9.11-ex15" class="nav-link" data-scroll-target="#fpp3-9.11-ex15">fpp3 9.11, Ex15</a></li>
+  <li><a href="#fpp3-9.11-ex16" id="toc-fpp3-9.11-ex16" class="nav-link" data-scroll-target="#fpp3-9.11-ex16">fpp3 9.11, Ex16</a></li>
   </ul>
 </nav>
 </div>
@@ -3539,6 +3541,164 @@ Adding another scale for fill_ramp, which will replace the existing scale.</code
 </div>
 </div>
 <p>Both sets of forecasts appear to have captured the underlying trend and seasonality effectively.</p>
+</section>
+<section id="fpp3-9.11-ex15" class="level1">
+<h1>fpp3 9.11, Ex15</h1>
+<blockquote class="blockquote">
+<ol start="4" type="a">
+<li>The last five values of the series are given below:</li>
+</ol>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Year</th>
+<th style="text-align: right;">1931</th>
+<th style="text-align: right;">1932</th>
+<th style="text-align: right;">1933</th>
+<th style="text-align: right;">1934</th>
+<th style="text-align: right;">1935</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of hare pelts</td>
+<td style="text-align: right;">19520</td>
+<td style="text-align: right;">82110</td>
+<td style="text-align: right;">89760</td>
+<td style="text-align: right;">81660</td>
+<td style="text-align: right;">15760</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The estimated parameters are <span class="math inline">\(c = 30993\)</span>, <span class="math inline">\(\phi_1 = 0.82\)</span>, <span class="math inline">\(\phi_2 = -0.29\)</span>, <span class="math inline">\(\phi_3 = -0.01\)</span>, and <span class="math inline">\(\phi_4 = -0.22\)</span>. Without using the <code>forecast</code> function, calculate forecasts for the next three years (1936–1939).</p>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+  \hat{y}_{T+1|T} &amp; = 30993 +
+    0.82* 15760
+    -0.29* 81660
+    -0.01* 89760
+    -0.22* 82110 =
+    2051.57 \\
+  \hat{y}_{T+2|T} &amp; = 30993 +
+    0.82* 2051.57
+    -0.29* 15760
+    -0.01* 81660
+    -0.22* 89760 =
+    8223.14 \\
+  \hat{y}_{T+3|T} &amp; = 30993 +
+    0.82* 8223.14
+    -0.29* 2051.57
+    -0.01* 15760
+    -0.22* 81660 =
+    19387.96 \\
+\end{align*}\]</span></p>
+<blockquote class="blockquote">
+<ol start="5" type="a">
+<li>Now fit the model in R and obtain the forecasts using <code>forecast</code>. How are they different from yours? Why?</li>
+</ol>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pelt <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Hare <span class="sc">~</span> <span class="fu">pdq</span>(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A fable: 3 x 4 [1Y]
+# Key:     .model [1]
+  .model  Year              Hare
+  &lt;chr&gt;  &lt;dbl&gt;            &lt;dist&gt;
+1 ARIMA…  1936  N(2052, 5.9e+08)
+2 ARIMA…  1937  N(8223, 9.8e+08)
+3 ARIMA…  1938 N(19388, 1.1e+09)
+# ℹ 1 more variable: .mean &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Any differences will be due to rounding errors.</p>
+</section>
+<section id="fpp3-9.11-ex16" class="level1">
+<h1>fpp3 9.11, Ex16</h1>
+<blockquote class="blockquote">
+<ol start="4" type="a">
+<li>The last five values of the series are given below.</li>
+</ol>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Year</th>
+<th style="text-align: right;">2013</th>
+<th style="text-align: right;">2014</th>
+<th style="text-align: right;">2015</th>
+<th style="text-align: right;">2016</th>
+<th style="text-align: right;">2017</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Population (millions)</td>
+<td style="text-align: right;">8.09</td>
+<td style="text-align: right;">8.19</td>
+<td style="text-align: right;">8.28</td>
+<td style="text-align: right;">8.37</td>
+<td style="text-align: right;">8.47</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The estimated parameters are <span class="math inline">\(c = 0.0053\)</span>, <span class="math inline">\(\phi_1 = 1.64\)</span>, <span class="math inline">\(\phi_2 = -1.17\)</span>, and <span class="math inline">\(\phi_3 = 0.45\)</span>. Without using the <code>forecast</code> function, calculate forecasts for the next three years (2018–2020).</p>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+  \hat{y}_{T+1|T} &amp; = 0.0053 +
+  8.47+
+    1.64* (8.47 - 8.37)
+    -1.17* (8.37 - 8.28) +
+    0.45* (8.28 - 8.19) =
+    8.56 \\
+  \hat{y}_{T+2|T} &amp; = 0.0053 +
+  8.56+
+    1.64* (8.56 - 8.47)
+    -1.17* (8.47 - 8.37) +
+    0.45* (8.37 - 8.28) =
+    8.65 \\
+  \hat{y}_{T+3|T} &amp; = 0.0053 +
+  8.65+
+    1.64* (8.65 - 8.56)
+    -1.17* (8.56 - 8.47) +
+    0.45* (8.47 - 8.37) =
+    8.73 \\
+\end{align*}\]</span></p>
+<blockquote class="blockquote">
+<ol start="5" type="a">
+<li>Now fit the model in R and obtain the forecasts from the same model. How are they different from yours? Why?</li>
+</ol>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>global_economy <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">&quot;Switzerland&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Population =</span> Population <span class="sc">/</span> <span class="fl">1e6</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">ARIMA</span>(Population <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">pdq</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forecast</span>(<span class="at">h=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A fable: 3 x 5 [1Y]
+# Key:     Country, .model [1]
+  Country     .model                                Year
+  &lt;fct&gt;       &lt;chr&gt;                                &lt;dbl&gt;
+1 Switzerland ARIMA(Population ~ 1 + pdq(3, 1, 0))  2018
+2 Switzerland ARIMA(Population ~ 1 + pdq(3, 1, 0))  2019
+3 Switzerland ARIMA(Population ~ 1 + pdq(3, 1, 0))  2020
+# ℹ 2 more variables: Population &lt;dist&gt;, .mean &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Any differences will be due to rounding errors.</p>
 </section>
 
 </main>
