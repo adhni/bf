@@ -1,4 +1,17 @@
-1. Explore the Egyptian exports series. Is data stationary? What ARIMA model?
+1. Explore the Egyptian exports series. Is data stationary? What ARIMA model should be used?
+
+    ```
+    egypt <-global_economy |>
+      filter(Code == "EGY")
+    ```
 
 
-2. Run through the code for the rest of the examples. Explore and  understand what the code is doing. 
+2. Repeat the process for the Central African Republic `CAF` exports.
+
+    ```
+    egypt <-global_economy |>
+      filter(Code == "EGY")
+    ```
+
+
+3. Run through the code for the rest of the examples. Explore and understand what the code is doing. 
