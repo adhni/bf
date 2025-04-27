@@ -27,7 +27,6 @@ source(here::here("course_info.R"))
 Read [Sections 9.3-9.8 of the textbook](https://otexts.com/fpp3/arima.html) and watch all embedded videos
 
 
-
 ```{r}
 #| output: asis
 show_slides(week)
