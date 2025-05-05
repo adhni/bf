@@ -5,13 +5,14 @@ library(fpp3)
 usmelec <- as_tsibble(fpp2::usmelec) |>
   rename(Month = index, Generation = value)
 
-usmelec |> gg_season(
-  Generation
-)
-
 usmelec |> autoplot(
   Generation
   )
+
+usmelec |> gg_season(
+  Generation
+  )
+
 
 usmelec |> autoplot(
   log(Generation)
@@ -20,12 +21,13 @@ usmelec |> autoplot(
 usmelec |> autoplot(
   log(Generation) |> difference(12)
   )
-
+  # Seems stationary - let's get some help from the ACF (recall PACF has less info than ACF)
+  
 usmelec |> gg_tsdisplay(
   log(Generation) |> difference(12), 
   plot_type = "partial"
   )
-# You could possible work with this
+  # You could possible work with this
 
 usmelec |> autoplot(
   log(Generation) |> difference(12) |> difference()
@@ -37,14 +39,22 @@ usmelec |> gg_tsdisplay(
   )
 
 fit <- usmelec |>
-  model(arima = ARIMA(log(Generation) ~ pdq(0,1,3) + PDQ(0,1,1)))
+  model(
+    arima = ARIMA(log(Generation) ~ pdq(0,1,3) + PDQ(0,1,1))
+    )
 
 fit |> report()
 
 fit |> gg_tsresiduals()
 
+augment(fit) |>
+  features(.innov, ljung_box, lag = 24, dof = 4)
+# residuals are ok but still we reject H0:WN
+
 fit <- usmelec |>
-  model(arima = ARIMA(log(Generation)))
+  model(
+    arima = ARIMA(log(Generation))
+    )
 
 fit |> report()
 
@@ -52,32 +62,35 @@ fit |> gg_tsresiduals()
 
 augment(fit) |>
   features(.innov, ljung_box, lag = 24, dof = 5)
-# residuals are not perfect but not too bad
+# residuals are not perfect but ... not too bad
 
 # Don't run takes too long - see model below
-usmelec |>
-  model(arima = ARIMA(log(Generation), 
-                      stepwise = FALSE, 
-                      approximation = FALSE)
-        ) |> report()
+# usmelec |>
+#   model(arima = ARIMA(log(Generation),
+#                       stepwise = FALSE, 
+#                       approximation = FALSE)
+#         ) |> report()
 
 fit <- usmelec |>
   model(arima = ARIMA(log(Generation)~pdq(1,1,1)+PDQ(2,1,2)))
+
 gg_tsresiduals(fit)
 
-usmelec |>
-  model(arima = ARIMA(log(Generation))) |>
+augment(fit) |>
+  features(.innov, ljung_box, lag = 24, dof = 6)
+  # Still not great but we may not be able to do any better
+  # We know these will affect our PIs
+
+fit |>
   forecast(h = "3 years") |>
   autoplot(usmelec)
 
-usmelec |>
-  model(arima = ARIMA(log(Generation))) |>
+fit |>
   forecast(h = "3 years") |>
   autoplot(filter(usmelec, year(Month) >= 2005))
-# Maybe peaks a little too low but not much we can do
+  # Maybe peaks a little too low but not much we can do
 
 # US Leisure and Hospitality -------------
-
 leisure <- us_employment |>
   filter(Title == "Leisure and Hospitality", year(Month) > 2000) |>
   mutate(Employed = Employed/1000) |> select(Month, Employed)
@@ -92,7 +105,7 @@ leisure |>
   gg_tsdisplay(difference(Employed, 12),
                plot_type="partial", lag=36) +
   labs(title="Seasonally differenced", y="")
-# Clearly non-stationary
+  # Clearly non-stationary
 
 leisure |>
   gg_tsdisplay(difference(Employed, 12) |> difference(),
@@ -102,18 +115,21 @@ leisure |>
 # Lets think about models
 # Start with the seasonal component
 
+# 
 # DO NOT RUN
 # I have already run this 
-fit_leisure <- leisure |>
-  model(
-    arima012011 = ARIMA(Employed ~ pdq(0,1,2) + PDQ(0,1,1)),
-    arima210011 = ARIMA(Employed ~ pdq(2,1,0) + PDQ(0,1,1)),
-    auto = ARIMA(Employed, stepwise = FALSE, approx = FALSE)
-  )
+# fit_leisure <- leisure |>
+#    model(
+#      arima012011 = ARIMA(Employed ~ pdq(0,1,2) + PDQ(0,1,1)),
+#      arima210011 = ARIMA(Employed ~ pdq(2,1,0) + PDQ(0,1,1)),
+#      auto = ARIMA(Employed, stepwise = FALSE, approx = FALSE)
+#    )
+
 fit_leisure |> 
   pivot_longer(everything(), names_to = "Model name", values_to = "Orders")
 
 glance(fit_leisure) |> arrange(AICc) |> select(.model:BIC)
+
 fit_leisure |> select(auto) |>  report()
 fit_leisure |> select(auto) |> gg_tsresiduals()
 fit_leisure |> select(auto) |> augment() |> 
@@ -124,7 +140,7 @@ forecast(fit_leisure, h=36) |>
   autoplot(leisure) +
   labs(title = "US employment: leisure and hospitality",
        y="Number of people (millions)")
-# Question: where does the trend come from?
+  # Question: where does the trend come from?
 
 # h02 drugs -------------------------
 
@@ -143,13 +159,16 @@ h02 |>
   gg_tsdisplay(difference(log(Cost),12), 
                lag_max = 36, 
                plot_type='partial')
-# Debatable whether I should take another difference.
-# Stick with d=0, D=1 for the moment
+  # Debatable whether I should take another difference.
+  # Stick with d=0, D=1 for the moment
 
 # My best guess
 # Easier to look at the PACF for both seas and non-seas
 fit <- h02 |>
-  model(best = ARIMA(log(Cost) ~ pdq(3,0,0) + PDQ(2,1,0)))
+  model(
+    ARIMA(log(Cost) ~ pdq(3,0,0) + PDQ(2,1,0))
+    )
+
 report(fit)
 # Note w/ drift has been selected
 
@@ -157,7 +176,7 @@ fit |> gg_tsresiduals(lag_max=36)
 # not too bad
 
 augment(fit) |>
-  features(.innov, ljung_box, lag =24, dof = 6)
+  features(.innov, ljung_box, lag =36, dof = 6)
 # Change lag to 24 - 36 is very long 
 # Spikes are small and far away
 # So overall happy with this
@@ -167,7 +186,9 @@ augment(fit) |>
 
 # Best of the alternative plausible models
 fit <- h02 |>
-  model(best = ARIMA(log(Cost) ~ 0 + pdq(3,0,1) + PDQ(0,1,2)))
+  model(
+    best = ARIMA(log(Cost) ~ 0 + pdq(3,0,1) + PDQ(0,1,2))
+    )
 fit |> report()
 fit |> gg_tsresiduals(lag_max=36)
 # better I think 
@@ -180,7 +201,9 @@ augment(fit) |>
 
 # Letting R choose
 fit <- h02 |> 
-  model(auto = ARIMA(log(Cost), stepwise = FALSE))
+  model(
+    auto = ARIMA(log(Cost), stepwise = FALSE)
+    )
 # No better than my 'best' model with stepwise=TRUE
 # Try with turning this off
 report(fit)
@@ -193,12 +216,13 @@ augment(fit) |>
 
 # Getting R to work really hard now 
 # DO NOT RUN
-fit_h02 <- h02 |>
-  model(best = ARIMA(log(Cost), stepwise = FALSE,
-                 approximation = FALSE,
-                 order_constraint = p + q + P + Q <= 9 & (constant + d + D <= 2)
-                 )
-  )
+# fit_h02 <- h02 |>
+#   model(best = ARIMA(log(Cost), stepwise = FALSE,
+#                  approximation = FALSE,
+#                  order_constraint = p + q + P + Q <= 9 & (constant + d + D <= 2)
+#                  )
+#   )
+# 
 # This will take a while now
 # You should be experimenting with these in IA4 and GA4
 # Start early because these will take a while
@@ -209,15 +233,15 @@ fit_h02 <- h02 |>
 # No data comes from a model unless you are simulating data
 
 fit_h02 |> report()
-# Now a very complex model - I could not pick this
-# Note: it cannot be compared to my model. Why?
+  # Now a very complex model - I could not pick this
+  # Note: it cannot be compared to my model. Why?
 
 gg_tsresiduals(fit_h02, lag_max=36)
-# Looking better
+  # Looking better
 
 augment(fit_h02) |>
   features(.innov, ljung_box, lag = 36, dof = 9)
-# Success :-)
+  # Success :-)
 
 # However we have a problem? 
 # d=1, D=1 - cannot compare this to my models
@@ -226,7 +250,9 @@ augment(fit_h02) |>
 # Test-set evaluation - see book
 
 # The forecasts
-fit_h02 |> forecast() |> autoplot(h02) +
+fit_h02 |> 
+  forecast() |> 
+  autoplot(h02) +
   labs(y="H02 Expenditure ($AUD)")
 
 
