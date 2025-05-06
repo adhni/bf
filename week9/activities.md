@@ -22,3 +22,10 @@
       select(Cement) |>
       filter_index("1988 Q1" ~ .)
     ```
+
+3. Exam 2024
+
+      - Section A: Q5
+      - Section B: Q3 (g-h) 
+      - Section D: all questions
+      - Solutions [[week9_Exam2024_solutions.pdf](week9_Exam2024_solutions.pdf)]
