@@ -25,10 +25,10 @@ source(here::here("course_info.R"))
 Read [Chapter 7 of the textbook](https://otexts.com/fpp3/regression.html) and watch all embedded videos
 
 
-<!-- ```{r} -->
-<!-- #| output: asis -->
-<!-- show_slides(week) -->
-<!-- ``` -->
+```{r}
+#| output: asis
+show_slides(week)
+```
 
 <!-- ## Seminar activities -->
 
