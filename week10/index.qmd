@@ -30,18 +30,18 @@ Read [Chapter 7 of the textbook](https://otexts.com/fpp3/regression.html) and wa
 show_slides(week)
 ```
 
-<!-- ## Seminar activities -->
+## Seminar activities
 
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
+```{r}
+#| child: activities.md
+```
 
 
-<!-- ## Seminar code -->
+## Seminar code
 
-<!-- ::: {.callout appearance="minimal"} -->
-<!-- <i class="bi bi-download"></i> [Seminar_code_week10.R](Seminar_code_week10.R){download="Seminar_code_week10.R"} -->
-<!-- ::: -->
+::: {.callout appearance="minimal"}
+<i class="bi bi-download"></i> [week10.R](week10.R){download="week10.R"}
+:::
 
 
 

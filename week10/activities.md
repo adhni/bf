@@ -6,5 +6,11 @@
 
       - Section A: Q3, Q4
       - Section B: Q3 (g-h) 
-      - Section D: all questions
+      
+
+4. Exam 2022
+
+      - Section A: Q1, Q2, Q4, Q5, Q6.
+      - Section B: Q1, Q2, Q3 (a-h) 
+      - Section C: all questions
 
