@@ -12,6 +12,9 @@ The data you are to forecast is the same series you used in IA2.
 <i class="bi bi-download"></i> [IA3_template.qmd](../assignment_data/IA3_template.qmd){download="IA3_template.qmd"}
 :::
 
+::: {.callout appearance="minimal"}
+<i class="bi bi-download"></i> [IA3 suggested solution.html](Assignment3Solutions.html){download="Assignment3Solutions.html"}
+:::
 
 You are to submit both an `IA3_NameSurname.qmd` file and a compiled `IA3_NameSurname.pdf` file for your assignment.
 
