@@ -1,9 +1,11 @@
 {
-  "hash": "f70a26dff3094c35d593244e381e2db8",
+  "hash": "8c4ca555d95f6c7a7cadef652d8e0dc4",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: Group Assignment 3 (10%)\n---\n\n\n\nThe data you are to forecast is the same series you used in GA2. \n\n**Files for download**:\n\n* Download the template\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA3_template.qmd](../assignment_data/GA3_template.qmd){download=\"GA3_template.qmd\"}\n:::\n\n\nYou are to submit both an `GA3_GroupNo.qmd` file and a compiled `GA3_GroupNo.pdf` file for your assignment.\n\n\n\n<br><br><hr><b>Due: 5 May 2025</b><br><a href=https://learning.monash.edu/mod/assign/view.php?id=3444684 class = 'badge badge-large badge-blue'><font size='+2'>&nbsp;&nbsp;<b>Submit (ETF5231)</b>&nbsp;&nbsp;</font><br></a>\n",
-    "supporting": [],
+    "markdown": "---\ntitle: Group Assignment 3 (10%)\n---\n\n\n\n\n\nThe data you are to forecast is the same series you used in GA2. \n\n**Files for download**:\n\n* Download the template\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA3_template.qmd](../assignment_data/GA3_template.qmd){download=\"GA3_template.qmd\"}\n:::\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA3 suggested solution.html](GroupAssignment3Solutions.html){download=\"GroupAssignment3Solutions.html\"}\n:::\n\nYou are to submit both an `GA3_GroupNo.qmd` file and a compiled `GA3_GroupNo.pdf` file for your assignment.\n\n\n\n\n\n<br><br><hr><b>Due: 5 May 2025</b><br><a href=https://learning.monash.edu/mod/assign/view.php?id=3444684 class = 'badge badge-large badge-blue'><font size='+2'>&nbsp;&nbsp;<b>Submit (ETF5231)</b>&nbsp;&nbsp;</font><br></a>\n",
+    "supporting": [
+      "G3_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

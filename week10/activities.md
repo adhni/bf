@@ -4,13 +4,5 @@
 
 3. Exam 2023
 
-      - Section A: Q3, Q4
+      - Section A: Q4, Q5
       - Section B: Q3 (g-h) 
-      
-
-4. Exam 2022
-
-      - Section A: Q1, Q2, Q4, Q5, Q6.
-      - Section B: Q1, Q2, Q3 (a-h) 
-      - Section C: all questions
-
