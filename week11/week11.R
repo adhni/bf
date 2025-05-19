@@ -1,6 +1,40 @@
 library(fpp3)
 library(lubridate)
 
+
+## AUSTRALIAN CAFE DATA --------------------------------------------------
+
+# Do this quickly
+aus_cafe <- aus_retail |> filter(
+  Industry == "Cafes, restaurants and takeaway food services",
+  year(Month) %in% 2004:2018
+) |> summarise(Turnover = sum(Turnover)) # add up across the states
+aus_cafe |> autoplot(Turnover)
+# Total monthly turnover across all states
+
+# Monthly data so usually don't need Fourier terms
+# An easy example to start with
+# 6 is the max Fourier terms and ARIMA deals only with non-seaosonal bits
+cafe_fit <- aus_cafe |> model(
+  `K = 1` = ARIMA(log(Turnover) ~ fourier(K = 1) + PDQ(0,0,0)),
+  `K = 2` = ARIMA(log(Turnover) ~ fourier(K = 2) + PDQ(0,0,0)),
+  `K = 3` = ARIMA(log(Turnover) ~ fourier(K = 3) + PDQ(0,0,0)),
+  `K = 4` = ARIMA(log(Turnover) ~ fourier(K = 4) + PDQ(0,0,0)),
+  `K = 5` = ARIMA(log(Turnover) ~ fourier(K = 5) + PDQ(0,0,0)),
+  `K = 6` = ARIMA(log(Turnover) ~ fourier(K = 6) + PDQ(0,0,0))
+)
+
+cafe_fit |> select("K = 2") |> report()
+glance(cafe_fit) |>
+  select(.model, sigma2, log_lik, AIC, AICc, BIC)
+# Not surprising that we need all terms to deal
+# with this complicated
+# seasonal pattern - so using max dof to use
+
+
+
+
+
 ## US GASOLINE ---------------------------------------------------
 # Weekly data
 us_gasoline |> autoplot(Barrels)
@@ -9,7 +43,12 @@ us_gasoline |> autoplot(Barrels)
 # Assuming 52 weeks in the year
 # What can K go up to?
 
+
 # ARIMA deals with change in trends
+
+##############################################
+# DO NOT RUN 
+##############################################
 gas_fit <- us_gasoline |>
   model(
     F1 = ARIMA(Barrels ~ fourier(K = 1) + PDQ(0,0,0)),
@@ -33,7 +72,17 @@ gas_fit <- us_gasoline |>
                      + PDQ(0,0,0))
   )
 
-glance(gas_fit) |> arrange(AICc)
+
+gas_fit |>
+  select(best_lm,best_lm2) |>
+  glance()
+
+gas_fit |>
+  select(best_lm2) |>
+  report()
+
+
+glance(gas_fit) |> select(.model, sigma2, log_lik, AIC, AICc, BIC) |> arrange(AICc)
 
 gas_fit |>
   select(F6) |>
@@ -46,6 +95,9 @@ gas_fit |>
 gas_fit |>
   select(best_lm3) |>
   report()
+
+gas_fit |>
+  select(best_lm3) 
 
 gas_fit |>
   select(best_lm3) |>
@@ -54,7 +106,7 @@ gas_fit |>
 gas_fit |>
   select(F6, best_lm3) |>
   forecast(h = "3 years") |>
-  autoplot(us_gasoline)
+  autoplot(us_gasoline, alpha=0.6)
 
 # Prediction intervals much better - although a bit of  hetero left over
 # This is the only way to handle weekly data
@@ -70,7 +122,7 @@ vic_elec |> tail()
 
 # Turn half-hourly data into daily
 vic_elec_daily <- vic_elec |>
-  index_by(Date = date(Time)) |> # index by date to turn into daily
+  index_by(Date = date(Time)) |>    # index by date to turn into daily
   summarise(                        # summarise() below
     Demand = sum(Demand)/1e3,       # Total daily and scaling Mega to Gigawatts
     Temperature = max(Temperature), # take highest temperature for the day
@@ -87,17 +139,10 @@ vic_elec_daily
 # Seasonal patterns
 vic_elec_daily |> gg_season(period = "week")
 # Weekdays higher than weekends
+
 vic_elec_daily |> gg_season(period = "year")
 # higher demand in summer and in winter days
 # higher variation in summer
-
-# Highly non-linear pattern
-# Heating for below maybe 18 degrees
-# min demand (18-25)
-# Cooling above 25 degrees
-# Weekdays higher than weekends
-# Holidays clustered within/similar to Weekends
-# Some really extreme days
 
 # Make longer to plot time series nicely
 vic_elec_daily |>
@@ -113,13 +158,24 @@ vic_elec_daily |>
   ggplot(aes(x=Temperature, y=Demand, colour=Day_Type)) +
   geom_point() +
   labs(x = "Maximum temperature", y = "Electricity demand (GW)")
+
+# Highly non-linear pattern
+# Heating for below maybe 18 degrees 
+# min demand (18-25)
+# Cooling above 25 degrees
+# Holidays clustered within/similar to Weekends
+# Some really extreme days
+
+
 # Higher demand during higher temperatures - nonlinear
 # Notice holidays clustered within Weekends although they
 # may weekdays
 
 # Let's try three different models
 
-# DO NOT RUN
+##############################################
+# DO NOT RUN 
+##############################################
 elec_fit <- vic_elec_daily |>
   model(
     ets = ETS(Demand),
@@ -136,7 +192,7 @@ elec_fit <- vic_elec_daily |>
 
 
 # On the training data
-accuracy(elec_fit)
+accuracy(elec_fit) |> arrange(RMSE)
 # dhr by far the best one
 
 # ETS
@@ -201,10 +257,12 @@ elec_fit |>
   geom_line() +
   geom_line(aes(y = .fitted), col = "red")
 
-
 # Let's make ARIMA work a little harder
 
+#############################################################
 # DO NOT RUN
+#############################################################
+
 fit_better <- vic_elec_daily |>
   model(
     ARIMA(
@@ -242,6 +300,15 @@ forecast(elec_fit, new_data = vic_elec_future) |>
   autoplot(vic_elec_daily |> tail(50), level = 80) +
   labs(y = "Electricity demand (GW)")
 
+forecast(elec_fit, new_data = vic_elec_future) |>
+  autoplot(vic_elec_daily |> tail(50), level = 80) + 
+  autolayer(forecast(fit_better,new_data = vic_elec_future))+
+  labs(y = "Electricity demand (GW)")
+
+forecast(fit_better, new_data = vic_elec_future) |>
+  autoplot(vic_elec_daily |> tail(50), level = 80) +
+  labs(y = "Electricity demand (GW)")
+
 
 # Forecast a year ahead using last year's temperatures
 vic_elec_future <- new_data(vic_elec_daily, 365) |>
@@ -265,6 +332,11 @@ forecast(elec_fit, new_data = vic_elec_future) |>
   autoplot(vic_elec_daily |> tail(365), level = 80) +
   labs(y = "Electricity demand (GW)")
 
+forecast(fit_better, new_data = vic_elec_future) |>
+  autoplot(vic_elec_daily |> tail(365), level = 80) +
+  labs(y = "Electricity demand (GW)")
+
+
 # The mean is not too bad but the PIs are not.
 # Obviously we can do better
 # but we now have the annual seasonal pattern
@@ -279,35 +351,6 @@ forecast(elec_fit, new_data = vic_elec_future) |>
 # starting point.
 
 
-
-## AUSTRALIAN CAFE DATA --------------------------------------------------
-
-# Do this quickly
-aus_cafe <- aus_retail |> filter(
-  Industry == "Cafes, restaurants and takeaway food services",
-  year(Month) %in% 2004:2018
-) |> summarise(Turnover = sum(Turnover)) # add up across the states
-aus_cafe |> autoplot(Turnover)
-# Total monthly turnover across all states
-
-# Monthly data so usually don't need Fourier terms
-# An easy example to start with
-# 6 is the max Fourier terms and ARIMA deals only with non-seaosal bits
-cafe_fit <- aus_cafe |> model(
-  `K = 1` = ARIMA(log(Turnover) ~ fourier(K = 1) + PDQ(0,0,0)),
-  `K = 2` = ARIMA(log(Turnover) ~ fourier(K = 2) + PDQ(0,0,0)),
-  `K = 3` = ARIMA(log(Turnover) ~ fourier(K = 3) + PDQ(0,0,0)),
-  `K = 4` = ARIMA(log(Turnover) ~ fourier(K = 4) + PDQ(0,0,0)),
-  `K = 5` = ARIMA(log(Turnover) ~ fourier(K = 5) + PDQ(0,0,0)),
-  `K = 6` = ARIMA(log(Turnover) ~ fourier(K = 6) + PDQ(0,0,0))
-)
-
-cafe_fit |> select("K = 2") |> report()
-glance(cafe_fit) |>
-  select(.model, sigma2, log_lik, AIC, AICc, BIC)
-# Not surprising that we need all terms to deal
-# with this complicated
-# seasonal pattern - so using max dof to use
 
 
 
@@ -336,8 +379,7 @@ bind_cols(fit_deterministic, fit_stochastic) |>
   autoplot(aus_visitors) +
   facet_grid(vars(.model)) +
   labs(y = "Air passengers (millions)",
-       title = "Forecasts from trend models") +
-  guides(colour = FALSE)
+       title = "Forecasts from trend models") 
 
 aus_visitors |>
   autoplot(value) +

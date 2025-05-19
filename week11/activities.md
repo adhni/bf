@@ -4,18 +4,18 @@
 2. Turn the half hourly electricity data into daily data using the following code. Try and understand what each line does.
 
     ```r
-    vic_elec_daily <- vic_elec |>   
-      index_by(Date = date(Time)) |> 
-      summarise(                        
-        Demand = sum(Demand)/1e3,       
-        Temperature = max(Temperature), 
-        Holiday = any(Holiday)          
-      ) |> 
-      mutate(Day_Type = case_when(       
-        Holiday ~ "Holiday",             
-        wday(Date) %in% 2:6 ~ "Weekday", 
-        TRUE ~ "Weekend"                 
-      )) 
+    vic_elec_daily <- vic_elec |>
+      index_by(Date = date(Time)) |>    # index by date to turn into daily
+      summarise(                        # summarise() below
+        Demand = sum(Demand)/1e3,       # Total daily and scaling Mega to Gigawatts
+        Temperature = max(Temperature), # take highest temperature for the day
+        Holiday = any(Holiday)          # Hol for any half hour is Hol for day
+      ) |> # create new variable Day_Type
+    mutate(Day_Type = case_when(       # Separate weekdays, weekends and holidays
+      Holiday ~ "Holiday",             # If Holiday=TRUE call it a Holiday
+      wday(Date) %in% 2:6 ~ "Weekday", # wday() returns 1:7 starting from a Sunday
+      TRUE ~ "Weekend"                 # Call everything else a weekend
+      ))
     ```
     Explore the seasonal patterns.
     
