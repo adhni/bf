@@ -48,3 +48,16 @@
       )
     ```
 
+3. Exam 2024
+
+      - Section A: Q4
+      - Section B: Q3 (i-j) 
+      - Section E: all questions
+      
+4. Exam 2023
+
+      - Section A: Q6
+      - Section B: Q3 (i-j) 
+      - Section D: all questions
+      - Section E: all questions
+
