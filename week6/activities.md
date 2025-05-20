@@ -23,4 +23,3 @@
       - Section A: Q1, Q2
       - Section B: Q3d, Q3e, Q3f 
       - Section C: all questions
-      - Solutions [[week6_Exam2024_solutions.pdf](week6_Exam2024_solutions.pdf)]

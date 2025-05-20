@@ -21,5 +21,3 @@
 
       - Section A: Q3, Q6
       - Section B: Q3a, Q3b
-      - Solutions [[week4_Exam2024_solutions.pdf](week4_Exam2024_solutions.pdf)]
-

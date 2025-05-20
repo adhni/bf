@@ -30,4 +30,3 @@
 
     - Section A: Q6 (just for information at the moment)
     - Section B: Q1, Q2
-    - Solutions [[week3_Exam2024_solutions.pdf](week3_Exam2024_solutions.pdf)]

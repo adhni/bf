@@ -28,4 +28,3 @@
       - Section A: Q5
       - Section B: Q3 (g-h) 
       - Section D: all questions
-      - Solutions [[week9_Exam2024_solutions.pdf](week9_Exam2024_solutions.pdf)]
