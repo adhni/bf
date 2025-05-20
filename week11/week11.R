@@ -28,11 +28,7 @@ cafe_fit |> select("K = 2") |> report()
 glance(cafe_fit) |>
   select(.model, sigma2, log_lik, AIC, AICc, BIC)
 # Not surprising that we need all terms to deal
-# with this complicated
-# seasonal pattern - so using max dof to use
-
-
-
+# with this complicated seasonal pattern - so using max dof to use
 
 
 ## US GASOLINE ---------------------------------------------------
@@ -73,16 +69,9 @@ gas_fit <- us_gasoline |>
   )
 
 
-gas_fit |>
-  select(best_lm,best_lm2) |>
-  glance()
-
-gas_fit |>
-  select(best_lm2) |>
-  report()
-
-
-glance(gas_fit) |> select(.model, sigma2, log_lik, AIC, AICc, BIC) |> arrange(AICc)
+glance(gas_fit) |> 
+  select(.model, sigma2, log_lik, AIC, AICc, BIC) |> 
+  arrange(AICc)
 
 gas_fit |>
   select(F6) |>
@@ -166,7 +155,6 @@ vic_elec_daily |>
 # Holidays clustered within/similar to Weekends
 # Some really extreme days
 
-
 # Higher demand during higher temperatures - nonlinear
 # Notice holidays clustered within Weekends although they
 # may weekdays
@@ -199,6 +187,7 @@ accuracy(elec_fit) |> arrange(RMSE)
 elec_fit |>
   select(ets) |>
   report()
+# modelling the weekly seasonality
 
 elec_fit |>
   select(ets) |>
@@ -297,16 +286,16 @@ vic_elec_future <- new_data(vic_elec_daily, 14) |>
     )
   )
 forecast(elec_fit, new_data = vic_elec_future) |>
-  autoplot(vic_elec_daily |> tail(50), level = 80) +
+  autoplot(vic_elec_daily |> tail(100), level = 80) +
   labs(y = "Electricity demand (GW)")
 
 forecast(elec_fit, new_data = vic_elec_future) |>
-  autoplot(vic_elec_daily |> tail(50), level = 80) + 
+  autoplot(vic_elec_daily |> tail(100), level = 80) + 
   autolayer(forecast(fit_better,new_data = vic_elec_future))+
   labs(y = "Electricity demand (GW)")
 
 forecast(fit_better, new_data = vic_elec_future) |>
-  autoplot(vic_elec_daily |> tail(50), level = 80) +
+  autoplot(vic_elec_daily |> tail(550), level = 80) +
   labs(y = "Electricity demand (GW)")
 
 
@@ -332,14 +321,14 @@ forecast(elec_fit, new_data = vic_elec_future) |>
   autoplot(vic_elec_daily |> tail(365), level = 80) +
   labs(y = "Electricity demand (GW)")
 
-forecast(fit_better, new_data = vic_elec_future) |>
-  autoplot(vic_elec_daily |> tail(365), level = 80) +
-  labs(y = "Electricity demand (GW)")
-
-
 # The mean is not too bad but the PIs are not.
 # Obviously we can do better
 # but we now have the annual seasonal pattern
+
+
+forecast(fit_better, new_data = vic_elec_future) |>
+  autoplot(vic_elec_daily |> tail(365), level = 80) +
+  labs(y = "Electricity demand (GW)")
 
 # High variance in warmer months - lower in cooler months
 # so monotonic transformations will not work. We need to
@@ -378,7 +367,7 @@ bind_cols(fit_deterministic, fit_stochastic) |>
   forecast(h = 10) |>
   autoplot(aus_visitors) +
   facet_grid(vars(.model)) +
-  labs(y = "Air passengers (millions)",
+  labs(y = "Australian International Visitors (millions)",
        title = "Forecasts from trend models") 
 
 aus_visitors |>
@@ -387,8 +376,9 @@ aus_visitors |>
             colour = "#0072B2", level = 95) +
   autolayer(fit_deterministic |> forecast(h = 20),
             colour = "#D55E00", alpha = 0.7, level = 95) +
-  labs(y = "Air passengers (millions)",
-       title = "Forecasts from trend models")
+  labs(y = "Australian International Visitors (millions)",
+       title = "Forecasts from trend models") 
+
 
 ## AUSTRALIAN AIR PASSENGERS -------------------------------------------------
 aus_airpassengers |>
