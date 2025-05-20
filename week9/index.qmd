@@ -31,11 +31,11 @@ Read [Sections 9.8-9.10 of the textbook](https://otexts.com/fpp3/arima.html) and
 show_slides(week)
 ```
 
-<!-- ## Seminar activities -->
+## Seminar activities
 
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
+```{r}
+#| child: activities.md
+```
 
 
 ## Seminar code
