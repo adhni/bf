@@ -27,4 +27,4 @@
 
       - Section A: Q5
       - Section B: Q3 (g-h) 
-      - Section D: all questionss
+      - Section D: all questions

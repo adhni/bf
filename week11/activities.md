@@ -54,7 +54,7 @@
       - Section B: Q3 (i-j) 
       - Section E: all questions
       
-4. Exam 2023s
+4. Exam 2023
 
       - Section A: Q6
       - Section B: Q3 (i-j) 
