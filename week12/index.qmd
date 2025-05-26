@@ -24,10 +24,10 @@ source(here::here("course_info.R"))
 
 Catch up on any exercises not yet done
 
-<!-- ```{r} -->
-<!-- #| output: asis -->
-<!-- show_slides(week) -->
-<!-- ``` -->
+```{r}
+#| output: asis
+show_slides(week)
+```
 
 
 ## Post-class activities
