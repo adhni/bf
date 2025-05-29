@@ -11,7 +11,7 @@ source(here::here("course_info.R"))
 
 -   Complete Exercises 1-7 from [Section 10.7 of the book](https://otexts.com/fpp3/dynamic-exercises.html).
 -   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 12 Tutorial Solution.html](Week12.html){download="Week 12 Tutorial Solution.html"} -->
+-   <i class="bi bi-download"></i> [Week 12 Tutorial Solution.html](Tutorial12Solution.html){download="Week 12 Tutorial Solution.html"}
 
 
 ## What you will learn this week
