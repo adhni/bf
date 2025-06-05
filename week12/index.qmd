@@ -37,7 +37,7 @@ show_slides(week)
 
 <!-- * Exam solutions: [[2023](/exams/Exam2023_solutions.pdf)] [[2024](/exams/Exam2024_solutions.pdf)] -->
 
-* Exam solutions: [[2022](/exams/Exam2022_solutions.pdf)]
+* Exam solutions: [[2022](Exam2022_solutions.pdf)]
 
 
 * Re-read the textbook
