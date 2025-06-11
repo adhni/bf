@@ -33,11 +33,8 @@ show_slides(week)
 ## Post-class activities
 
 * Do any exercises not yet finished.
-* Complete past exams: [[2022](Exam2022.pdf)] [[2023](Exam2023.pdf)] [[2024](Exam2024.pdf)]
-
-<!-- * Exam solutions:  [[2024](/exams/Exam2024_solutions.pdf)] -->
-
-* Exam solutions: [[2022](Exam2022_solutions.pdf)][[2023](Exam2023_solutions.pdf)]
+* Complete past exams: [[2022](exams/Exam2022.pdf)] [[2023](exams/Exam2023.pdf)] [[2024](exams/Exam2024.pdf)]
+* Exam solutions: [[2022](exams/Exam2022_solutions.pdf)][[2023](exams/Exam2023_solutions.pdf)][[2024](exams/Exam2024_solutions.pdf)]
 
 
 * Re-read the textbook
