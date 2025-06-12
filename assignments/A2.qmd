@@ -23,7 +23,7 @@ You will be using this data in future assignments as you will build on the analy
 :::
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [IA2 suggested solution.html](Assignment2Solutions.html){download="Assignment2Solutions.html"}
+<i class="bi bi-download"></i> [IA2 suggested solutions.html](Assignment2Solutions.html){download="Assignment2Solutions.html"}
 :::
 
 ```{r}
