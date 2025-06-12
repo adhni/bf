@@ -13,7 +13,7 @@ The data you are to forecast is the same series you used in GA2.
 :::
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA3 suggested solution.html](GroupAssignment3Solutions.html){download="GroupAssignment3Solutions.html"}
+<i class="bi bi-download"></i> [GA3 suggested solutions.html](GroupAssignment3Solutions.html){download="GroupAssignment3Solutions.html"}
 :::
 
 You are to submit both an `GA3_GroupNo.qmd` file and a compiled `GA3_GroupNo.pdf` file for your assignment.

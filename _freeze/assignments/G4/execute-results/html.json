@@ -1,8 +1,8 @@
 {
-  "hash": "fda2a485ec0f1fc7787d774d05956413",
+  "hash": "454d6ff8cf933af91d11ea50c4f3e39d",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: Group Assignment 4 (18%)\n---\n\n\n\n**Files for download**:\n\n* Download the template\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA4_template.qmd](../assignment_data/GA4_template.qmd){download=\"GA4_template.qmd\"}\n:::\n\nYou are to submit both an `GA4_GroupNo.qmd` file and a compiled `GA4_GroupNo.pdf` file for your assignment.\n\n\n\n<br><br><hr><b>Due: 26 May 2025</b><br><a href=https://learning.monash.edu/mod/assign/view.php?id=3444685 class = 'badge badge-large badge-blue'><font size='+2'>&nbsp;&nbsp;<b>Submit (ETF5231)</b>&nbsp;&nbsp;</font><br></a>\n",
+    "markdown": "---\ntitle: Group Assignment 4 (18%)\n---\n\n\n\n**Files for download**:\n\n* Download the template\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA4_template.qmd](../assignment_data/GA4_template.qmd){download=\"GA4_template.qmd\"}\n:::\n\n::: {.callout appearance=\"minimal\"}\n<i class=\"bi bi-download\"></i> [GA4 suggested solutions.html](GroupAssignment4Solutions.html){download=\"GroupAssignment4Solutions.html\"}\n:::\n\n\nYou are to submit both an `GA4_GroupNo.qmd` file and a compiled `GA4_GroupNo.pdf` file for your assignment.\n\n\n\n<br><br><hr><b>Due: 26 May 2025</b><br><a href=https://learning.monash.edu/mod/assign/view.php?id=3444685 class = 'badge badge-large badge-blue'><font size='+2'>&nbsp;&nbsp;<b>Submit (ETF5231)</b>&nbsp;&nbsp;</font><br></a>\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
