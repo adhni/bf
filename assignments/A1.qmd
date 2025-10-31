@@ -4,11 +4,11 @@ title: Individual Assignment 1 (5%)
 
 **You must provide forecasts for the following items:**
 
-  1. Google closing stock price on 21 March 2025 [[Data](https://finance.yahoo.com/quote/GOOG/)].
-  2. Maximum temperature at Melbourne airport on 11 April 2025 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)].
-  3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2025 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)].
-  4. The seasonally adjusted estimate of total employment for April 2025 in ('000). ABS CAT 6202, to be released around mid May 2025 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)].
-  5. Google closing stock price on 23 May 2025 [[Data](https://finance.yahoo.com/quote/GOOG/)].
+  1. Google closing stock price on 21 March 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)].
+  2. Maximum temperature at Melbourne airport on 11 April 2026 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)].
+  3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2026 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)].
+  4. The seasonally adjusted estimate of total employment for April 2026 in ('000). ABS CAT 6202, to be released around mid May 2026 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)].
+  5. Google closing stock price on 23 May 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)].
 
 For each of these, give a **point forecast** and an **80% prediction interval**, and **explain in a couple of sentences** how each was obtained.
 
@@ -26,8 +26,6 @@ Your forecasts should be submitted in moodle by **9.30am, on Monday, March 10**.
 <!-- source(here::here("course_info.R")) -->
 <!-- submit(schedule, "IA1") -->
 <!-- ``` -->
-
-
 
 
 
@@ -69,14 +67,14 @@ $$
 * Rank results for all students
 * Add ranks across all five items
 
-## Leaderboard
+<!-- ## Leaderboard -->
 
-```{r}
-#| eval: true
-#source(here::here("assignments/competition.R"))
-readRDS(here::here("assignments/leaders.rds")) |>
-  DT::datatable()
-```
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #source(here::here("assignments/competition.R")) -->
+<!-- readRDS(here::here("assignments/leaders.rds")) |> -->
+<!--   DT::datatable() -->
+<!-- ``` -->
 
 
 
