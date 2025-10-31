@@ -26,6 +26,8 @@ You will be using this data in future assignments as you will build on the analy
 <i class="bi bi-download"></i> [IA2 suggested solutions.html](Assignment2Solutions.html){download="Assignment2Solutions.html"}
 :::
 
+test
+
 ```{r}
 #| output: asis
 source(here::here("course_info.R"))
