@@ -137,6 +137,7 @@ show_quiz <- function(week){
           sep = ""
       )
   }
+  }
 }
 
 show_slides <- function(week) {
