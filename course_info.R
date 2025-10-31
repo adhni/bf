@@ -5,7 +5,7 @@ library(tidyverse)
 start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2026-06-22"
+mid_semester_break <- "2026-04-06"
 
 # Schedule
 schedule <- tibble(
@@ -190,7 +190,7 @@ submit <- function(schedule, assignment) {
                    "<a href=",url," class = 'badge badge-large badge-blue'>",
                    "<font size='+2'>&nbsp;&nbsp;<b>Submit (ETF5231)</b>&nbsp;&nbsp;</font><br></a>")
   cat(button1)
-  if (any(str_detect(ass$Assignment, "IA"))) {
+  if (str_detect(ass$Assignment, "IA")) {
   url <- ass$Moodle3231
   button2 <- paste0("<br><br><hr><b>Due: ", due, "</b><br>",
                     "<a href=",url," class = 'badge badge-large badge-blue'>",
