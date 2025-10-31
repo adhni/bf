@@ -2,10 +2,10 @@
 library(tidyverse)
 
 # Start of semester
-start_semester <- "2025-03-03"
+start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2025-04-21"
+mid_semester_break <- "2026-06-22"
 
 # Schedule
 schedule <- tibble(
@@ -94,9 +94,18 @@ assignments <- read_csv(here::here("assignments.csv")) |>
     File = paste0("assignments/", File)
   )
 
+quizzes <- read_csv(here::here("quizzes.csv")) |>
+  mutate(
+    Date = lastmon(QDue),
+    QMoodle = paste0(
+      "https://learning.monash.edu/mod/quiz/view.php?id=",
+      QMoodle
+    )
+  )
 
 schedule <- schedule |>
-  left_join(assignments, by = "Date")
+  left_join(assignments, by = "Date") %>%
+  left_join(quizzes, by = "Date")
 
 show_assignments <- function(week) {
   ass <- schedule |>
@@ -112,6 +121,21 @@ show_assignments <- function(week) {
       cat("* [", ass$Assignment[i], "](../", ass$File[i], ") is due on ",
           format(ass$Due[i], "%A %d %B.\n"), sep="")
     }
+  }
+  show_quiz(week)
+}
+
+show_quiz <- function(week){
+  ass <- schedule %>%
+    filter(Week == week, !is.na(Quiz)) %>%
+    select(Quiz:QMoodle)
+  if (NROW(ass) > 0) {
+    cat("\n\n## Weekly quiz\n\n")
+    for (i in seq(NROW(ass))) {
+      cat("* [", ass$Quiz[i], " quiz](", ass$QMoodle[i], ") is due on ",
+          format(ass$QDue[i], "%A %d %B.\n"),
+          sep = ""
+      )
   }
 }
 
