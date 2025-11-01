@@ -12,24 +12,24 @@ You will be using this data in future assignments as you will build on the analy
 
 **Files for download**:
 
-* Download the template
+<!-- * Download the template -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA2_template.qmd](../assignment_data/GA2_template.qmd){download="GA2_template.qmd"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [GA2_template.qmd](../assignment_data/GA2_template.qmd){download="GA2_template.qmd"} -->
+<!-- ::: -->
 
-* Download the data
+<!-- * Download the data -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA_data.csv](../assignment_data/GA_data.csv){download="GA_data.csv"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [GA_data.csv](../assignment_data/GA_data.csv){download="GA_data.csv"} -->
+<!-- ::: -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA2 suggested solution.html](GroupAssignment2Solutions.html){download="GroupAssignment2Solutions.html"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [GA2 suggested solution.html](GroupAssignment2Solutions.html){download="GroupAssignment2Solutions.html"} -->
+<!-- ::: -->
 
-```{r}
-#| output: asis
-source(here::here("course_info.R"))
-submit(schedule, "GA2")
-```
+<!-- ```{r} -->
+<!-- #| output: asis -->
+<!-- source(here::here("course_info.R")) -->
+<!-- submit(schedule, "GA2") -->
+<!-- ``` -->

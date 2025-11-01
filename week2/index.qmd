@@ -13,7 +13,7 @@ source(here::here("course_info.R"))
 -   Complete Exercises 1-4 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
 -   We completed Exercise 5 in last week's lectorial.
 -   [Tutorial learning objectives](tute-lo.qmd).
--   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"}
+<!-- -   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"} -->
 
 ## What you will learn this week
 
@@ -27,10 +27,10 @@ source(here::here("course_info.R"))
 -   Read [Chapter 2 of the textbook](https://otexts.com/fpp3/graphics.html) and watch all embedded videos
 
 
-```{r}
-#| output: asis
-show_slides(week)
-```
+<!-- ```{r} -->
+<!-- #| output: asis -->
+<!-- show_slides(week) -->
+<!-- ``` -->
 
 ## Lectorial activities
 

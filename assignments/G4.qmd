@@ -6,19 +6,19 @@ title: Group Assignment 4 (18%)
 
 * Download the template
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA4_template.qmd](../assignment_data/GA4_template.qmd){download="GA4_template.qmd"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [GA4_template.qmd](../assignment_data/GA4_template.qmd){download="GA4_template.qmd"} -->
+<!-- ::: -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA4 suggested solutions.html](GroupAssignment4Solution.html){download="GroupAssignment4Solution.html"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [GA4 suggested solutions.html](GroupAssignment4Solution.html){download="GroupAssignment4Solution.html"} -->
+<!-- ::: -->
 
 
-You are to submit both an `GA4_GroupNo.qmd` file and a compiled `GA4_GroupNo.pdf` file for your assignment.
+<!-- You are to submit both an `GA4_GroupNo.qmd` file and a compiled `GA4_GroupNo.pdf` file for your assignment. -->
 
-```{r}
-#| output: asis
-source(here::here("course_info.R"))
-submit(schedule, "GA4")
-```
+<!-- ```{r} -->
+<!-- #| output: asis -->
+<!-- source(here::here("course_info.R")) -->
+<!-- submit(schedule, "GA4") -->
+<!-- ``` -->

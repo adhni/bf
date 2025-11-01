@@ -16,21 +16,21 @@ You will be using this data in future assignments as you will build on the analy
 <i class="bi bi-download"></i> [IA2_template.qmd](../assignment_data/IA2_template.qmd){download="IA2_template.qmd"}
 :::
 
-* Download the data
+<!-- * Download the data -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [IA_data.csv](../assignment_data/IA_data.csv){download="IA_data.csv"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [IA_data.csv](../assignment_data/IA_data.csv){download="IA_data.csv"} -->
+<!-- ::: -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [IA2 suggested solutions.html](Assignment2Solutions.html){download="Assignment2Solutions.html"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [IA2 suggested solutions.html](Assignment2Solutions.html){download="Assignment2Solutions.html"} -->
+<!-- ::: -->
 
-```{r}
-#| output: asis
-source(here::here("course_info.R"))
-submit(schedule, "IA2")
-```
+<!-- ```{r} -->
+<!-- #| output: asis -->
+<!-- source(here::here("course_info.R")) -->
+<!-- submit(schedule, "IA2") -->
+<!-- ``` -->
 
 
 
