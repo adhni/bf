@@ -2,11 +2,13 @@
 title: Individual Assignment 3 (10%)
 ---
 
-The data you are to forecast is the same series you used in IA2. 
+Coming soon. 🚒
 
-**Files for download**:
+<!-- The data you are to forecast is the same series you used in IA2.  -->
 
-* Download the template
+<!-- **Files for download**: -->
+
+<!-- * Download the template -->
 
 <!-- ::: {.callout appearance="minimal"} -->
 <!-- <i class="bi bi-download"></i> [IA3_template.qmd](../assignment_data/IA3_template.qmd){download="IA3_template.qmd"} -->

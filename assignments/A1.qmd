@@ -23,11 +23,11 @@ Coming soon. 🚒
 
 
 
-<!-- <!-- ```{r} --> -->
-<!-- <!-- #| output: asis --> -->
-<!-- <!-- source(here::here("course_info.R")) --> -->
-<!-- <!-- submit(schedule, "IA1") --> -->
-<!-- <!-- ``` --> -->
+<!-- <!-- ```{r} --> 
+<!-- <!-- #| output: asis --> 
+<!-- <!-- source(here::here("course_info.R")) --> 
+<!-- <!-- submit(schedule, "IA1") --> 
+<!-- <!-- ``` --> 
 
 
 
