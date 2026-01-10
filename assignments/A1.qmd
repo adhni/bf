@@ -2,90 +2,92 @@
 title: Individual Assignment 1 (5%)
 ---
 
-**You must provide forecasts for the following items:**
+Coming soon. :construction:
 
-  1. Google closing stock price on 21 March 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)].
-  2. Maximum temperature at Melbourne airport on 11 April 2026 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)].
-  3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2026 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)].
-  4. The seasonally adjusted estimate of total employment for April 2026 in ('000). ABS CAT 6202, to be released around mid May 2026 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)].
-  5. Google closing stock price on 23 May 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)].
+<!-- **You must provide forecasts for the following items:** -->
 
-For each of these, give a **point forecast** and an **80% prediction interval**, and **explain in a couple of sentences** how each was obtained.
+<!--   1. Google closing stock price on 21 March 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)]. -->
+<!--   2. Maximum temperature at Melbourne airport on 11 April 2026 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)]. -->
+<!--   3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2026 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)]. -->
+<!--   4. The seasonally adjusted estimate of total employment for April 2026 in ('000). ABS CAT 6202, to be released around mid May 2026 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)]. -->
+<!--   5. Google closing stock price on 23 May 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)]. -->
 
-* Prepare short justifications with your forecasts and forecast intervals explaining in no more than 50-70 words how these were obtained. Only a couple of sentences are required. There is no need to use any fancy models or sophisticated methods. 
-* **Full marks will be awarded** if you submit the required information, and are able to meaningfully justify your results in a couple of sentences in each case. 
+<!-- For each of these, give a **point forecast** and an **80% prediction interval**, and **explain in a couple of sentences** how each was obtained. -->
 
-### Submission
+<!-- * Prepare short justifications with your forecasts and forecast intervals explaining in no more than 50-70 words how these were obtained. Only a couple of sentences are required. There is no need to use any fancy models or sophisticated methods.  -->
+<!-- * **Full marks will be awarded** if you submit the required information, and are able to meaningfully justify your results in a couple of sentences in each case.  -->
 
-Your forecasts should be submitted in moodle by **9.30am, on Monday, March 10**.
+<!-- ### Submission -->
 
-
-
-<!-- ```{r} -->
-<!-- #| output: asis -->
-<!-- source(here::here("course_info.R")) -->
-<!-- submit(schedule, "IA1") -->
-<!-- ``` -->
+<!-- Your forecasts should be submitted in moodle by **9.30am, on Monday, March 10**. -->
 
 
 
-#### Tips
-
-* The [Data] links give you possible data to start with, but you are free to use any data you like.
-* There is no need to use any fancy models or sophisticated methods. Simple is better for this assignment. The methods you use should be understandable to any high school student.
-
-## Forecasting competition
-
-Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the winner of our forecasting competition (something really nice to have on your CV), and will also win a $100 Amazon gift voucher.
-
-Note: your assignment mark is not dependent at all on the score you obtain in the competition.
-
-
-### Scoring 
-\small
-
-Let $y=$ actual, $\hat{y}=$ point forecast, $[\hat{\ell},\hat{u}]=$ prediction interval
-
-#### Point forecasts:
-
-$$\text{Absolute Error} = |y-\hat{y}|$$
-
-\vspace{-0.4cm}
-
- * Rank results for all students in class
- * Add ranks across all five items
-
-#### Prediction intervals:
-
-$$
-\text{Interval Score} = (\hat u - \hat\ell) + 10(\hat\ell - y)_+ + 10 (y-\hat u)_+
-$$
-
-\vspace{-0.5cm}
-
-* $u_+=max(u,0)$
-* Rank results for all students
-* Add ranks across all five items
-
-<!-- ## Leaderboard -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #source(here::here("assignments/competition.R")) -->
-<!-- readRDS(here::here("assignments/leaders.rds")) |> -->
-<!--   DT::datatable() -->
-<!-- ``` -->
+<!-- <!-- ```{r} --> -->
+<!-- <!-- #| output: asis --> -->
+<!-- <!-- source(here::here("course_info.R")) --> -->
+<!-- <!-- submit(schedule, "IA1") --> -->
+<!-- <!-- ``` --> -->
 
 
 
-<!-- ### Submitted forecasts -->
+<!-- #### Tips -->
 
-<!-- * [Q1](Q1.png); [Q1-zoom](Q1zoom.png). -->
-<!-- * [Q2](Q2.png); [Q2-zoom](Q2zoom.png). -->
-<!-- * [Q3](Q3.png); [Q3-zoom](Q3zoom.png). -->
-<!-- * [Q4](Q4.png); [Q4-zoom](Q4zoom.png). -->
+<!-- * The [Data] links give you possible data to start with, but you are free to use any data you like. -->
+<!-- * There is no need to use any fancy models or sophisticated methods. Simple is better for this assignment. The methods you use should be understandable to any high school student. -->
 
-<!-- ### Leaderboard -->
+<!-- ## Forecasting competition -->
 
-<!-- <iframe src="https://docs.google.com/spreadsheets/d/1_3RcdspMIL7TIaD7566bEbUEe8LHcg4UNQS1-ex-NZg/edit?usp=sharing" width = "110%" height = 500></iframe> -->
+<!-- Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the winner of our forecasting competition (something really nice to have on your CV), and will also win a $100 Amazon gift voucher. -->
+
+<!-- Note: your assignment mark is not dependent at all on the score you obtain in the competition. -->
+
+
+<!-- ### Scoring  -->
+<!-- \small -->
+
+<!-- Let $y=$ actual, $\hat{y}=$ point forecast, $[\hat{\ell},\hat{u}]=$ prediction interval -->
+
+<!-- #### Point forecasts: -->
+
+<!-- $$\text{Absolute Error} = |y-\hat{y}|$$ -->
+
+<!-- \vspace{-0.4cm} -->
+
+<!--  * Rank results for all students in class -->
+<!--  * Add ranks across all five items -->
+
+<!-- #### Prediction intervals: -->
+
+<!-- $$ -->
+<!-- \text{Interval Score} = (\hat u - \hat\ell) + 10(\hat\ell - y)_+ + 10 (y-\hat u)_+ -->
+<!-- $$ -->
+
+<!-- \vspace{-0.5cm} -->
+
+<!-- * $u_+=max(u,0)$ -->
+<!-- * Rank results for all students -->
+<!-- * Add ranks across all five items -->
+
+<!-- <!-- ## Leaderboard --> -->
+
+<!-- <!-- ```{r} --> -->
+<!-- <!-- #| eval: true --> -->
+<!-- <!-- #source(here::here("assignments/competition.R")) --> -->
+<!-- <!-- readRDS(here::here("assignments/leaders.rds")) |> --> -->
+<!-- <!--   DT::datatable() --> -->
+<!-- <!-- ``` --> -->
+
+
+
+<!-- <!-- ### Submitted forecasts --> -->
+
+<!-- <!-- * [Q1](Q1.png); [Q1-zoom](Q1zoom.png). --> -->
+<!-- <!-- * [Q2](Q2.png); [Q2-zoom](Q2zoom.png). --> -->
+<!-- <!-- * [Q3](Q3.png); [Q3-zoom](Q3zoom.png). --> -->
+<!-- <!-- * [Q4](Q4.png); [Q4-zoom](Q4zoom.png). --> -->
+
+<!-- <!-- ### Leaderboard --> -->
+
+<!-- <!-- <iframe src="https://docs.google.com/spreadsheets/d/1_3RcdspMIL7TIaD7566bEbUEe8LHcg4UNQS1-ex-NZg/edit?usp=sharing" width = "110%" height = 500></iframe> --> -->
 
