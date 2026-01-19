@@ -53,11 +53,11 @@ Email: [George.Athanasopoulos@monash.edu](mailto:George.Athanasopoulos@monash.ed
 
 * **Pre-class preparation**, [pre-recorded videos](https://www.youtube.com/watch?v=uwKiT1o1TkI&list=PLyCNZ_xXGzpm7W9jLqbIyBAiSO5jDwJeE), approximately 1 hour per week.
 
-<!-- * **Seminars**, 10-11 Tuesday, [Building K Level 3, K321, CA_K_K321](https://www.monash.edu/__data/assets/pdf_file/0010/2658961/Caulfield-campus-map.pdf). -->
-<!-- * **Lectorials**, 11-12 Tuesday, [Building K Level 3, K321, CA_K_K321](https://www.monash.edu/__data/assets/pdf_file/0010/2658961/Caulfield-campus-map.pdf). -->
+* **Seminars**, 3pm-4pm Wednesday, [Building K Level 3, K321, CA_K_K321](https://www.monash.edu/__data/assets/pdf_file/0010/2658961/Caulfield-campus-map.pdf).
+* **Lectorials**, 4pm-5pm Wednesday, [Building K Level 3, K321, CA_K_K321](https://www.monash.edu/__data/assets/pdf_file/0010/2658961/Caulfield-campus-map.pdf).
 
 * **Tutorials**, 50 minutes in class per week.  
-* **Lecture Recordings**
+* **Lecture Recordings**: TBA, coming soon 🚒.
 
 
 ```{r}
@@ -86,6 +86,9 @@ schedule |>
 Final exam 60%, 4x (ETF3231)/8x (ETF5231) assignments 40% 
 :::
 
+**Quizzes**: There will be weekly quizzes (11 in total) that will cover course content from the first hour of lectures each week. (Hence, attending lectures is important!). You will be required to complete 8 out of the 11 quizzes. There will be a bonus mark (3%) for completing all 11 quizzes.
+The quizzes will be made available during the lecture. 
+
 **IA**: denotes an individual assignment to be completed by all students. 
 
 **GA**: denotes a group assignment to be completed only by ETF5231 students
@@ -95,14 +98,16 @@ _Please note: In these assessments, you must not use generative artificial intel
 
 |Weeks	| Assessment Task	| Weight|
 |:---|:---|:---|
-|2	|IA1	|5%|
-|4	|GA1	|5%|
-|6	|IA2	|7%|
-|7	|GA2	|7%|
+|Weekly| Quizzes | 8% |
+|2	|IA1	|2%|
+|4	|GA1	|2%|
+|5	|IA2	|5%|
+|6	|GA2	|5%|
 |8	|IA3	|10%|
 |9	|GA3	|10%|
-|11	|IA4	|18%|
-|12	|GA4	|18%|
+|11	|IA4	|15%|
+|12	|GA4	|15%|
+
 
 **ETF5231 students**: marks allocated to Assignments will be a combination between Individual Assignments and Group Assignments with a weights 0.7 and 0.3. So if you score 8/10 for IA3 and 5/10 for GA3 your mark for Assignment 3 will be $8*0.7+5*0.3=7.1$ out of 10. Hence, it is important to make sure that groups are performing at the highest standard.
 
