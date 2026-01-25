@@ -86,14 +86,14 @@ schedule |>
 Final exam 60%, in-semester assessment 40% (quizzes and assignments)
 :::
 
-**Quizzes**: There will be weekly quizzes (11 in total), to be completed during the Workshops. These quizzes will cover course content from the corresponding  Seminar each week. Hence, attending both Seminars and Workshops is important!. You are required to complete 8 out of the 11 quizzes to receive full marks (worth 8% in total). An additional bonus of up to 3% will be awarded, with 1% for each extra quiz completed beyond the required eight. This bonus will contribute towards your final exam mark.
-
+**Quizzes**: There will be weekly quizzes (11 in total), to be completed during the Workshops. These quizzes will cover course content from the corresponding  Seminar each week. Hence, attending both Seminars and Workshops is important! You are required to complete 8 out of the 11 quizzes to receive full marks (worth 8% in total). An additional bonus of up to 3% will be awarded, with 1% for each extra quiz completed beyond the required eight. This bonus will contribute towards your final exam mark.
 
 **IA**: denotes an individual assignment to be completed by all students. 
 
 **GA**: denotes a group assignment to be completed only by ETF5231 students
 
-The due dates will be confirmed throughout the semester as our speed in covering topics will vary depending on student needs.   
+The due dates will be confirmed throughout the semester as our speed in covering topics will vary depending on student needs.
+
 _Please note: In these assessments, you must not use generative artificial intelligence (AI) to generate any materials or content in relation to the assessment tasks._
 
 |Weeks	| Assessment Task	| Weight|
@@ -109,13 +109,13 @@ _Please note: In these assessments, you must not use generative artificial intel
 |12	|GA4	|15%|
 
 
-**ETF5231 students**: marks allocated to Assignments will be a combination between Individual Assignments and Group Assignments with a weights 0.7 and 0.3. So if you score 8/10 for IA3 and 5/10 for GA3 your mark for Assignment 3 will be $8*0.7+5*0.3=7.1$ out of 10. Hence, it is important to make sure that groups are performing at the highest standard.
+**ETF5231 students**: marks allocated to Assignments will be a combination between Individual Assignments and Group Assignments with weights 0.7 and 0.3. So if you score 8/10 for IA3 and 5/10 for GA3 your mark for Assignment 3 will be $8*0.7+5*0.3=7.1$ out of 10. Hence, it is important to make sure that groups are performing at the highest standard.
 
-**Presentation requirements**: using Rmarkdown, and should converted the assignment into pdf output file unless otherwise specified.
+**Presentation requirements**: using Quarto, and should converted the assignment into pdf output file unless otherwise specified.
 
 **Criteria for marking**: Provided the task has been completed and your code runs without errors, full marks will be awarded. Marks will be deducted for incomplete tasks or if there are errors.
 
-**Penalties for late lodgement**: The University has a standard penalty for late submission. See the Marking and Feedback Procedure for more information
+**Penalties for late lodgement**: The University has a standard penalty for late submission. See the [Marking and Feedback Procedure for more information](https://publicpolicydms.monash.edu/Monash/documents/1935752).
 
 **Additional information**: Additional information regarding this assessment will be provided during the scheduled class time and on Moodle.
 
