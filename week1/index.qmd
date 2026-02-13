@@ -18,7 +18,7 @@ source(here::here("course_info.R"))
 The main tasks for Week 1 tutorials will be:
 
 1. To ensure that you have successfully installed R and RStudio on your own laptop.
-2. Walk through [IA_template](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
+2. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
 3. Work your way through **Getting started** (5 modules) and **Writing documents** (1 module) in [startR](startr.numbat.space). This is material we have prepared for you and other Monash students working in R. You should do these at your own pace to understand the concepts.
 4. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
 
@@ -37,12 +37,11 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 -   Read [Section 2.1 of the textbook](https://otexts.com/fpp3/tsibbles.html#tsibbles) and watch the embedded video.
 
 
-# ```{r}
-# #| output: asis
-# 
-# show_slides(week)
-# show_activity(week, show_solutions = FALSE)
-# ```
+<!-- ```{r} -->
+<!-- #| output: asis -->
+<!-- show_slides(week) -->
+<!-- show_activity(week, show_solutions = FALSE) -->
+<!-- ``` -->
 
 ## In-class Code
 
