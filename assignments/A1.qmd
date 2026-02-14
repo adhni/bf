@@ -2,72 +2,69 @@
 title: Individual Assignment 1 (2%)
 ---
 
-Coming soon. 🚒
+**You must provide forecasts for the following items:**
 
-<!-- **You must provide forecasts for the following items:** -->
+  1. Google closing stock price on 21 March 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)].
+  2. Maximum temperature at Melbourne airport on 11 April 2026 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)].
+  3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2026 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)].
+  4. The seasonally adjusted estimate of total employment for April 2026 in ('000). ABS CAT 6202, to be released around mid May 2026 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)].
+  5. Google closing stock price on 23 May 2026 [[Data](https://finance.yahoo.com/quKote/GOOG/)].
 
-<!--   1. Google closing stock price on 21 March 2026 [[Data](https://finance.yahoo.com/quote/GOOG/)]. -->
-<!--   2. Maximum temperature at Melbourne airport on 11 April 2026 [[Data](http://www.bom.gov.au/climate/dwo/IDCJDW3049.latest.shtml)]. -->
-<!--   3. The difference in points (Collingwood minus Essendon) scored in the AFL match between Collingwood and Essendon for the Anzac Day clash. 25 April 2026 [[Data](https://en.wikipedia.org/wiki/Anzac_Day_match)]. -->
-<!--   4. The seasonally adjusted estimate of total employment for April 2026 in ('000). ABS CAT 6202, to be released around mid May 2026 [[Data](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)]. -->
-<!--   5. Google closing stock price on 23 May 2026 [[Data](https://finance.yahoo.com/quKote/GOOG/)]. -->
+For each of these, give a **point forecast** and an **80% prediction interval**, and **explain in a couple of sentences** how each was obtained.
 
-<!-- For each of these, give a **point forecast** and an **80% prediction interval**, and **explain in a couple of sentences** how each was obtained. -->
+* Prepare short justifications with your forecasts and forecast intervals explaining in no more than 50-70 words how these were obtained. Only a couple of sentences are required. There is no need to use any fancy models or sophisticated methods.
+* **Full marks will be awarded** if you submit the required information, and are able to meaningfully justify your results in a couple of sentences in each case.
 
-<!-- * Prepare short justifications with your forecasts and forecast intervals explaining in no more than 50-70 words how these were obtained. Only a couple of sentences are required. There is no need to use any fancy models or sophisticated methods.  -->
-<!-- * **Full marks will be awarded** if you submit the required information, and are able to meaningfully justify your results in a couple of sentences in each case.  -->
+#### Tips
 
-<!-- ### Submission -->
-
-<!-- Your forecasts should be submitted in moodle by **9.30am, on Monday, March 10**. -->
-
+* The [Data] links give you possible data to start with, but you are free to use any data you like.
+* There is no need to use any fancy models or sophisticated methods. Simple is better for this assignment. The methods you use should be understandable to any high school student.
 
 
-<!-- <!-- ```{r} --> 
-<!-- <!-- #| output: asis --> 
-<!-- <!-- source(here::here("course_info.R")) --> 
-<!-- <!-- submit(schedule, "IA1") --> 
-<!-- <!-- ``` --> 
+### Submission
+
+Submit your forecasts using the links below.
 
 
-
-<!-- #### Tips -->
-
-<!-- * The [Data] links give you possible data to start with, but you are free to use any data you like. -->
-<!-- * There is no need to use any fancy models or sophisticated methods. Simple is better for this assignment. The methods you use should be understandable to any high school student. -->
-
-<!-- ## Forecasting competition -->
-
-<!-- Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the winner of our forecasting competition (something really nice to have on your CV), and will also win a $100 Amazon gift voucher. -->
-
-<!-- Note: your assignment mark is not dependent at all on the score you obtain in the competition. -->
+```{r}
+#| output: asis
+source(here::here("course_info.R"))
+submit(schedule, "IA1")
+```
 
 
-<!-- ### Scoring  -->
-<!-- \small -->
+## Forecasting competition
 
-<!-- Let $y=$ actual, $\hat{y}=$ point forecast, $[\hat{\ell},\hat{u}]=$ prediction interval -->
+Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the **Winner of our Business Forecasting Competition** (something really nice to have on your CV), and will also win a **$100 Amazon gift voucher**.
 
-<!-- #### Point forecasts: -->
+Note: your assignment mark is not dependent at all on the score you obtain in the competition.
 
-<!-- $$\text{Absolute Error} = |y-\hat{y}|$$ -->
 
-<!-- \vspace{-0.4cm} -->
+### Scoring
+\small
 
-<!--  * Rank results for all students in class -->
-<!--  * Add ranks across all five items -->
+Let $y=$ actual, $\hat{y}=$ point forecast, $[\hat{\ell},\hat{u}]=$ prediction interval
 
-<!-- #### Prediction intervals: -->
+#### Point forecasts:
 
-<!-- $$ -->
-<!-- \text{Interval Score} = (\hat u - \hat\ell) + 10(\hat\ell - y)_+ + 10 (y-\hat u)_+ -->
-<!-- $$ -->
+$$\text{Absolute Error} = |y-\hat{y}|$$
 
-<!-- \vspace{-0.5cm} -->
+\vspace{-0.4cm}
 
-<!-- * $u_+=max(u,0)$ -->
-<!-- * Rank results for all students -->
-<!-- * Add ranks across all five items -->
+ * Rank results for all students in class
+ * Add ranks across all five items
+
+#### Prediction intervals:
+
+$$
+\text{Interval Score} = (\hat u - \hat\ell) + 10(\hat\ell - y)_+ + 10 (y-\hat u)_+
+$$
+
+\vspace{-0.5cm}
+
+* $u_+=max(u,0)$
+* Rank results for all students
+* Add ranks across all five items
 
 <!-- <!-- ## Leaderboard --> 
 
