@@ -35,7 +35,7 @@ submit(schedule, "IA1")
 
 ## Forecasting competition
 
-Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the **Winner of our Business Forecasting Competition** (something really nice to have on your CV), and will also win a **$100 Amazon gift voucher**.
+Once the true values in each case are available, we will come back to this exercise and see who did the best using the scoring method described in class. The student with the best score will be the **Winner of our Business Forecasting Competition** (something really nice to have on your CV), and will also win a **$100 Amazon gift voucher** .
 
 Note: your assignment mark is not dependent at all on the score you obtain in the competition.
 
