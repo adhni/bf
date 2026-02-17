@@ -15,3 +15,16 @@ By the end of this tutorial, you should be able to:
 -   **Start thinking about IA1**
   
     - Discuss with your fellow students how you would go about your forecasting tasks.
+
+-   **Import time series data into R**
+
+    -   Successfully read time series data from CSV and Excel files.
+    -   Set and verify your working directory using `getwd()` and `setwd()` to avoid file path errors.
+    -   Recognize the importance of proper file import for all future assignments.
+
+-   **Convert data frames to tsibbles**
+
+    -   Use `as_tsibble()` to convert a data frame into a time series tibble (tsibble).
+    -   Understand key components of a tsibble:
+        -   the **time index** and its granularity,
+        -   the **key** variable(s)

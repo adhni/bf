@@ -13,19 +13,6 @@ source(here::here("course_info.R"))
 * What makes something easy or hard to forecast?
 * Using the `tsibble` package in R
 
-## Tutorial exercises
-
-The main tasks for Week 1 tutorials will be:
-
-1. To ensure that you have successfully installed R and RStudio on your own laptop.
-2. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
-3. Work your way through **Getting started** (5 modules) and **Writing documents** (1 module) in [startR](startr.numbat.space). This is material we have prepared for you and other Monash students working in R. You should do these at your own pace to understand the concepts.
-4. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
-
-Your tutors will be in your tutorial class to assist you. 
-
-- [Tutorial learning objectives](tute-lo.qmd).
-
 ## Pre-class activities
 
 Before we start classes, make sure you are familiar with R, RStudio and the tidyverse packages. If you've already done one of ETX2250/ETC1010 or something equivalent you should be fairly familiar with these concepts and probably will not need much help. If you're new to R and the tidyverse, then you will need to get yourself up-to-speed. 
@@ -35,6 +22,22 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 -   Explore StartR: [https://startr.numbat.space/](https://startr.numbat.space/). Work through **Getting started** (5 modules) and **Writing documents** (1 module). Do as much of it as you think you need. For those students new to R, it is strongly recommended that you do all these. For those who have previously used R, concentrate on the parts where you feel you are weakest.
 -    Read [Chapter 1 of the textbook](http://OTexts.com/fpp3/intro.html) and watch all embedded videos. Pay particular attention to [Section 1.7](https://otexts.com/fpp3/perspective.html).
 -   Read [Section 2.1 of the textbook](https://otexts.com/fpp3/tsibbles.html#tsibbles) and watch the embedded video.
+
+## Tutorial exercises (or on your own)
+
+The main tasks for Week 1 tutorials will be:
+
+1. To ensure that you have successfully installed R and RStudio on your own laptop.
+2. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
+3. Work your way through **Getting started** (5 modules) and **Writing documents** (1 module) in [startR](startr.numbat.space). This is material we have prepared for you and other Monash students working in R. You should do these at your own pace to understand the concepts.
+4. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
+5. Complete Exercises 1-4 from [Section 2.10 of the textbook](https://otexts.com/fpp3/graphics-exercises.html).
+
+
+Your tutors will be in your tutorial class to assist you. 
+
+- [Tutorial learning objectives](tute-lo.qmd).
+
 
 
 <!-- ```{r} -->

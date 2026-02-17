@@ -8,12 +8,6 @@ week <- 2
 source(here::here("course_info.R"))
 ```
 
-## Tutorial exercises
-
--   Complete Exercises 1-4 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
--   We completed Exercise 5 in last week's lectorial.
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"} -->
 
 ## What you will learn this week
 
@@ -22,9 +16,17 @@ source(here::here("course_info.R"))
 * What is "white noise" and how to identify it.
 
 
+
 ## Pre-seminar activities
 
 -   Read [Chapter 2 of the textbook](https://otexts.com/fpp3/graphics.html) and watch all embedded videos
+
+
+## Tutorial exercises (or on your own)
+
+-   Complete Exercises 1-11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
+-   [Tutorial learning objectives](tute-lo.qmd).
+<!-- -   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"} -->
 
 
 <!-- ```{r} -->

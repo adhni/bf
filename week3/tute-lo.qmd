@@ -1,28 +1,3 @@
 # Tutorial learning objectives - Week 3
 
-By the end of this tutorial, you should be able to:
 
--   **Recognize common patterns in time series data**
-
-    *   Identify and describe key time series components: **trend**, **seasonal**, and **cycle**.
-
-
-
--   **Visualize seasonal patterns using appropriate plots**
-
-    *   Create **seasonal plots** using `gg_season()`.
-    *   Create and interpret **subseries plots** using `gg_subseries()`.
-    *   Understand that subseries lines—not just the horizontal average—reveal how seasonality changes over time.
-
-
-
--   **Apply cross-sectional visualisation techniques**
-
-    *   Visualise and explore relationships between variables.
-
-
-
--   **Interpret autocorrelation and lag plots**
-
-    *   Understand and interpret **Autocorrelation Function (ACF)** plots.
-    *   Recognise common time series behaviour based on **ACF and lag plots**.
