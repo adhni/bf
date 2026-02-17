@@ -7,39 +7,38 @@ week <- 5
 source(here::here("course_info.R"))
 ```
 
-## Tutorial exercises
-
--   Complete Exercises 1, 3, 5, 11  from [Section 5.11 of the book](https://otexts.com/fpp3/toolbox-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 5 Tutorial Solution.html](Week5.html){download="Week 5 Tutorial Solution.html"} -->
-
 ## What you will learn this week
 
 * Simple exponential smoothing and corresponding ETS models.
 * Methods with trend and corresponding ETS models.
+* ETS model notation
 
-
-## Pre-class activities
+## Pre-seminar activities
 
 Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) and watch all embedded videos
 
-# ```{r}
-# #| output: asis
-# show_slides(week)
-# ```
+<!-- # ```{r} -->
+<!-- # #| output: asis -->
+<!-- # show_slides(week) -->
+<!-- # ``` -->
 
-## Seminar activities
+<!-- ## Seminar activities -->
 
-```{r}
-#| child: activities.md
-```
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
 
 
-## Seminar code
+<!-- ## Seminar code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week5.R](week5.R){download="week5.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week5.R](week5.R){download="week5.R"} -->
+<!-- ::: -->
+
+## Tutorial exercises
+-   Complete Exercises 1-5 from [Section 8.8](https://otexts.com/fpp3/expsmooth-exercises.html).
+-   [Tutorial learning objectives](tute-lo.qmd).
+<!-- -   <i class="bi bi-download"></i> [Week 5 Tutorial Solution.html](Week5.html){download="Week 5 Tutorial Solution.html"} -->
 
 
 

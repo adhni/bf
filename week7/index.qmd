@@ -7,21 +7,24 @@ week <- 7
 source(here::here("course_info.R"))
 ```
 
-
-## Tutorial exercises
-
--   Complete Exercises 5, 7, 11, 14 from [Section 8.8 of the book](https://otexts.com/fpp3/expsmooth-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 7 Tutorial Solution.html](Week7.html){download="Week 7 Tutorial Solution.html"} -->
-
 ## What you will learn this week
 
 * Stationarity and differencing
 * Random Walk Models
 
+
 ## Pre-seminar activities
 
 Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and watch all embedded videos.
+
+
+## Tutorial exercises
+
+-   Complete Exercise 2-5 from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html)
+-   [Tutorial learning objectives](tute-lo.qmd).
+<!-- -   <i class="bi bi-download"></i> [Week 7 Tutorial Solution.html](Week7.html){download="Week 7 Tutorial Solution.html"} -->
+
+
 
 
 <!-- ```{r} -->
@@ -29,18 +32,18 @@ Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and 
 <!-- show_slides(week) -->
 <!-- ``` -->
 
-## Lectorial activities
+<!-- ## Lectorial activities -->
 
-```{r}
-#| child: activities.md
-```
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
 
 
-## Seminar code
+<!-- ## Seminar code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week7.R](week7.R){download="week7.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week7.R](week7.R){download="week7.R"} -->
+<!-- ::: -->
 
 
 

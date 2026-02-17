@@ -2,10 +2,22 @@
 
 By the end of this tutorial, you should be able to:
 
-- **Explain the fundamentals of exponential smoothing**, including key concepts, forecasting and smoothing equations, and the role of parameters.
+1. **Explain the Intuition Behind Exponential Smoothing** 
 
-- **Implement Simple Exponential Smoothing (SES)** using a for loop, writing out both the forecast and smoothing equations in R.
+  - Describe how exponential smoothing captures trend and seasonality.
 
-- **Able to differentiate between custom optimization-based forecasting and automated ETS modeling** by modifying a forecasting function to minimize the sum of squared errors using the optim() function, and comparing the estimated parameters to those obtained from the ETS() function in R.
+  - Interpret the roles of smoothing parameters and initial states in forecasting.
 
-- **Understand the trend component of exponential smoothing**
+2. **Compare Exponential Smoothing with Benchmark Models**
+
+  - Identify similarities and differences between exponential smoothing and simpler models such as the mean and naïve forecasts.
+
+  - Recognize scenarios where exponential smoothing offers an advantage over these benchmark models.
+
+3. **Understand ETS Model Components**
+
+  - Distinguish between additive and multiplicative forms of error, trend, and seasonality.
+
+  - Explain how these components work together in an ETS model.
+
+  - Analyze how smoothing parameters and initial states affect model behavior and forecast outputs.

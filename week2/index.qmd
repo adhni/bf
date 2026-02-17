@@ -22,9 +22,9 @@ source(here::here("course_info.R"))
 -   Read [Chapter 2 of the textbook](https://otexts.com/fpp3/graphics.html) and watch all embedded videos
 
 
-## Tutorial exercises (or on your own)
+## Tutorial exercises (in class or on your own)
 
--   Complete Exercises 1-11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
+-   Complete Exercises 6-11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"} -->
 
@@ -34,18 +34,18 @@ source(here::here("course_info.R"))
 <!-- show_slides(week) -->
 <!-- ``` -->
 
-## Lectorial activities
+<!-- ## Lectorial activities -->
 
-```{r}
-#| child: activities.qmd
-```
+<!-- ```{r} -->
+<!-- #| child: activities.qmd -->
+<!-- ``` -->
 
 
-## Seminar code
+<!-- ## Seminar code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week2.R](week2.R){download="week2.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week2.R](week2.R){download="week2.R"} -->
+<!-- ::: -->
 
 
 

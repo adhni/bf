@@ -8,23 +8,26 @@ source(here::here("course_info.R"))
 ```
 
 
-## Tutorial exercises
-
--   Complete Exercise 2-5 from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html)
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 8 Tutorial Solution.html](Week8.html){download="Week 8 Tutorial Solution.html"} -->
-
-
-
 ## What you will learn this week
 
 * AR, MA, ARMA and ARIMA models
 * Selecting model orders manually and automatically
 
-
 ## Pre-seminar activities
 
 Read [Sections 9.3-9.8 of the textbook](https://otexts.com/fpp3/arima.html) and watch all embedded videos
+
+
+## Tutorial exercises
+
+-   Complete Exercises 7, 8, 15 (a to c), 16 (a to c) from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
+-   [Tutorial learning objectives](tute-lo.qmd).
+<!-- -   <i class="bi bi-download"></i> [Week 8 Tutorial Solution.html](Week8.html){download="Week 8 Tutorial Solution.html"} -->
+
+
+
+
+
 
 
 <!-- ```{r} -->
@@ -32,18 +35,18 @@ Read [Sections 9.3-9.8 of the textbook](https://otexts.com/fpp3/arima.html) and 
 <!-- show_slides(week) -->
 <!-- ``` -->
 
-## Seminar activities
+<!-- ## Seminar activities -->
 
-```{r}
-#| child: activities.md
-```
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
 
 
-## Seminar code
+<!-- ## Seminar code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week8.R](week8.R){download="week8.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week8.R](week8.R){download="week8.R"} -->
+<!-- ::: -->
 
 
 

@@ -2,12 +2,9 @@
 
 By the end of this tutorial, you should be able to:
 
-1. **Understand and perform data transformation as needed.**
+1. Able to perform time series regression models, including how trend and seasonal components are incorporated as regressors.
 
-2. **Understand the concept of time series stationarity** and implement appropriate differencing when necessary.
+2. Apply piecewise linear functions to model structural changes in trend within a time series.
 
-3. **Able to Identify and compare non-seasonal/ seasonal ARIMA models** using ACF/PACF diagnostics and information criteria such as AIC.
+3. Use Fourier terms to represent and model complex seasonal patterns in time series regression.
 
-4. **Estimate the parameters of an ARIMA model**, conduct residual diagnostics, and assess the adequacy of model fit using white noise tests.
-
-5. **Able to produce forecasts for the estimated ARIMA model.**

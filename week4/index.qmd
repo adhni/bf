@@ -7,12 +7,6 @@ week <- 4
 source(here::here("course_info.R"))
 ```
 
-## Tutorial exercises
-
--   Complete Exercise 2, 3, 10 from [Section 3.7](https://otexts.com/fpp3/decomposition-exercises.html) of the book.
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 4 Tutorial Solution.html](Week4.html){download="Week 4 Tutorial Solution.html"} -->
-
 ## What you will learn this week
 
 * Forecasting workflow
@@ -29,23 +23,33 @@ source(here::here("course_info.R"))
 * Read [Chapter 5 of the textbook](https://otexts.com/fpp3/toolbox.html) and watch all embedded videos
 * Read [Chapter 7.4 of the textbook](https://otexts.com/fpp3/useful-predictors.html) and watch the embedded video. Ignore Fourier series for the moment. 
 
-# ```{r}
-# #| output: asis
-# show_slides(week)
-# ```
+## Tutorial exercises (in class or on your own)
 
-## Lectorial activities
+-   Complete Exercises 1, 3, 5, 11  from [Section 5.11 of the book](https://otexts.com/fpp3/toolbox-exercises.html).
+-   Complete Exercise 2 from [Section 7.10 of the book](https://otexts.com/fpp3/regression-exercises.html).
 
-```{r}
-#| child: activities.md
-```
+-   [Tutorial learning objectives](tute-lo.qmd).
+
+<!-- -   <i class="bi bi-download"></i> [Week 4 Tutorial Solution.html](Week4.html){download="Week 4 Tutorial Solution.html"} -->
 
 
-## Seminar code
+<!-- # ```{r} -->
+<!-- # #| output: asis -->
+<!-- # show_slides(week) -->
+<!-- # ``` -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week4.R](week4.R){download="week4.R"}
-:::
+<!-- ## Lectorial activities -->
+
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
+
+
+<!-- ## Seminar code -->
+
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week4.R](week4.R){download="week4.R"} -->
+<!-- ::: -->
 
 
 

@@ -2,22 +2,29 @@
 
 By the end of this tutorial, you should be able to:
 
-1. **Explain the Intuition Behind Exponential Smoothing** 
+1. **Explain the Concept of Stationarity* (20 mins)**
 
-  - Describe how exponential smoothing captures trend and seasonality.
+  - Define stationarity as a condition where the statistical properties of a time series do not depend on time.
 
-  - Interpret the roles of smoothing parameters and initial states in forecasting.
+  - Identify whether a series is stationary using visual inspection of time plots.
 
-2. **Compare Exponential Smoothing with Benchmark Models**
 
-  - Identify similarities and differences between exponential smoothing and simpler models such as the mean and naïve forecasts.
+2. **Apply Transformations and Differencing to Achieve Stationarity**
 
-  - Recognize scenarios where exponential smoothing offers an advantage over these benchmark models.
+  - Use log or power transformations to stabilize variance in a time series.
 
-3. **Understand ETS Model Components**
+  - Apply first-order or seasonal differencing to remove trends and seasonality.
 
-  - Distinguish between additive and multiplicative forms of error, trend, and seasonality.
+  - Explain the purpose and effect of these techniques on the series.
 
-  - Explain how these components work together in an ETS model.
+3. **Express Time Series Operations Using Backshift Notation**
 
-  - Analyze how smoothing parameters and initial states affect model behavior and forecast outputs.
+  - Write the series using lag notation and backshift operator (B).
+
+
+4. **Use the ACF and PACF to Diagnose Time Series Properties**
+
+  - Analyze the Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) of a series.
+
+  - Distinguish between stationary series, white noise, and potential AR/MA model structures using these tools.
+

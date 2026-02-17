@@ -1,9 +1,2 @@
 # Tutorial learning objectives - Week 12
 
-By the end of this tutorial, you should be able to:
-
-1. Identify when ARIMA error structures are appropriate in time series regression and explain how they improve forecast accuracy.
-
-2. Apply dynamic harmonic regression using Fourier terms to model complex seasonal patterns in time series data.
-
-3. Integrate Fourier terms with ARIMA errors in a regression framework to capture both seasonal effects and autocorrelation, and evaluate the resulting model performance.

@@ -7,12 +7,6 @@ week <- 3
 source(here::here("course_info.R"))
 ```
 
-## Tutorial exercises
-
--   Complete Exercises 6, 7, 11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
-
 ## What you will learn this week
 
 * Transforming data to remove some sources of variation
@@ -23,23 +17,33 @@ source(here::here("course_info.R"))
 
 Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and watch all embedded videos
 
+
+## Tutorial exercises (in class or on your own)
+
+-   Complete Exercise 2, 3, 10 from [Section 3.7](https://otexts.com/fpp3/decomposition-exercises.html) of the book.
+
+-   [Tutorial learning objectives](tute-lo.qmd).
+<!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
+
+
+
 <!-- ```{r} -->
 <!-- #| output: asis -->
 <!-- show_slides(week) -->
 <!-- ``` -->
 
-## Lectorial activities
+<!-- ## Lectorial activities -->
 
-```{r}
-#| child: activities.md
-```
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
 
 
-## Seminar code
+<!-- ## Seminar code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week3.R](week3.R){download="week3.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week3.R](week3.R){download="week3.R"} -->
+<!-- ::: -->
 
 
 

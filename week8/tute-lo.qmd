@@ -2,28 +2,16 @@
 
 By the end of this tutorial, you should be able to:
 
-1. **Explain the Concept of Stationarity* (20 mins)**
 
-  - Define stationarity as a condition where the statistical properties of a time series do not depend on time.
+1. **Identify AR and MA Terms from ACF and PACF Plots**
+  - Interpret autocorrelation and partial autocorrelation plots.
+  - Use these plots to decide on appropriate AR and MA orders for ARIMA models.
+  
+2. **Fit and Evaluate ARIMA Models**
+  - Use the `ARIMA()` function to fit non-seasonal ARIMA models.
+  - Check model residuals to see if the model fits well.
+  - Compare different ARIMA models and understand how drift, differencing, and lag order affect forecasts.
 
-  - Identify whether a series is stationary using visual inspection of time plots.
-
-
-2. **Apply Transformations and Differencing to Achieve Stationarity**
-
-  - Use log or power transformations to stabilize variance in a time series.
-
-  - Apply first-order or seasonal differencing to remove trends and seasonality.
-
-  - Explain the purpose and effect of these techniques on the series.
-
-3. **Express Time Series Operations Using Backshift Notation**
-
-  - Write the series using lag notation and backshift operator (B).
-
-
-4. **Use the ACF and PACF to Diagnose Time Series Properties**
-
-  - Analyze the Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) of a series.
-
-  - Distinguish between stationary series, white noise, and potential AR/MA model structures using these tools.
+3. **Understand and Use Backshift Notation**
+  - Write ARIMA models using backshift notation.
+  - Forecast using the backshift notation.

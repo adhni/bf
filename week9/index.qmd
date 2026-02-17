@@ -8,41 +8,42 @@ source(here::here("course_info.R"))
 ```
 
 
-## Tutorial exercises
-
--   Complete Exercises 7, 8, 15 (a to c), 16 (a to c) from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
-<!-- -   <i class="bi bi-download"></i> [Week 9 Tutorial Solution.html](Tutorial9Solution.html){download="Week 9 Tutorial Solution.html"} -->
-
 ## What you will learn this week
 
 * Seasonal ARIMA models
 * Computing forecasts for ARIMA models
 * ARIMA vs ETS models
 
-
 ## Pre-seminar activities
 
 Read [Sections 9.8-9.10 of the textbook](https://otexts.com/fpp3/arima.html) and watch all embedded videos
 
 
-# ```{r}
-# #| output: asis
-# show_slides(week)
-# ```
+## Tutorial exercises
 
-## Seminar activities
+-   [Tutorial learning objectives](tute-lo.qmd).
+-   Complete Exercises 11, 12, 13, 15 (d,e), 16 (d,e)  from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
 
-```{r}
-#| child: activities.md
-```
+<!-- -   <i class="bi bi-download"></i> [Week 9 Tutorial Solution.html](Tutorial9Solution.html){download="Week 9 Tutorial Solution.html"} -->
 
 
-## Seminar code
+<!-- # ```{r} -->
+<!-- # #| output: asis -->
+<!-- # show_slides(week) -->
+<!-- # ``` -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week9.R](week9.R){download="week9.R"}
-:::
+<!-- ## Seminar activities -->
+
+<!-- ```{r} -->
+<!-- #| child: activities.md -->
+<!-- ``` -->
+
+
+<!-- ## Seminar code -->
+
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [week9.R](week9.R){download="week9.R"} -->
+<!-- ::: -->
 
 
 

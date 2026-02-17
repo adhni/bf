@@ -2,16 +2,12 @@
 
 By the end of this tutorial, you should be able to:
 
+1. **Understand and perform data transformation as needed.**
 
-1. **Identify AR and MA Terms from ACF and PACF Plots**
-  - Interpret autocorrelation and partial autocorrelation plots.
-  - Use these plots to decide on appropriate AR and MA orders for ARIMA models.
-  
-2. **Fit and Evaluate ARIMA Models**
-  - Use the `ARIMA()` function to fit non-seasonal ARIMA models.
-  - Check model residuals to see if the model fits well.
-  - Compare different ARIMA models and understand how drift, differencing, and lag order affect forecasts.
+2. **Understand the concept of time series stationarity** and implement appropriate differencing when necessary.
 
-3. **Understand and Use Backshift Notation**
-  - Write ARIMA models using backshift notation.
-  - Forecast using the backshift notation.
+3. **Able to Identify and compare non-seasonal/ seasonal ARIMA models** using ACF/PACF diagnostics and information criteria such as AIC.
+
+4. **Estimate the parameters of an ARIMA model**, conduct residual diagnostics, and assess the adequacy of model fit using white noise tests.
+
+5. **Able to produce forecasts for the estimated ARIMA model.**

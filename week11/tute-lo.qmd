@@ -2,8 +2,8 @@
 
 By the end of this tutorial, you should be able to:
 
-1. Able to perform time series regression models, including how trend and seasonal components are incorporated as regressors.
+1. Identify when ARIMA error structures are appropriate in time series regression and explain how they improve forecast accuracy.
 
-2. Apply piecewise linear functions to model structural changes in trend within a time series.
+2. Apply dynamic harmonic regression using Fourier terms to model complex seasonal patterns in time series data.
 
-3. Use Fourier terms to represent and model complex seasonal patterns in time series regression.
+3. Integrate Fourier terms with ARIMA errors in a regression framework to capture both seasonal effects and autocorrelation, and evaluate the resulting model performance.

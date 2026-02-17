@@ -2,8 +2,17 @@
 
 By the end of this tutorial, you should be able to:
 
--   **Explain the purpose of time series transformations**, including logarithmic and Box-Cox transformations, and describe how these help stabilize variance and convert multiplicative series to additive form.
+1. **Describe the forecasting workflow** and understand the sequence of steps involved in building and evaluating forecasting models.
 
--   **Interpret decomposition plots** by analyzing trend, seasonal, and remainder components, and explain how these components combine to reconstruct the original time series. Pay attention to the grey scale on the graph.
+2. **Apply benchmark forecasting methods** including mean, naïve, seasonal naïve (snaive), and drift methods and understand their appropriate use cases.
 
--   **Apply STL decomposition** to transformed time series data using R, and adjust key parameters such as smoothing windows and robustness settings.
+3. **Interpret residual diagnostics** using visual tools such as residual plots and histograms to assess forecast accuracy and model performance. Understand fitted values and residuals.
+
+4. Understand how **forecast uncertainty** is represented through distributions and how this connects to histograms of residuals. 
+
+5. **Impact of transformations** on the distribution shape, mean, and median.
+
+6. **Combine decomposition and forecasting**. 
+
+7. **Evaluate point forecast accuracy** inlcuding understanding forecast error metrics such as RMSE, MAPE, MASE, RMSSE. 
+
