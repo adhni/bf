@@ -21,8 +21,8 @@ Read [Sections 9.8-9.10 of the textbook](https://otexts.com/fpp3/arima.html) and
 
 ## Tutorial exercises
 
--   [Tutorial learning objectives](tute-lo.qmd).
 -   Complete Exercises 11, 12, 13, 15 (d,e), 16 (d,e)  from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
+-   [Tutorial learning objectives](tute-lo.qmd).
 
 <!-- -   <i class="bi bi-download"></i> [Week 9 Tutorial Solution.html](Tutorial9Solution.html){download="Week 9 Tutorial Solution.html"} -->
 

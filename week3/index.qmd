@@ -21,7 +21,6 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 ## Tutorial exercises (in class or on your own)
 
 -   Complete Exercise 2, 3, 10 from [Section 3.7](https://otexts.com/fpp3/decomposition-exercises.html) of the book.
-
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
 

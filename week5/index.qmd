@@ -9,8 +9,8 @@ source(here::here("course_info.R"))
 
 ## What you will learn this week
 
-* Simple exponential smoothing and corresponding ETS models.
-* Methods with trend and corresponding ETS models.
+* Simple exponential smoothing and corresponding ETS models
+* Methods with trend and corresponding ETS models
 * ETS model notation
 
 ## Pre-seminar activities
