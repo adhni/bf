@@ -43,11 +43,11 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 <!-- show_activity(week, show_solutions = FALSE) -->
 <!-- ``` -->
 
-## In-class Code
+<!-- ## Seminar Code -->
 
-::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [Week1-code.R](Week1-code.R){download="Week1-code.R"}
-:::
+<!-- ::: {.callout appearance="minimal"} -->
+<!-- <i class="bi bi-download"></i> [Week1-code.R](Week1-code.R){download="Week1-code.R"} -->
+<!-- ::: -->
 
 
 <!-- [**Check your understanding quiz**](https://learning.monash.edu/mod/quiz/view.php?id=2327331) -->
