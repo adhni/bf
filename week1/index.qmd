@@ -25,7 +25,9 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 
 ## Tutorial exercises
 
-::: {.callout-note title="Tutorial Learning Objectives}
+::: {.callout-note collpase="true"}
+
+## Tutorial Learning Objectives
 
 1. Work confidently with Quarto documents. 
   - Open, run, and knit the IA_template.qmd file to PDF without errors.
