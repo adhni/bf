@@ -25,18 +25,31 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 
 ## Tutorial exercises
 
-The main tasks for Week 1 tutorials will be:
+**Tutorial lerning objectives**
 
-1. To ensure that you have successfully installed R and RStudio on your own laptop.
-2. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
-3. Work your way through **Getting started** (5 modules) and **Writing documents** (1 module) in [startR](startr.numbat.space). This is material we have prepared for you and other Monash students working in R. You should do these at your own pace to understand the concepts.
-4. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
-5. Complete Exercises 1-5 from [Section 2.10 of the textbook](https://otexts.com/fpp3/graphics-exercises.html).
+1. Work confidently with Quarto documents. 
+  - Open, run, and knit the IA_template.qmd file to PDF without errors.
 
+
+2. Import and manage time series data in R. 
+  - Read CSV/Excel files, correctly set your working directory, and avoid file path errors.
+
+
+3. Create and understand `tsibbles`. 
+  - Convert data frames to tsibbles using as_tsibble() and understand the time index and key variables.
+
+
+4. Begin planning IA1. 
+  - Start thinking about your forecasting approach and discuss ideas with peers.
+
+
+Tutorial tasks:
+
+1. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
+2. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
+3. Complete Exercises 1, 3 and 5 from [Section 2.10 of the textbook](https://otexts.com/fpp3/graphics-exercises.html).
 
 Your tutors will be in your tutorial class to assist you. 
-
-- [Tutorial learning objectives](tute-lo.qmd).
 
 
 
