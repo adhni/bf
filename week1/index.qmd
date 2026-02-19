@@ -38,6 +38,7 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 
 4. Begin planning IA1. 
   - Start thinking about your forecasting approach and discuss ideas with peers.
+  
 :::
 
 **Tutorial tasks:**
