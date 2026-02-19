@@ -25,25 +25,22 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 
 ## Tutorial exercises
 
-**Tutorial lerning objectives**
+::: {.callout-note title="Tutorial Learning Objectives}
 
 1. Work confidently with Quarto documents. 
   - Open, run, and knit the IA_template.qmd file to PDF without errors.
 
-
 2. Import and manage time series data in R. 
   - Read CSV/Excel files, correctly set your working directory, and avoid file path errors.
-
 
 3. Create and understand `tsibbles`. 
   - Convert data frames to tsibbles using as_tsibble() and understand the time index and key variables.
 
-
 4. Begin planning IA1. 
   - Start thinking about your forecasting approach and discuss ideas with peers.
+:::
 
-
-Tutorial tasks:
+**Tutorial tasks:**
 
 1. Walk through [IA_template.qmd](../week1/IA_template.qmd.zip). Make sure you understand the quarto (qmd) file structure and make sure you can knit the file successfully to pdf format.
 2. Discuss [IA1](https://bf.numbat.space/assignments/A1.html) in class. How do you go about forecasting at the moment that you are untrained? 
