@@ -30,16 +30,16 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 ## Tutorial Learning Objectives
 
 1. Work confidently with Quarto documents. 
-  - Open, run, and knit the IA_template.qmd file to PDF without errors.
+   - Open, run, and knit the IA_template.qmd file to PDF without errors.
 
 2. Import and manage time series data in R. 
-  - Read CSV/Excel files, correctly set your working directory, and avoid file path errors.
+   - Read CSV/Excel files, correctly set your working directory, and avoid file path errors.
 
 3. Create and understand `tsibbles`. 
-  - Convert data frames to tsibbles using as_tsibble() and understand the time index and key variables.
+    - Convert data frames to tsibbles using as_tsibble() and understand the time index and key variables.
 
 4. Begin planning IA1. 
-  - Start thinking about your forecasting approach and discuss ideas with peers.
+    - Start thinking about your forecasting approach and discuss ideas with peers.
   
 :::
 

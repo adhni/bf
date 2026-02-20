@@ -8,7 +8,10 @@ format: pdf
 #| label: setup
 #| include: false
 
-knitr::opts_chunk$set(echo = TRUE, eval=TRUE, error=TRUE, cache=FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval=TRUE, 
+                      error=TRUE, 
+                      cache=FALSE)
 library(fpp3)
 library(readr)
 ```
