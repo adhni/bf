@@ -19,6 +19,26 @@ Read [Sections 8.3-8.7 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 
 
 ## Tutorial exercises 
+
+::: {.callout-note collapse="true"}
+
+1. **Compare alternative ETS model structures**. 
+     - Select and fit different ETS models (e.g., ETS(A,N,N) vs ETS(A,A,N)). 
+     - Evaluate and compare their fit (e.g., RMSE). 
+     - Interpret forecast differences and prediction intervals, and justify model choice based on empirical performance.
+     
+2. **Select and justify appropriate ETS models for seasonal data**. 
+     - Able to identify when multiplicative seasonality (and optional damped trend) is necessary.
+     
+3. **Compare multiple forecasting methods using training/test splits and cross-validation**. 
+     - Use training/test sets and cross-validation to fit and compare a range of methods (ETS, transformed ETS, seasonal naïve, STL + ETS).
+
+4. **Evaluate ETS method and identify its limitations**. 
+    - Apply ETS model, assess forecasting quality, and recognise cases where ETS may not perform well and explain why.
+    
+:::
+
+
 -   Complete Exercises 5, 7, 11, 14 from [Section 8.8 of the book](https://otexts.com/fpp3/expsmooth-exercises.html).
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 6 Tutorial Solution.html](Week6.html){download="Week 6 Tutorial Solution.html"} -->
