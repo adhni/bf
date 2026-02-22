@@ -36,6 +36,26 @@ Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 <!-- ::: -->
 
 ## Tutorial exercises
+
+::: {.callout-note collapse="true"}
+
+1. **Implement and interpret exponential smoothing models**. 
+    - Able to estimate simple exponential smoothing (SES) model, interpret the smoothing parameters, and generate point and interval forecasts.
+
+2. **Develop custom forecasting functions**.   
+    - Write and test user-defined functions to perform simple exponential smoothing, compare their outputs with built-in functions (like ETS()), and understand the computational steps involved.
+
+3. **Optimise model parameters using numerical methods**. 
+    - Modify exponential smoothing functions to compute an error measure and use numerical optimisation methods to determine the optimal smoothing parameter
+    - Able to compare results with the automatic ETS estimation.
+
+4. **Compare alternative ETS model structures**. 
+     - Select and fit different ETS models (e.g., ETS(A,N,N) vs ETS(A,A,N)). 
+     - Evaluate and compare their fit (e.g., RMSE). 
+     - Interpret forecast differences and prediction intervals, and justify model choice based on empirical performance.
+
+:::
+
 -   Complete Exercises 1-5 from [Section 8.8](https://otexts.com/fpp3/expsmooth-exercises.html).
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 5 Tutorial Solution.html](Week5.html){download="Week 5 Tutorial Solution.html"} -->
