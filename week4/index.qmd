@@ -42,7 +42,7 @@ source(here::here("course_info.R"))
 
 * Complete Exercises 1, 3, 5, 11  from [Section 5.11 of the book](https://otexts.com/fpp3/toolbox-exercises.html).
 * Complete Exercise 2 from [Section 7.10 of the book](https://otexts.com/fpp3/regression-exercises.html).
-* [Tutorial learning objectives](tute-lo.qmd).
+
 
 <!-- -   <i class="bi bi-download"></i> [Week 4 Tutorial Solution.html](Week4.html){download="Week 4 Tutorial Solution.html"} -->
 

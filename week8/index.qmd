@@ -36,7 +36,7 @@ Read [Sections 9.3-9.8 of the textbook](https://otexts.com/fpp3/arima.html) and 
 :::
 
 -   Complete Exercises 7, 8, 15 (a to c), 16 (a to c) from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
+
 <!-- -   <i class="bi bi-download"></i> [Week 8 Tutorial Solution.html](Week8.html){download="Week 8 Tutorial Solution.html"} -->
 
 

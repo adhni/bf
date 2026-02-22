@@ -54,7 +54,7 @@ Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 :::
 
 -   Complete Exercises 1-4 from [Section 8.8](https://otexts.com/fpp3/expsmooth-exercises.html).
--   [Tutorial learning objectives](tute-lo.qmd).
+
 <!-- -   <i class="bi bi-download"></i> [Week 5 Tutorial Solution.html](Week5.html){download="Week 5 Tutorial Solution.html"} -->
 
 
