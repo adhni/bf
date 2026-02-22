@@ -24,6 +24,20 @@ source(here::here("course_info.R"))
 
 ## Tutorial exercises (in class or on your own)
 
+::: {.callout-note collapse="true"}
+
+1. **Apply and compare simple benchmark forecasting methods**. 
+     - Able to select and implement appropriate baseline forecasting methods (e.g., NAIVE, SNAIVE, random walk with drift) for a variety of real-world time series and produce forecast plots.
+
+2. **Evaluate forecasting performance using simple benchmark forecasting methods**. 
+    - Produce and visualise forecasts and evaluate whether a simple benchmark provides a reasonable baseline for forecasting.
+
+3. **Decompose and forecast with STL methods**. 
+    - Apply STL decomposition to extract time series components. 
+    - Able to generate seasonally adjusted forecasts, reseasonalise results, and compare performance with simple benchmark methods while interpreting residuals.
+
+:::
+
 * Complete Exercises 1, 3, 5, 11  from [Section 5.11 of the book](https://otexts.com/fpp3/toolbox-exercises.html).
 * Complete Exercise 2 from [Section 7.10 of the book](https://otexts.com/fpp3/regression-exercises.html).
 * [Tutorial learning objectives](tute-lo.qmd).
