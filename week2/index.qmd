@@ -24,6 +24,21 @@ source(here::here("course_info.R"))
 
 ## Tutorial exercises
 
+::: {.callout-note collpase="true"}
+
+## Tutorial Learning Objectives
+
+1. **Apply time series visualisation techniques*. 
+    - Able to create and interpret a range of graphical displays (time plots, seasonal plots, lag plots, and ACF plots) to explore patterns in time series data.
+
+2. **Identify and explain key time series features**. 
+    - Analyse visual outputs to detect trend, seasonality, autocorrelation, structural changes, and outliers.
+
+3. **Identify white noise behaviour**. 
+    - Use differenced data and ACF plots to determine whether a time series (e.g., daily stock price changes) exhibits characteristics of white noise.
+
+:::
+
 -   Complete Exercises 6, 7, 11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 2 Tutorial Solution.html](Week2.html){download="Week 2 Tutorial Solution.html"} -->
