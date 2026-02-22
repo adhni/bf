@@ -128,15 +128,22 @@ show_assignments <- function(week) {
 show_quiz <- function(week){
   ass <- schedule %>%
     filter(Week == week, !is.na(Quiz)) %>%
-    select(Quiz:QMoodle)
+    select(Quiz, QDue, QMoodle3231, QMoodle5231)
+
   if (NROW(ass) > 0) {
     cat("\n\n## Weekly quiz\n\n")
-    for (i in seq(NROW(ass))) {
-      cat("* [", ass$Quiz[i], " quiz](", ass$QMoodle[i], ") is due on ",
-          format(ass$QDue[i], "%A %d %B.\n"),
+
+    for (i in seq_len(NROW(ass))) {
+
+      cat("* ", ass$Quiz[i], " quiz: ",
+          "[ETF3231](", ass$QMoodle3231[i], ") | ",
+          "[ETF5231](", ass$QMoodle5231[i], ")",
+          " — Due ",
+          format(ass$QDue[i], "%A %d %B."),
+          "\n",
           sep = ""
       )
-  }
+    }
   }
 }
 
