@@ -24,6 +24,16 @@ Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and 
 
 ## Tutorial Learning Objectives
 
+1. **Diagnose non-stationarity**
+    - Able to interpret time plots. 
+    - Able to use ACF, and PACF to identify non-stationary behaviour and justify the need for differencing.
+
+2. **Determine appropriate transformations and differencing orders**. 
+    - Select suitable Box–Cox transformations and apply the correct order of regular and/or seasonal differencing to achieve stationarity.
+
+3. **Express differencing using backshift operator notation**. 
+    - Write the chosen regular and/or seasonal differencing operations formally using backshift notation 
+
 :::
 
 -   Complete Exercise 2-5 from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html)
