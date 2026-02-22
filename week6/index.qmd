@@ -20,7 +20,7 @@ Read [Sections 8.3-8.7 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 
 ## Tutorial exercises 
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 
 ## Tutorial Learning Objectives
 

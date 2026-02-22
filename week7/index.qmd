@@ -20,7 +20,7 @@ Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and 
 
 ## Tutorial exercises
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 
 ## Tutorial Learning Objectives
 

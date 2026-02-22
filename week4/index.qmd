@@ -24,7 +24,7 @@ source(here::here("course_info.R"))
 
 ## Tutorial exercises (in class or on your own)
 
-::: {.callout-note collapse="true"}
+::: {.callout-note}
 
 ## Tutorial Learning Objectives
 

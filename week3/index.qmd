@@ -20,7 +20,7 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 
 ## Tutorial exercises (in class or on your own)
 
-::: {.callout-note collpase="true"}
+::: {.callout-note}
 
 ## Tutorial Learning Objectives
 
