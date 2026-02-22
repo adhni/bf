@@ -20,6 +20,12 @@ Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and 
 
 ## Tutorial exercises
 
+::: {.callout-note collapse="true"}
+
+## Tutorial Learning Objectives
+
+:::
+
 -   Complete Exercise 2-5 from [Section 9.11 of the book](https://otexts.com/fpp3/arima-exercises.html)
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 7 Tutorial Solution.html](Week7.html){download="Week 7 Tutorial Solution.html"} -->

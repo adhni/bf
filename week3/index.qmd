@@ -22,6 +22,8 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 
 ::: {.callout-note collpase="true"}
 
+## Tutorial Learning Objectives
+
 1. **Visualise and assess time series transformations**. 
     - Create appropriate graphs for multiple time series and apply transformations when needed.
     

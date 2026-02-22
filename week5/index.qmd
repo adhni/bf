@@ -39,6 +39,8 @@ Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 
 ::: {.callout-note collapse="true"}
 
+## Tutorial Learning Objectives
+
 1. **Implement and interpret exponential smoothing models**. 
     - Able to estimate simple exponential smoothing (SES) model, interpret the smoothing parameters, and generate point and interval forecasts.
 

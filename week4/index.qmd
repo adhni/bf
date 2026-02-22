@@ -26,6 +26,8 @@ source(here::here("course_info.R"))
 
 ::: {.callout-note collapse="true"}
 
+## Tutorial Learning Objectives
+
 1. **Apply and compare simple benchmark forecasting methods**. 
      - Able to select and implement appropriate baseline forecasting methods (e.g., NAIVE, SNAIVE, random walk with drift) for a variety of real-world time series and produce forecast plots.
 

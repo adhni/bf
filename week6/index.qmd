@@ -22,6 +22,8 @@ Read [Sections 8.3-8.7 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 
 ::: {.callout-note collapse="true"}
 
+## Tutorial Learning Objectives
+
 1. **Compare alternative ETS model structures**. 
      - Select and fit different ETS models (e.g., ETS(A,N,N) vs ETS(A,A,N)). 
      - Evaluate and compare their fit (e.g., RMSE). 
