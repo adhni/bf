@@ -128,7 +128,7 @@ show_assignments <- function(week) {
           format(ass$Due[i], "%A %d %B.\n"), sep="")
     }
   }
-  show_quiz(week)
+  #show_quiz(week)
 }
 
 show_quiz <- function(week){
