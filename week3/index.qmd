@@ -20,6 +20,20 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 
 ## Tutorial exercises (in class or on your own)
 
+::: {.callout-note collpase="true"}
+
+1. **Visualise and assess time series transformations**. 
+    - Create appropriate graphs for multiple time series and apply transformations when needed.
+    
+2. **Evaluate the usefulness Box–Cox transformations**. 
+    - Able to explain when and why a Box–Cox transformation is or is not helpful for a given dataset.
+    
+3. **Apply time series decomposition techniques**. 
+    - Able to decompose a time series into trend, seasonal, and remainder components using STL decomposition and interpret the results.
+    
+
+:::
+
 -   Complete Exercise 2, 3, 10 from [Section 3.7](https://otexts.com/fpp3/decomposition-exercises.html) of the book.
 -   [Tutorial learning objectives](tute-lo.qmd).
 <!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
