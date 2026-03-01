@@ -73,7 +73,7 @@ schedule |>
     Topic = if_else(!Show, Topic, glue::glue("[{Topic}](./week{Week}/index.html)")),
     Chapter = if_else(is.na(Week), Chapter, glue::glue("[{Chapter}]({Chapter_URL})")),
     Assignment = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})")),
-    Quiz = if_else(is.na(Quiz), Quiz, glue::glue("[{Quiz}]({QMoodle})")),
+    Quiz = Quiz, #if_else(is.na(Quiz), Quiz, glue::glue("[{Quiz}]({QMoodle})")),
     Week = format(Date, "%d %b"),
   ) |>
   select(-Show) |>
