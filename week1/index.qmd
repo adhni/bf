@@ -26,7 +26,8 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 
 ```{r}
 #| output: asis
-show_slides(week)
+# show_slides(week)
+show_slides_ann(week)
 show_activity(week, show_solutions = FALSE)
 ```
 

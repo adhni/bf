@@ -164,6 +164,18 @@ show_slides <- function(week) {
   cat(paste0("## Slides for seminar\n\n", embed,"\n", button))
 }
 
+
+show_slides_ann <- function(week) {
+  file <- paste0("/week", week, "/week_ann", week, ".pdf")
+  embed <- paste0(
+    "<embed src='",
+    file,
+    "' type='application/pdf' width='100%' height=465></embed>"
+  )
+  button <- paste0("<a href=", file, " class='badge badge-small badge-red'>Download pdf</a>")
+  cat(paste0("## Slides for seminar\n\n", embed,"\n", button))
+}
+
 show_activity <- function(week, title = TRUE, show_solutions = TRUE) {
   today <- Sys.Date()
   monday <- monday <- schedule |>
