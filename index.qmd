@@ -58,7 +58,16 @@ Email: [George.Athanasopoulos@monash.edu](mailto:George.Athanasopoulos@monash.ed
 * **Workshops**: Wednesday, 16.00-16.50, [Building K Level 3, K321, CA_K_K321](https://www.monash.edu/__data/assets/pdf_file/0010/2658961/Caulfield-campus-map.pdf).
 
 * **Tutorials**: Thursday-Friday, 50 minutes in class per week.  
-* **Lecture Recordings**: TBA, coming soon 🚒.
+* **Lecture Recordings**: [Echo360](https://echo360.net.au/section/630d3bbb-85b4-47c8-842d-4bafc932413d/home)
+
+## Tutorial Schedule
+
+Thursday: 10 - 11am (HB32) Ari/Sombut. 
+Thursday: 12 - 1pm (HB32) Ari/Sombut. 
+Thursday: 1- 2pm (HB32) Ari/Weiben.   
+Thursday: 6 - 7pm (H914) Ari/Weben. 
+Friday: 8 - 9am (F607) Sombut/Weiben   
+
 
 
 ```{r}
