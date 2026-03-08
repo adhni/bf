@@ -1,9 +1,16 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 
-1. We have introduced various functions for time series graphics including `autoplot()`, `gg_season()`, `gg_subseries()`, `gg_lag()` and `ACF`. Use these functions to explore the quarterly tourism data for the Snowy Mountains.
+1. We have introduced various functions for time series graphics including `autoplot()`, `gg_season()`, `gg_subseries()`, `gg_lag()` and `ACF()`. Use these functions to explore the quarterly tourism data for the Snowy Mountains.
 
    ```r
-   snowy <- tourism |> filter(Region == "Snowy Mountains")
+   snowy <- tourism |>
+      filter(Region == "Snowy Mountains") |>
+      summarise(Trips = sum(Trips))
    ```
 
    What do you learn?
@@ -43,17 +50,19 @@ acfc <- ACF(mink, value) |> autoplot() +
 (tp1 | tp2 | tp3 | tp4) / (acfa | acfb | acfc | acfd)
 ```
 
-3.  You can compute the daily changes in the Google stock price in 2018 using the code below. Do the daily changes look like white noise?
+3.  You can compute and plot the daily changes in the Amazon stock price in 2018 using the code below. Do the daily changes look like white noise?
 
 \fontsize{11.5}{15}\sf
 
 
 ```{r, eval = FALSE}
-dgoog <- gafa_stock |>
-  filter(Symbol == "GOOG", year(Date) >= 2018) |>
+gafa_stock |>
+  filter(Symbol == "AMZN", year(Date) >= 2018) |>
   mutate(trading_day = row_number()) |>
   update_tsibble(index=trading_day, regular=TRUE) |>
-  mutate(diff = difference(Close))
+  mutate(diff = difference(Close)) |> 
+  autoplot()
+
 ```
 
 \fontsize{14}{16}\sf

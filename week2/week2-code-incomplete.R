@@ -10,7 +10,7 @@ olympic_running$Year |> range()
 
 olympic_running |>
   filter(Length=="100") |>
-  autoplot(Time)  # add geom_point()
+  autoplot(Time) 
 
 # Just to show you what you can do
 olympic_running |>
@@ -26,7 +26,7 @@ olympic_running |>
 
 ## PBS --------------------------------------------------------------
 
-# Let's sum Cost of A10 across Concession and Type, i.e., total A10 cost
+  # Let's sum Cost of A10 across Concession and Type, i.e., total A10 cost
 PBS |>
   filter(ATC2 == "A10") |>
   select(Month, Concession, Type, Cost) |>
@@ -38,28 +38,30 @@ a10
 # Time Series patterns ----------------------------------------
 
 a10 |>
-  autoplot() + #Cost
-  labs(
-    title = "Australian antidiabetic drug sales",
-    y = "$ (millions)"
-    )
-  # Note - it will pick the first variable it sees - hence select appropriate variable
+   autoplot() #+ #Cost
+   # labs(
+   #   title = "Australian antidiabetic drug sales",
+   #   y = "$ (millions)"
+   #   )
+   # Note - it will pick the first variable it sees. 
+   # Hence select appropriate variable
 
+   
   # I could do it with ggplot()
 a10 |>
-  ggplot(aes(x=Month, y=Cost)) +
-  geom_line() +
-  labs(
-    title = "Australian antidiabetic drug sales",
-    y = "$ (millions)"
-    )
+   ggplot(aes(x=Month, y=Cost)) +
+   geom_line() +
+   labs(
+      title = "Australian antidiabetic drug sales",
+      y = "Cost in $ (millions)"
+      )
 
 a10 |>
-  autoplot() +
+  autoplot(Cost) +
   geom_point() +
   labs(
-    title = "Australian antidiabetic drug sales",
-    y = "$ (millions)"
+    title = "Australian antidiabetic drug sales - Cost",
+    y = "Cost in $ (millions)"
     )
   # What patterns do we see?
 
@@ -114,6 +116,24 @@ pelt |>
 
 
 ### BACK TO SLIDES
+
+# White noise and random walks ---------------
+
+# White noise
+
+set.seed(100)
+T=100 # Change to 1000
+my_data <- tsibble(t = seq(T), y = rnorm(T), index = t)
+my_data |> autoplot(y)
+my_data |> ACF(y) |> autoplot()
+my_data |> gg_tsdisplay(y, plot_type = "histogram")
+
+
+# Random walks
+
+T=100 # Change to 1000
+tsibble(t = seq(T), y = cumsum(rnorm(T)), index = t) |>
+  gg_tsdisplay(y, plot_type = "histogram")
 
 
 # ACF  -------------
@@ -184,31 +204,32 @@ pelt |>
   autoplot()
 # you'll see plenty of examples in the tutes.
 
-# Lectorial activity 1  ----------------------------------------------------------
+# Workshop activity 1  ----------------------------------------------------------
 
 ## Snowy mountains tourism --------------------------------------------
 
 snowy <- tourism |>
-  filter(Region == "Snowy Mountains")
+  filter(Region == "Snowy Mountains") |>
+   summarise(Trips = sum(Trips))
 
 # Notice there are 4 purposes of travel
-# sum over all four of them before you continue
+# hence sum over all four of them before you continue
 
 # Use autoplot(), gg_season(), gg_subseries()
 # gg_lag(), ACF() to explore feature of the time series
 
 
 
+# Workshop Activity 3 -----------------------------------------------------
 
-# Lectorial Activity 3 -----------------------------------------------------
+## Differencing Amazon closing price ------------------------------
 
-## Differencing google closing price ------------------------------
-
-dgoog <- gafa_stock |>
-  filter(Symbol == "GOOG", year(Date) >= 2018) |>
+dAMZN <- gafa_stock |>
+  filter(Symbol == "AMZN", year(Date) >= 2018) |>
   mutate(trading_day = row_number()) |>
   update_tsibble(index=trading_day, regular=TRUE) |>
   mutate(diff = difference(Close))
+
 
 # Pigs -------------------------------------------------------------
 

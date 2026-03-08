@@ -17,9 +17,24 @@ source(here::here("course_info.R"))
 
 
 
-## Pre-seminar activities
+## Pre-class activities
 
 -   Read [Chapter 2 of the textbook](https://otexts.com/fpp3/graphics.html) and watch all embedded videos
+
+
+```{r}
+#| output: asis
+show_slides(week)
+#show_slides_ann(week)
+show_activity(week, show_solutions = FALSE)
+```
+
+## Seminar Code
+
+::: {.callout appearance="minimal"}
+<i class="bi bi-download"></i> [week2-code-incomplete.R](Week1-code.R){download="week1-code.R"}
+:::
+
 
 
 ## Tutorial exercises
@@ -38,6 +53,8 @@ source(here::here("course_info.R"))
     - Use differenced data and ACF plots to determine whether a time series exhibits characteristics of white noise.
 
 :::
+
+**Tutorial tasks:**
 
 -   Complete Exercises 6, 7, 11 from [Section 2.10 of the book](https://otexts.com/fpp3/graphics-exercises.html).
 
