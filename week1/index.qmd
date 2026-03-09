@@ -67,7 +67,7 @@ show_activity(week, show_solutions = FALSE)
 
 Your tutors will be in your tutorial class to assist you. 
 
--   <i class="bi bi-download"></i> [Week 1 Tutorial Solution.html](Week2.html){download="Tutorial1Solution.html"}
+-   <i class="bi bi-download"></i> [Week 1 Tutorial Solution.html](Tutorial1Solution.html){download="Tutorial1Solution.html"}
 
 
 ```{r}
