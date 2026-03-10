@@ -32,7 +32,7 @@ show_activity(week, show_solutions = FALSE)
 ## Seminar Code
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week2-code-incomplete.R](Week1-code.R){download="week2-code-incomplete.R"}
+<i class="bi bi-download"></i> [week2-code-incomplete.R](week2-code-incomplete.R){download="week2-code-incomplete.R"}
 :::
 
 
