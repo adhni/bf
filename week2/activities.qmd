@@ -5,7 +5,7 @@ editor_options:
 ---
 
 
-1. We have introduced various functions for time series graphics including `autoplot()`, `gg_season()`, `gg_subseries()`, `gg_lag()` and `ACF()`. Use these functions to explore the quarterly tourism data for the Snowy Mountains.
+1. We have introduced various functions for time series graphics including `autoplot()`, `gg_season()`, `gg_subseries()` and `ACF()`. Use these functions to explore the quarterly tourism data for the Snowy Mountains.
 
    ```r
    snowy <- tourism |>

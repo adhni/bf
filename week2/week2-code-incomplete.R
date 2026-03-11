@@ -10,7 +10,7 @@ olympic_running$Year |> range()
 
 olympic_running |>
   filter(Length=="100") |>
-  autoplot(Time) 
+  autoplot(Time)
 
 # Just to show you what you can do
 olympic_running |>
@@ -43,10 +43,10 @@ a10 |>
    #   title = "Australian antidiabetic drug sales",
    #   y = "$ (millions)"
    #   )
-   # Note - it will pick the first variable it sees. 
+   # Note - it will pick the first variable it sees.
    # Hence select appropriate variable
 
-   
+
   # I could do it with ggplot()
 a10 |>
    ggplot(aes(x=Month, y=Cost)) +
@@ -117,25 +117,6 @@ pelt |>
 
 ### BACK TO SLIDES
 
-# White noise and random walks ---------------
-
-# White noise
-
-set.seed(100)
-T=100 # Change to 1000
-my_data <- tsibble(t = seq(T), y = rnorm(T), index = t)
-my_data |> autoplot(y)
-my_data |> ACF(y) |> autoplot()
-my_data |> gg_tsdisplay(y, plot_type = "histogram")
-
-
-# Random walks
-
-T=100 # Change to 1000
-tsibble(t = seq(T), y = cumsum(rnorm(T)), index = t) |>
-  gg_tsdisplay(y, plot_type = "histogram")
-
-
 # ACF  -------------
 
 ## Aus bricks - you have seen this in the video
@@ -203,6 +184,27 @@ pelt |>
   ACF(Lynx) |>
   autoplot()
 # you'll see plenty of examples in the tutes.
+
+
+# White noise and random walks ---------------
+
+# White noise
+
+set.seed(100)
+T=100 # Change to 1000
+my_data <- tsibble(t = seq(T), y = rnorm(T), index = t)
+my_data |> autoplot(y)
+my_data |> ACF(y) |> autoplot()
+my_data |> gg_tsdisplay(y, plot_type = "histogram")
+
+
+# Random walks
+
+T=100 # Change to 1000
+tsibble(t = seq(T), y = cumsum(rnorm(T)), index = t) |>
+  gg_tsdisplay(y, plot_type = "histogram")
+
+
 
 # Workshop activity 1  ----------------------------------------------------------
 
