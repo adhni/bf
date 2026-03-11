@@ -24,15 +24,16 @@ source(here::here("course_info.R"))
 
 ```{r}
 #| output: asis
-show_slides(week)
-#show_slides_ann(week)
+#show_slides(week)
+show_slides_ann(week)
 show_activity(week, show_solutions = FALSE)
 ```
 
 ## Seminar Code
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week2-code-incomplete.R](week2-code-incomplete.R){download="week2-code-incomplete.R"}
+<!-- <i class="bi bi-download"></i> [week2-code-incomplete.R](week2-code-incomplete.R){download="week2-code-incomplete.R"} -->
+<i class="bi bi-download"></i> [week2-code.R](week2-code.R){download="week2-code.R"}
 :::
 
 
