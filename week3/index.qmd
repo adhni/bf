@@ -13,12 +13,27 @@ source(here::here("course_info.R"))
 * Decomposing a time series into trend-cycle, seasonal and remainder components
 * Seasonal adjustment
 
-## Pre-seminar activities
+## Pre-class activities
 
 Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and watch all embedded videos
 
+```{r}
+#| output: asis
+show_slides(week)
+#show_slides_ann(week)
+show_activity(week, show_solutions = FALSE)
+```
 
-## Tutorial exercises (in class or on your own)
+## Seminar Code
+
+::: {.callout appearance="minimal"}
+<i class="bi bi-download"></i> [week3-code-incomplete.R](week3-code-incomplete.R){download="week3-code-incomplete.R"}
+<!-- <i class="bi bi-download"></i> [week3-code.R](week3-code.R){download="week3-code.R"} -->
+:::
+
+
+
+## Tutorial exercises
 
 ::: {.callout-note}
 
@@ -40,25 +55,6 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 
 <!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
 
-
-
-<!-- ```{r} -->
-<!-- #| output: asis -->
-<!-- show_slides(week) -->
-<!-- ``` -->
-
-<!-- ## Lectorial activities -->
-
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
-
-
-<!-- ## Seminar code -->
-
-<!-- ::: {.callout appearance="minimal"} -->
-<!-- <i class="bi bi-download"></i> [week3.R](week3.R){download="week3.R"} -->
-<!-- ::: -->
 
 
 
