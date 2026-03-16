@@ -2,7 +2,6 @@
 title: Group Assignment 2 (5%)
 ---
 
-Coming soon. 🚒
 
 Use the `GA2_template.qmd` to get started. Leave the `## Questions` and the pagebreaks `\newpage` as they are (do not remove these - these will help with marking the assignment).
 
