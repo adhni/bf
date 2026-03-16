@@ -23,7 +23,7 @@ You will be using this data in future assignments as you will build on the analy
 * Download the data
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [GA_Data.csv](../assignment_data/GA_Data.csv){download="GA_Data.csv"}
+<i class="bi bi-download"></i> [GA_data.csv](../assignment_data/GA_data.csv){download="GA_data.csv"}
 :::
 
 <!-- ::: {.callout appearance="minimal"} -->

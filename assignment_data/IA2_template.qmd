@@ -23,13 +23,13 @@ library(readr)
 # Read in and tidy up your data
 
 # First three rows contain metadata, read them in separately
-meta <- read_csv("IA_Data.csv", col_names = TRUE, n_max = 3)
+meta <- read_csv("IA_data.csv", col_names = TRUE, n_max = 3)
 # meta
 
 # The data follows after the third row, we skip the metadata and read the data. 
 # Note: Skipping the first row skips the column names, we add them back from the
 #       metadata.
-dat <- read_csv("IA_Data.csv", 
+dat <- read_csv("IA_data.csv", 
                 # use column names from the metadata
                 col_names = colnames(meta),
                 # skip 4 rows as we also skip column names, specified above
