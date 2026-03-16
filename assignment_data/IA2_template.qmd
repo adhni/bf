@@ -16,8 +16,9 @@ library(readr)
 ```
 
 ```{r}
-#| echo: false
+#| eval: false
 #| message: false
+#| include: false
 
 # Read in and tidy up your data
 
@@ -89,7 +90,7 @@ my_series <- dat %>%
 \newpage
 ## Question 6
 
-*Generate point forecasts for the next 2 years (future) from the benchmark method you considered best and plot them. Comment on the point and prediction intervals (no more than 50 words).(4 marks)*
+*Generate point forecasts for the next 2 years (future) from the benchmark method you considered best and plot them. Comment on these.(4 marks)*
 
 ```{r}
 
