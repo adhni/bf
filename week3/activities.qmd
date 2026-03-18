@@ -35,5 +35,4 @@ editor_options:
 4. Exam 2024 
 
     - Review exam structure
-    - Section A: Q6 
     - Section B: Q1, Q2
