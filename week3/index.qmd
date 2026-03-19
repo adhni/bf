@@ -19,16 +19,16 @@ Read [Chapter 3 of the textbook](https://otexts.com/fpp3/decomposition.html) and
 
 ```{r}
 #| output: asis
-show_slides(week)
-#show_slides_ann(week)
+#show_slides(week)
+show_slides_ann(week)
 show_activity(week, show_solutions = FALSE)
 ```
 
 ## Seminar Code
 
 ::: {.callout appearance="minimal"}
-<i class="bi bi-download"></i> [week3-code-incomplete.R](week3-code-incomplete.R){download="week3-code-incomplete.R"}
-<!-- <i class="bi bi-download"></i> [week3-code.R](week3-code.R){download="week3-code.R"} -->
+<!-- <i class="bi bi-download"></i> [week3-code-incomplete.R](week3-code-incomplete.R){download="week3-code-incomplete.R"} -->
+<i class="bi bi-download"></i> [week3-code.R](week3-code.R){download="week3-code.R"}
 :::
 
 

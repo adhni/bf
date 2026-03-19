@@ -16,7 +16,7 @@ The aim of this assignment is to meet your group members and begin interacting. 
 
 **Submission**
 
-Moodle by **11.55pm, on Monday, 24 March**.
+Moodle by **11.55pm, on Tuesday, 24 March**.
 
 ```{r}
 #| output: asis
