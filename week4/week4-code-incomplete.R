@@ -50,7 +50,7 @@ fc |>
 
 # ---- Holiday tourism by state----
 
-## 1.-----------------------------------------
+# Workshop Activity 1 -----------------------------------------
 ## Create a tsibble with total Holiday travellers
 ## for Victoria and Queensland from the `tourism`
 ## data set. Plot the series. What do you see?
@@ -67,7 +67,7 @@ holidays |> autoplot()
 holidays |> autoplot() + 
   facet_wrap(~State, ncol = 1, scales = "free")
 
-## 2.------------------------------------------
+# Workshop Activity 2 -----------------------------------------
 ## Generate 4 year ahead forecasts from all 
 ## four benchmarks. Plot them using autoplot().
 ## Comment in the resulting forecasts.
@@ -75,13 +75,15 @@ holidays |> autoplot() +
   # Fit benchmarks 
 
 
-
+holidays |> model(mean=MEAN(Trips),
+                  naive=NAIVE(Trips)
+                  )
 
 
   # Generate forecasts and plots them 
 
 
-## 3.---------------------------------------
+# Workshop Activity 3 -----------------------------------------
 ## Plot the residuals from the most appropriate 
 ## benchmark using `gg_tsresiduals()`. What do you see? 
 ## 
@@ -101,7 +103,7 @@ holidays |> autoplot() +
   # How about Queensland?
 
 
-## 4.----------------------------------------
+# Workshop Activity 4 -----------------------------------------
 ## Test if the residuals are white noise.
 ## What do you conclude? 
 ## 
@@ -118,14 +120,14 @@ augment(fit) |>
   # How about Queensland?
 
 
-## 5.----------------------------------------
+# Workshop Activity 5 -----------------------------------------
 ## Plot point and interval forecasts from the most 
 ## appropriate benchmark 
 
 
 
 
-## 6.--------------------------------------- 
+# Workshop Activity 6 -----------------------------------------
 ## Now try a decomposition forecasting model.
 
 stl_fit <- holidays |>
@@ -139,7 +141,7 @@ stl_fit |>
   forecast(h = "4 years") |>
   autoplot(holidays)
 
-## 7.----------------------------------------
+# Workshop Activity 7 -----------------------------------------
 ## Use `accuracy()` to evaluate which model
 ## fits the data best
 
@@ -151,7 +153,7 @@ left_join(fit, stl_fit) |>
   select(RMSE, MAPE, MASE, RMSSE) |> 
   arrange(State,RMSSE)
 
-## 8.--------------------------------------- 
+# Workshop Activity 8 -----------------------------------------
 ## Use a test set of last 3 years to check 
 ## forecast accuracy.
 
@@ -180,7 +182,7 @@ test_fc |>
   select(RMSE, MAPE, MASE, RMSSE) |> 
   arrange(State, RMSSE)
 
-## 9.---------------------------------------------
+# Workshop Activity 9 -----------------------------------------
 ## Now use time series cross-validation to check 
 ## forecast accuracy
 
