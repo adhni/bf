@@ -53,7 +53,7 @@ show_activity(week, show_solutions = FALSE)
 
 -   Complete Exercise 2, 3, 10 from [Section 3.7](https://otexts.com/fpp3/decomposition-exercises.html) of the book.
 
-<!-- -   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Week3.html){download="Week 3 Tutorial Solution.html"} -->
+-   <i class="bi bi-download"></i> [Week 3 Tutorial Solution.html](Tutorial3Solution.html){download="Tutorial3Solution.html"}
 
 
 
