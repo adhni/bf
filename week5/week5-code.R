@@ -1,6 +1,6 @@
 library(fpp3)
 
-## 1.-----------------------------------------
+# Workshop Activity 1 -----------------------------------------
 ## Use the tsibble created from `tourism` 
 ## for holiday travel in Victoria and Queensland. 
 
@@ -70,7 +70,7 @@ fit |>
   labs(y="Overnight trips (thousands)")
 
 
-## 2.-----------------------------------------
+# Workshop Activity 2 -----------------------------------------
 ## Use the exports data exports data for Algeria from the `global_economy` tsibble.
 
 ## a. Plot the data. Is this time series white noise?
@@ -198,7 +198,7 @@ fit |>
   autoplot(algeria_economy) +
   ylab("Exports (% of GDP)") + xlab("Year")
 
-## 3.-----------------------------------------
+# Workshop Activity 3 -----------------------------------------
 ## Use the population data for Australia from the `global_economy` tsibble.
 
 ## a. Scale the data to be in millions and plot it. 
@@ -235,8 +235,9 @@ fit |>
 ## models and plot them. What do you see? 
 
 fit |> 
-  forecast(h = 30) |> 
-  autoplot(aus_economy, level=NULL)
+   select(-autoETS) |> 
+   forecast(h = 30) |> 
+   autoplot(aus_economy, level=NULL)
 
 ## d. Fit both models using data up to 2010. Generate forecast 
 ## for the remainder of the sample and evaluate their accuracy.

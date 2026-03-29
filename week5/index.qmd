@@ -17,23 +17,21 @@ source(here::here("course_info.R"))
 
 Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) and watch all embedded videos
 
-<!-- # ```{r} -->
-<!-- # #| output: asis -->
-<!-- # show_slides(week) -->
-<!-- # ``` -->
 
-<!-- ## Seminar activities -->
+```{r}
+#| output: asis
+show_slides(week)
+#show_slides_ann(week)
+show_activity(week, show_solutions = FALSE)
+```
 
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
+## Seminar Code
 
+::: {.callout appearance="minimal"}
+<!-- <i class="bi bi-download"></i> [week4-code-incomplete.R](week4-code-incomplete.R){download="week4-code-incomplete.R"} -->
+<i class="bi bi-download"></i> [week5-code.R](week5-code.R){download="week5-code.R"}
+:::
 
-<!-- ## Seminar code -->
-
-<!-- ::: {.callout appearance="minimal"} -->
-<!-- <i class="bi bi-download"></i> [week5.R](week5.R){download="week5.R"} -->
-<!-- ::: -->
 
 ## Tutorial exercises
 
