@@ -2,6 +2,6 @@
 title: "404 - Not found"
 ---
 
-![](/img/oops.png)
+![](img/oops.png)
 
 Sorry, that page doesn't seem to be here.

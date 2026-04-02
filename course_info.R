@@ -154,7 +154,7 @@ show_quiz <- function(week){
 }
 
 show_slides <- function(week) {
-  file <- paste0("/week", week, "/week", week, ".pdf")
+  file <- paste0("week", week, ".pdf")
   embed <- paste0(
       "<embed src='",
       file,
@@ -166,7 +166,7 @@ show_slides <- function(week) {
 
 
 show_slides_ann <- function(week) {
-  file <- paste0("/week", week, "/week_ann", week, ".pdf")
+  file <- paste0("week_ann", week, ".pdf")
   embed <- paste0(
     "<embed src='",
     file,

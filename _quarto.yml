@@ -7,12 +7,10 @@ project:
   - "!/handouts"
   - "activities.qmd"
   - "!/assignment_data"
-  resources:
-    - "CNAME"
 
 website:
   title: "ETF3231/ETF5231 Business Forecasting"
-  site-url: "https://bf.numbat.space/"
+  site-url: "https://adhni.github.io/bf/"
   navbar:
     background: "#006dae"
     left:
