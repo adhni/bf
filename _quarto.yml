@@ -17,8 +17,8 @@ website:
       - href: index.qmd
         text: Home
         icon: house-fill
-      - text: Schedule
-        icon: calendar2-fill
+      - text: Weekly schedule
+        icon: calendar2-week-fill
         menu:
           - week1/index.qmd
           - week2/index.qmd
@@ -32,15 +32,32 @@ website:
           - week10/index.qmd
           - week11/index.qmd
           - week12/index.qmd
+      - text: Assessments
+        icon: clipboard-check-fill
+        menu:
+          - assignments/A1.qmd
+          - assignments/A2.qmd
+          - assignments/A3.qmd
+          - assignments/A4.qmd
+          - assignments/G1.qmd
+          - assignments/G2.qmd
+          - assignments/G3.qmd
+          - assignments/G4.qmd
       - text: Discussion
         icon: chat-fill
         href: https://edstem.org/au/courses/30990
       - text: Moodle
         icon: mortarboard-fill
         href: https://learning.monash.edu/course/view.php?id=26702
+      - text: Recordings
+        icon: camera-video-fill
+        href: https://echo360.net.au/section/630d3bbb-85b4-47c8-842d-4bafc932413d/home
       - text: Textbook
         icon: book
         href: https://OTexts.com/fpp3
+    right:
+      - icon: github
+        href: https://github.com/adhni/bf
 
 date-format: "D MMMM YYYY"
 
@@ -48,11 +65,13 @@ freeze: auto
 
 format:
   html:
-    theme: [cosmo, numbat.scss]
+    theme: cosmo
+    css: numbat.css
     highlight: textmate
-    toc: true
+    toc: false
     mainfont: "Fira Sans"
     html-math-method: katex
+    link-external-newwindow: true
     include-in-header:
       file: header.html
 

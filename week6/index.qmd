@@ -7,6 +7,11 @@ week <- 6
 source(here::here("course_info.R"))
 ```
 
+```{r}
+#| output: asis
+show_week_overview(week)
+```
+
 ## What you will learn this week
 
 * Exponential smoothing methods with trend and seasonality
