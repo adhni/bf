@@ -1,37 +1,384 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "Workshop Activities: Week 4"
 ---
 
-1. Create a tsibble with total Holiday travellers for Victoria and Queensland from the `tourism` data set using the code below. Plot the series. What do you see?
+# Week 4 Mini-Studio
 
-  ```r
-  holidays <- tourism |>
-    filter(State %in% c("Victoria", "Queensland")) |>
-    filter(Purpose == "Holiday") |>
-    as_tibble() |>
-    summarise(Trips = sum(Trips), .by = c("State", "Quarter")) |> 
-    as_tsibble(index = Quarter, key = State)
-  ```
+This page follows the same sequence as [week4-code.R](week4-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
-2. Generate 4 year ahead forecasts from all four benchmarks. Plot them using `autoplot()`. Comment in the resulting forecasts.
+::: {.callout-tip}
+## How to use this page
 
-3. Plot the residuals from the most appropriate benchmark using `gg_tsresiduals()`. What do you see?
+1. Open [week4-code.R](week4-code.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
 
-4. Test if the residuals are white noise. What do you conclude?
+## A. Prepare GDP per capita data
 
-5. Plot point and interval forecasts from the most appropriate benchmark.
+This opening block prepares the GDP per capita data for analysis.
 
-6. Now try a decomposition forecasting model.
+```r
+gdppc <- global_economy |>
+  mutate(GDP_per_capita = GDP / Population) |>
+  select(Year, Country, GDP, Population, GDP_per_capita)
 
-7. Use `accuracy()` to evaluate which benchmark fits the data best.
+gdppc
+```
 
-8. Use a test set of last 3 years to check forecast accuracy.
+::: {.callout-note}
+## What this code is doing
 
-9. Now use time series cross-validation to check forecast accuracy.
+- Calculates GDP per capita by dividing GDP by Population.
+- Selects relevant columns to create a clean tsibble.
+- Displays the resulting data structure.
+:::
 
-10. Exam 2024
+::: {.callout-note}
+## What to notice
 
-      - Section A: Q3, Q6
-      - Section B: Q3a, Q3b
+- The data includes multiple countries over time.
+- GDP per capita is a derived variable for per-person economic output.
+:::
+
+## B. Visualize GDP per capita for Sweden
+
+This section visualizes the data for a specific country.
+
+```r
+gdppc |>
+  filter(Country == "Sweden") |>
+  autoplot(GDP_per_capita) +
+  labs(title = "GDP per capita for Sweden", y = "$US")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Filters the data to Sweden only.
+- Plots the GDP per capita over time with appropriate labels.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Look for trends, cycles, or changes in the series.
+- Consider the scale and units of the y-axis.
+:::
+
+## C. Fit naive and drift models
+
+This block fits simple forecasting models to the data.
+
+```r
+fit <- gdppc |>
+  model(naive = NAIVE(GDP_per_capita),
+        drift_method = RW(GDP_per_capita ~ drift())
+        )
+
+fit
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits a naive model (last value repeated) and a random walk with drift.
+- Creates a model table (mable) for all countries.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The models are fitted to each country separately.
+- Compare the model specifications.
+:::
+
+## D. Generate forecasts
+
+This section produces forecasts from the fitted models.
+
+```r
+fc <- fit |> forecast(h = 3)
+fc
+
+fc |>
+  filter(Country == "Sweden", .model=="drift_method") |> 
+  autoplot(gdppc) +
+  labs(title = "GDP per capita for Sweden", y = "$US")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Generates 3-year-ahead forecasts for all models and countries.
+- Plots the drift method forecast for Sweden with historical data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Examine the forecast values and intervals.
+- Compare the naive vs drift forecast patterns.
+:::
+
+## E. Benchmark methods for holidays data
+
+Now shifting to benchmark methods for the holidays series.
+
+```r
+holidays <- tourism |>
+  filter(State %in% c("Victoria", "Queensland")) |>
+  filter(Purpose == "Holiday") |>
+  as_tibble() |>
+  summarise(Trips = sum(Trips), .by = c("State", "Quarter")) |> 
+  as_tsibble(index = Quarter, key = State)
+
+holidays |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Creates the holidays tsibble as in previous weeks.
+- Plots the series to visualize the data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Review the seasonal and trend patterns in the holidays data.
+- Compare Victoria and Queensland.
+:::
+
+## F. Fit benchmark models
+
+Fit all four benchmark methods to the holidays data.
+
+```r
+fit_benchmarks <- holidays |>
+  model(
+    mean = MEAN(Trips),
+    naive = NAIVE(Trips),
+    drift = RW(Trips ~ drift()),
+    snaive = SNAIVE(Trips)
+  )
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits mean, naive, drift, and seasonal naive models.
+- These are the standard benchmark methods.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Each model has different assumptions about the data.
+- Consider which might be most appropriate for seasonal data.
+:::
+
+## G. Generate and plot forecasts
+
+Produce 4-year-ahead forecasts and visualize them.
+
+```r
+fc_benchmarks <- fit_benchmarks |> forecast(h = 16)
+fc_benchmarks |> autoplot(holidays)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Forecasts 16 quarters (4 years) ahead.
+- Plots all benchmark forecasts with historical data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Compare the forecast behaviors of different benchmarks.
+- Look at how they handle seasonality and trends.
+:::
+
+## H. Check residuals
+
+Plot residuals from the most appropriate benchmark.
+
+```r
+fit_benchmarks |>
+  filter(State == "Victoria", .model == "snaive") |>
+  gg_tsresiduals()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Selects the seasonal naive model for Victoria.
+- Plots residual diagnostics.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Check for patterns in residuals that indicate model inadequacy.
+- Assess autocorrelation and distribution.
+:::
+
+## I. Test for white noise
+
+Test if residuals are white noise.
+
+```r
+fit_benchmarks |>
+  filter(State == "Victoria", .model == "snaive") |>
+  augment() |>
+  features(.resid, ljung_box, lag = 10)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Performs Ljung-Box test on residuals for autocorrelation.
+- Tests the null hypothesis of white noise.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- If p-value < 0.05, reject white noise (autocorrelation present).
+- Conclude on model adequacy.
+:::
+
+## J. Plot forecast intervals
+
+Show point and interval forecasts.
+
+```r
+fc_benchmarks |>
+  filter(State == "Victoria", .model == "snaive") |>
+  autoplot(holidays) +
+  labs(title = "Seasonal naive forecasts for Victoria")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the forecast with prediction intervals.
+- Focuses on seasonal naive for Victoria.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Examine the width of prediction intervals.
+- Consider the uncertainty in the forecasts.
+:::
+
+## K. Try decomposition model
+
+Fit a decomposition forecasting model.
+
+```r
+fit_decomp <- holidays |>
+  model(stl = STL(Trips))
+
+fc_decomp <- fit_decomp |> forecast(h = 16)
+fc_decomp |> autoplot(holidays)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits an STL decomposition model.
+- Generates forecasts based on the decomposition.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Compare decomposition forecasts to benchmarks.
+- See how it handles trend and seasonality.
+:::
+
+## L. Evaluate accuracy
+
+Use accuracy() to compare benchmark fits.
+
+```r
+accuracy(fit_benchmarks)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Calculates in-sample accuracy measures for all models.
+- Compares RMSE and other metrics.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Identify which benchmark performs best.
+- Consider the metrics and their implications.
+:::
+
+## M. Test set evaluation
+
+Check forecast accuracy on last 3 years.
+
+```r
+holidays_train <- holidays |> filter(Quarter < yearquarter("2015 Q1"))
+fit_train <- holidays_train |>
+  model(
+    mean = MEAN(Trips),
+    naive = NAIVE(Trips),
+    drift = RW(Trips ~ drift()),
+    snaive = SNAIVE(Trips)
+  )
+
+fc_test <- fit_train |> forecast(h = 12)
+accuracy(fc_test, holidays)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits models to training data (up to 2014).
+- Forecasts the test period (2015-2017).
+- Evaluates accuracy on held-out data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Compare test set performance to in-sample.
+- See if rankings change.
+:::
+
+## N. Time series cross-validation
+
+Use TSCV for robust evaluation.
+
+```r
+holidays |>
+  stretch_tsibble(.init = 20, .step = 4) |>
+  model(snaive = SNAIVE(Trips)) |>
+  forecast(h = 4) |>
+  accuracy(holidays)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Performs time series cross-validation.
+- Evaluates seasonal naive on rolling windows.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- TSCV provides more reliable accuracy estimates.
+- Compare to previous evaluation methods.
+:::
