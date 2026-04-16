@@ -19,6 +19,12 @@ This page follows the same sequence as [week6-code.R](week6-code.R). It is desig
 
 This opening block creates the tourism series used in the first half of the seminar.
 
+::: {.callout-tip}
+## Seminar step
+
+Build the `holidays` series exactly as it appears in class, then plot it before fitting any models.
+:::
+
 ```r
 holidays <- tourism |>
   filter(State %in% c("Victoria", "Queensland")) |>
@@ -32,6 +38,14 @@ holidays |>
 ```
 
 ::: {.callout-note}
+## What this code is doing
+
+- Filters the tourism data down to holiday travel for Victoria and Queensland.
+- Aggregates trips by quarter.
+- Turns the result into a tsibble so it is ready for plotting and modelling.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - Compare the overall level of Victoria and Queensland.
@@ -39,15 +53,15 @@ holidays |>
 - Keep that visual impression in mind before fitting any ETS models.
 :::
 
-::: {.callout-note}
-## Exam-style prompt
-
-Before fitting anything, which series looks more likely to need multiplicative seasonality, and why?
-:::
-
 ## B. Fit competing ETS models
 
 This is the core model comparison block from the seminar. The point is not just to run `ETS()`, but to compare several reasonable choices.
+
+::: {.callout-tip}
+## Seminar step
+
+Fit additive, multiplicative, and automatic ETS models to the same series so you can compare them properly.
+:::
 
 ```r
 fit <- holidays |>
@@ -70,22 +84,30 @@ fit |>
 ```
 
 ::: {.callout-note}
-## What to notice
+## What this code is doing
 
-- `glance()` is the quick comparison table.
-- `report()` tells you the actual selected structure and smoothing parameters.
-- The important habit is to connect the formal model output back to the visual behaviour of the series.
+- `model()` fits three ETS choices to each state.
+- `glance()` gives the quick model comparison table.
+- `report()` shows the selected structure and smoothing parameters for a specific fitted model.
 :::
 
 ::: {.callout-note}
-## Exam-style prompt
+## What to notice
 
-For Victoria, which model looks most appropriate? Use evidence from both `glance()` and `report()`, not just one or the other.
+- Do not treat `glance()` as the whole answer.
+- Use `report()` to see what the model is actually doing.
+- Link the model output back to the visual pattern you saw in the time plot.
 :::
 
 ## C. Check components and residuals
 
 Good model choice is not just about a criterion value. You also need to inspect what the fitted model is doing and whether the residuals look reasonable.
+
+::: {.callout-tip}
+## Seminar step
+
+Inspect the fitted structure for Victoria, then check whether the residuals still show obvious leftover pattern.
+:::
 
 ```r
 fit |>
@@ -109,6 +131,14 @@ Change `State == "Victoria"` to `State == "Queensland"` and compare the outputs.
 :::
 
 ::: {.callout-note}
+## What this code is doing
+
+- `components()` breaks the fitted model into pieces you can inspect.
+- `gg_tsresiduals()` checks whether the residuals look roughly well-behaved.
+- Together they move you past “the software picked this” toward “does this model make sense?”
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - In the components plot, ask what trend and seasonal pattern the model is trying to capture.
@@ -116,15 +146,15 @@ Change `State == "Victoria"` to `State == "Queensland"` and compare the outputs.
 - You do not need perfect residuals to say something useful, but you should be able to explain whether the model seems adequate.
 :::
 
-::: {.callout-note}
-## Exam-style prompt
-
-How would you justify the Victoria model in words after checking both the fitted components and the residual diagnostics?
-:::
-
 ## D. Forecast and defend the model choice
 
 This section turns model choice into forecast interpretation, which is much closer to exam reasoning than simply listing the chosen ETS form.
+
+::: {.callout-tip}
+## Seminar step
+
+Generate forecasts from the fitted models, then compare the forecast shape for additive and multiplicative choices.
+:::
 
 ```r
 fc <- fit |>
@@ -144,6 +174,14 @@ fc |>
 ```
 
 ::: {.callout-note}
+## What this code is doing
+
+- `forecast()` generates future values from each fitted model.
+- The first plot shows all states together.
+- The second plot isolates Victoria so the additive and multiplicative forecasts are easier to compare.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - Compare the shape of the forecasts, not just the labels.
@@ -151,15 +189,15 @@ fc |>
 - That scaling idea is the main reason multiplicative seasonality becomes attractive here.
 :::
 
-::: {.callout-note}
-## Exam-style prompt
-
-Write two or three sentences answering this question: why is the multiplicative model needed for Victoria?
-:::
-
 ## E. Build and inspect `h02`
 
 The seminar then switches to the `PBS` example. This is a fresh model-choice problem, so start again from the series features.
+
+::: {.callout-tip}
+## Seminar step
+
+Create `h02`, plot it, and describe the main features before asking the software to choose a model.
+:::
 
 ```r
 h02 <- PBS |>
@@ -171,6 +209,14 @@ h02 |>
 ```
 
 ::: {.callout-note}
+## What this code is doing
+
+- Filters the `PBS` data down to the `H02` series.
+- Aggregates total cost across each period.
+- Plots the finished series so you can read its features first.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - Look for trend.
@@ -179,15 +225,15 @@ h02 |>
 - Try to predict the sort of ETS structure you expect before asking the software.
 :::
 
-::: {.callout-note}
-## Exam-style prompt
-
-Based on the time plot alone, what ETS features look plausible for `h02`?
-:::
-
 ## F. Auto ETS and damped trend
 
 Now compare what automatic ETS suggests with a more deliberate trend choice.
+
+::: {.callout-tip}
+## Seminar step
+
+Use automatic ETS to inspect the suggested model, then compare a plain additive trend forecast with a damped version.
+:::
 
 ```r
 h02 |>
@@ -209,6 +255,14 @@ Change `trend("A")` to `trend("Ad")`. Then change `h = "8 years"` to `h = "20 ye
 :::
 
 ::: {.callout-note}
+## What this code is doing
+
+- `ETS(Cost)` lets the model choose a suitable structure automatically.
+- `trend("A")` forces a plain additive trend so you can compare the forecast behaviour.
+- Changing to `trend("Ad")` lets you see what damping does, especially over longer horizons.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - A damped trend matters most when the forecast horizon gets longer.
@@ -216,15 +270,15 @@ Change `trend("A")` to `trend("Ad")`. Then change `h = "8 years"` to `h = "20 ye
 - That is an interpretation question, not just a software question.
 :::
 
-::: {.callout-note}
-## Exam-style prompt
-
-Why might a damped trend be more sensible than a plain additive trend for `h02`?
-:::
-
 ## G. STL plus ETS
 
 The last block combines decomposition and forecasting. This is useful when you want to separate pattern description from the final forecasting step.
+
+::: {.callout-tip}
+## Seminar step
+
+Decompose `h02` first, then fit a forecasting model to the seasonally adjusted series.
+:::
 
 ```r
 h02 |>
@@ -258,17 +312,19 @@ Change `STL(Cost)` to `STL(log(Cost) ~ season(window = "periodic"))` and compare
 :::
 
 ::: {.callout-note}
+## What this code is doing
+
+- `STL()` decomposes the series into trend, seasonality, and remainder.
+- `decomposition_model()` then forecasts the seasonally adjusted part and the seasonal part separately.
+- This gives you a different workflow from fitting one ETS model directly to the original series.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - STL helps you think separately about trend, seasonality, and remainder.
 - After decomposition, you still have to justify the final forecasting choice.
 - The aim is not “use STL because it is fancy”; the aim is to explain when decomposition gives a more sensible forecasting workflow.
-:::
-
-::: {.callout-note}
-## Exam-style prompt
-
-When would you prefer an STL plus ETS approach over fitting a single ETS model directly?
 :::
 
 ## Final Week 6 check
