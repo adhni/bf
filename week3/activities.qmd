@@ -1,38 +1,305 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "Workshop Activities: Week 3"
 ---
 
+# Week 3 Mini-Studio
 
-1. Find an appropriate Box-Cox transformation in order to stabilise the variance for Gas production from `aus_production`.
+This page follows the same sequence as [week3-code.R](week3-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
-2. Why is a Box-Cox transformation unhelpful for the `canadian_gas` data?
+::: {.callout-tip}
+## How to use this page
 
-3. Produce the following decomposition for the number (in thousands) of of people employed in Retail Trade in the US
+1. Open [week3-code.R](week3-code.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
 
-    ```r
-    us_retail_employment <- us_employment |>
-      filter(year(Month) >= 1990, Title == "Retail Trade") |>
-      select(-Series_ID)
+## A. Generate white noise
 
-    dcmp <- us_retail_employment |>
-            model(stl = STL(Employed)) 
-    ```
-    
-    a. Plot the decomposition.
-    
-    b. Fit the trend component over the data [Hint: you can use `autolayer()` to add `trend` to the plot above. `trend` is one of the variables returned by `STL()`. ]
-    
-    c. Fit the trend and the seasonally adjusted [Hint: `seas_adjust` is one of the variables returned by `STL`. ]
-    
-    d. How does the seasonal shape change over time? [Hint: Try plotting the seasonal component using `gg_season()`.]
-    
-    e. What happens as you change the values of the two `window` arguments?
-    
-    f. Can you produce a plausible seasonally adjusted series? 
+This section simulates white noise.
 
-4. Exam 2024 
+```r
+set.seed(100)
+T=1000
+my_data <- tsibble(t = seq(T), y = rnorm(T), index = t)
+my_data |> autoplot(y)
+my_data |> gg_tsdisplay(y, plot_type = "histogram")
+```
 
-    - Review exam structure
-    - Section B: Q1, Q2
+::: {.callout-note}
+## What this code is doing
+
+- Sets a random seed for reproducibility.
+- Generates 1000 random normal values as white noise.
+- Plots the time series and displays ACF/PACF with histogram.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The ACF should show no significant spikes (within blue lines).
+- Histogram should be approximately normal.
+:::
+
+## B. Generate random walk
+
+Simulate a random walk.
+
+```r
+set.seed(100)
+T=1000
+tsibble(t = seq(T), y = cumsum(rnorm(T)), index = t) |>
+  gg_tsdisplay(y, plot_type = "histogram")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Generates a random walk by cumulative sum of random normals.
+- Displays the time series, ACF/PACF, and histogram.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The series wanders without returning to mean.
+- ACF decays slowly, indicating non-stationarity.
+:::
+
+## C. Plot US GDP
+
+Plot raw GDP.
+
+```r
+us_economy <- global_economy |>
+  filter(Country == "United States")
+
+us_economy |>
+  autoplot(GDP)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Filters global_economy for US.
+- Plots GDP over time.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Look for increasing variance over time.
+:::
+
+## D. Plot log GDP
+
+Apply log transformation.
+
+```r
+us_economy |>
+  autoplot(log(GDP))
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the natural log of GDP.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Variance may be more stable, but check if it's appropriate.
+:::
+
+## E. Box-Cox transformations
+
+Try Box-Cox with lambda 0 (log) and 0.3.
+
+```r
+us_economy |> 
+  autoplot(box_cox(GDP, 0))
+
+us_economy |>
+  autoplot(box_cox(GDP, 0.3))
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies Box-Cox transformation with different lambdas.
+- Plots the transformed series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Lambda 0.3 may stabilize variance better than log.
+:::
+
+## F. Guerrero method
+
+Use Guerrero to find optimal lambda.
+
+```r
+us_economy |> 
+  features(GDP, guerrero) |> 
+  pull(lambda_guerrero)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Computes the Guerrero lambda for Box-Cox.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- This gives the recommended lambda value.
+:::
+
+## G. STL decomposition for US retail employment
+
+Perform STL decomposition.
+
+```r
+us_retail_employment <- us_employment |>
+  filter(year(Month) >= 1990, Title == "Retail Trade") |>
+  select(-Series_ID)
+
+dcmp <- us_retail_employment |>
+  model(stl = STL(Employed))
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Filters US employment data for retail trade from 1990.
+- Fits STL decomposition.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- STL decomposes into trend, seasonal, remainder.
+:::
+
+## H. Plot the decomposition
+
+Visualize the components.
+
+```r
+dcmp |> components() |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the trend, seasonal, and remainder components.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Examine each component's behavior.
+:::
+
+## I. Fit trend over data
+
+Overlay trend on original data.
+
+```r
+us_retail_employment |> 
+  autoplot(Employed) +
+  autolayer(dcmp |> components(), trend)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots original data with trend component overlaid.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- How well the trend captures the overall movement.
+:::
+
+## J. Fit trend and seasonally adjusted
+
+Plot trend and seasonally adjusted series.
+
+```r
+us_retail_employment |> 
+  autoplot(Employed) +
+  autolayer(dcmp |> components(), trend) +
+  autolayer(dcmp |> components(), season_adjust)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Adds the seasonally adjusted series to the plot.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Seasonally adjusted removes seasonal variation.
+:::
+
+## K. Seasonal shape over time
+
+Plot seasonal component with gg_season.
+
+```r
+dcmp |> components() |> gg_season(seasonal)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the seasonal component by season.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- How the seasonal pattern changes over years.
+:::
+
+## L. Experiment with window arguments
+
+Change window values in STL.
+
+```r
+# Example: change trend window
+dcmp_alt <- us_retail_employment |>
+  model(stl = STL(Employed ~ trend(window = 13) + season(window = 7)))
+dcmp_alt |> components() |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits STL with different window sizes.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- How window changes affect smoothness of components.
+:::
+
+## M. Plausible seasonally adjusted series
+
+Assess the seasonally adjusted series.
+
+::: {.callout-note}
+## Exam-style prompt
+
+Evaluate if the seasonally adjusted series is plausible. Consider the trend and any remaining patterns.
+:::
