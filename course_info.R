@@ -464,7 +464,8 @@ show_week_overview <- function(week, depth = 1) {
     "</div>",
     "</div>",
     "<div class='week-overview__actions'>",
-    if (!is.null(slides_url)) paste0("<a class='button-link' href='", slides_url, "'>Slides PDF</a>"),
+    if (fs::file_exists(here::here(paste0("week", week, "/activities.qmd")))) paste0("<a class='button-link' href='activities.qmd'>Workshop Activities</a>"),
+    if (!is.null(slides_url)) paste0("<a class='button-link button-link--ghost' href='", slides_url, "'>Slides PDF</a>"),
     paste0("<a class='button-link button-link--ghost' href='", resource_url, "'>", details$ResourceLabel[[1]], "</a>"),
     "<a class='button-link button-link--ghost' href='https://echo360.net.au/section/630d3bbb-85b4-47c8-842d-4bafc932413d/home'>Recordings</a>",
     "</div>",
@@ -547,7 +548,7 @@ show_activity <- function(week, title = TRUE, show_solutions = TRUE) {
   if ((monday - today) <= 7 | week <= 1) {
     file <- here::here(paste0("week", week, "/activities.qmd"))
     if (fs::file_exists(file)) {
-      cat("\n\n## [Workshop activities](activities.qmd)\n\n")
+      cat("\n\n::: {.callout-tip icon=false}\n\n## Workshop activities\n\n[Open activities](activities.qmd){.btn .btn-primary}\n\n:::\n\n")
     }
   }
 }

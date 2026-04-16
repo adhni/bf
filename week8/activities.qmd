@@ -1,0 +1,93 @@
+---
+title: "Workshop Activities: Week 8"
+---
+
+# Week 8 Mini-Studio
+
+::: {.callout-note icon=false}
+[Back to Week 8 overview](index.qmd)
+:::
+
+This page follows the same sequence as [week8.R](week8.R). Use it as a stable seminar companion: run each code block in RStudio, then answer the prompts in your own words.
+
+::: {.callout-tip}
+## How to use this page
+
+1. Open [week8.R](week8.R) beside this page.
+2. Work through sections A to C in order.
+3. Explain what each model is doing, not just what command ran.
+:::
+
+## A. Egyptian exports: identify an ARIMA model
+
+```r
+egypt <- global_economy |>
+  filter(Code == "EGY")
+
+egypt |> autoplot(Exports) +
+  labs(y = "% of GDP", title = "Egyptian Exports")
+
+egypt |>
+  features(Exports, unitroot_ndiffs)
+
+egypt |>
+  gg_tsdisplay(Exports, plot_type = "partial")
+
+fit <- egypt |>
+  model(ARIMA(Exports))
+
+report(fit)
+gg_tsresiduals(fit)
+```
+
+::: {.callout-note}
+## What to notice
+
+- Decide if the raw series looks stationary and whether differencing is required.
+- Compare visual evidence (plot, ACF/PACF) with unit root outputs.
+- Check whether residual diagnostics support the fitted ARIMA model.
+:::
+
+## B. Central African Republic exports: compare candidate models
+
+```r
+caf <- global_economy |>
+  filter(Code == "CAF")
+
+caf |> autoplot(Exports)
+
+caf_fit <- caf |>
+  model(
+    arima210 = ARIMA(Exports ~ pdq(2,1,0)),
+    arima013 = ARIMA(Exports ~ pdq(0,1,3)),
+    stepwise = ARIMA(Exports),
+    fullsearch = ARIMA(Exports, stepwise = FALSE, approximation = FALSE)
+  )
+
+glance(caf_fit) |>
+  arrange(AICc) |>
+  select(.model:BIC)
+
+caf_fit |>
+  select(fullsearch) |>
+  gg_tsresiduals()
+```
+
+::: {.callout-note}
+## What to notice
+
+- Which models are competitive by AICc and why?
+- Does the best information-criterion model also pass residual checks?
+- Explain your final model choice for forecasting.
+:::
+
+## C. Continue the guided examples in week8.R
+
+Use the remaining script sections (`us_change`, `mink`, `web_usage`, `elecequip`) to practise manual vs automatic ARIMA selection.
+
+::: {.callout-important}
+## Practice focus
+
+- Write one paragraph per example explaining: stationarity decision, candidate models, chosen model, and residual conclusion.
+- Keep a shortlist of plausible alternatives, not only one "best" model.
+:::

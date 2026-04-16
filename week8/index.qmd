@@ -9,6 +9,7 @@ source(here::here("course_info.R"))
 
 ```{r}
 #| output: asis
+# Refresh weekly overview links from course_info.R during render.
 show_week_overview(week)
 ```
 

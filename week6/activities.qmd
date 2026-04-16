@@ -4,6 +4,10 @@ title: "Workshop Activities: Week 6"
 
 # Week 6 Mini-Studio
 
+::: {.callout-note icon=false}
+[Back to Week 6 overview](index.qmd)
+:::
+
 This page follows the same sequence as [week6-code.R](week6-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
 ::: {.callout-tip}
@@ -40,9 +44,6 @@ holidays |>
 ::: {.callout-note collapse="true"}
 ## Expected Output
 A time series plot showing holiday trips for Victoria and Queensland over quarters, with clear seasonal patterns and potential multiplicative seasonality in Victoria.
-:::ism data down to holiday travel for Victoria and Queensland.
-- Aggregates trips by quarter.
-- Turns the result into a tsibble so it is ready for plotting and modelling.
 :::
 
 ::: {.callout-note}
@@ -91,7 +92,12 @@ Model table showing fitted ETS models, glance() with AIC/BIC, and report() detai
 ::: {.callout-note}
 ## What this code is doing
 
-- `model()` fits t}
+- `model()` fits the three ETS variants to the same series.
+- `glance()` gives quick model-comparison metrics.
+- `report()` gives model details for the selected specification.
+:::
+
+::: {.callout-note}
 ## What to notice
 
 - Do not treat `glance()` as the whole answer.
@@ -134,8 +140,13 @@ Components plot showing level, trend, and seasonal patterns; residuals plot with
 
 Change `State == "Victoria"` to `State == "Queensland"` and compare the outputs.
 :::
-)` checks whether the residuals look roughly well-behaved.
-- Together they move you past “the software picked this” toward “does this model make sense?”
+
+::: {.callout-note}
+## What this code is doing
+
+- `components()` shows the fitted level, trend, and seasonality.
+- `gg_tsresiduals()` checks whether residuals are roughly well-behaved.
+- Together they move you from “the software picked this” to “does this model make sense?”
 :::
 
 ::: {.callout-note}

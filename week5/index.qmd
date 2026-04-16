@@ -9,6 +9,7 @@ source(here::here("course_info.R"))
 
 ```{r}
 #| output: asis
+# Refresh weekly overview links from course_info.R during render.
 show_week_overview(week)
 ```
 
@@ -27,7 +28,6 @@ Read [Sections 8.1-8.4 of the textbook](https://otexts.com/fpp3/expsmooth.html) 
 #| output: asis
 #show_slides(week)
 show_slides_ann(week)
-show_activity(week, show_solutions = FALSE)
 ```
 
 ## Seminar Code

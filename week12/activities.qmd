@@ -1,0 +1,37 @@
+---
+title: "Workshop Activities: Week 12"
+---
+
+# Week 12 Revision Studio
+
+::: {.callout-note icon=false}
+[Back to Week 12 overview](index.qmd)
+:::
+
+This page is for structured revision only. It does not introduce new material.
+
+## A. Past exam practice
+
+Use the existing exam papers from the Week 12 page:
+
+- [Exam 2023](exams/Exam2023.pdf)
+- [Exam 2024](exams/Exam2024.pdf)
+
+## B. Consolidation checklist
+
+Use this checklist while revising:
+
+1. Revisit your weakest topics from Weeks 1 to 11.
+2. Re-run seminar code for at least two ARIMA weeks and one regression week.
+3. Re-check diagnostics workflow: identify, estimate, diagnose, forecast, justify.
+4. Review assignment feedback and note recurring mistakes.
+
+## C. Existing resources to revisit
+
+- Week pages and workshop activities from [Week 1](../week1/index.qmd) to [Week 11](../week11/index.qmd)
+- Recordings: [Echo360](https://echo360.net.au/section/630d3bbb-85b4-47c8-842d-4bafc932413d/home)
+- Textbook: [Forecasting: Principles and Practice](https://OTexts.com/fpp3)
+
+::: {.callout-important}
+Use this week to practise explanation quality and model justification, not just code execution.
+:::

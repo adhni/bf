@@ -9,6 +9,7 @@ source(here::here("course_info.R"))
 
 ```{r}
 #| output: asis
+# Refresh weekly overview links from course_info.R during render.
 show_week_overview(week)
 ```
 
@@ -33,7 +34,6 @@ Before we start classes, make sure you are familiar with R, RStudio and the tidy
 #| output: asis
 # show_slides(week)
 show_slides_ann(week)
-show_activity(week, show_solutions = FALSE)
 ```
 
 ## Seminar Code
@@ -46,7 +46,7 @@ show_activity(week, show_solutions = FALSE)
 
 ## Tutorial exercises
 
-::: {.callout-note collpase="true"}
+::: {.callout-note collapse="true"}
 
 ## Tutorial Learning Objectives
 

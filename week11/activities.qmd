@@ -1,0 +1,103 @@
+---
+title: "Workshop Activities: Week 11"
+---
+
+# Week 11 Mini-Studio
+
+::: {.callout-note icon=false}
+[Back to Week 11 overview](index.qmd)
+:::
+
+This page follows [week11.R](week11.R). Focus on dynamic harmonic regression and forecast scenarios with external regressors.
+
+## A. Extend gasoline model to dynamic harmonic regression
+
+Revisit the weekly gasoline setup from week 10 and add ARIMA error structure as shown in [week11.R](week11.R).
+
+::: {.callout-note}
+## What to notice
+
+- Why does adding ARIMA errors improve over pure harmonic regression?
+- Which residual patterns remain after adding dynamics?
+:::
+
+## B. Convert half-hourly electricity to daily series
+
+```r
+vic_elec_daily <- vic_elec |>
+  index_by(Date = date(Time)) |>
+  summarise(
+    Demand = sum(Demand) / 1e3,
+    Temperature = max(Temperature),
+    Holiday = any(Holiday)
+  ) |>
+  mutate(
+    Day_Type = case_when(
+      Holiday ~ "Holiday",
+      wday(Date) %in% 2:6 ~ "Weekday",
+      TRUE ~ "Weekend"
+    )
+  )
+```
+
+::: {.callout-note}
+## What to notice
+
+- Understand each transformation and why daily aggregation is useful.
+- Compare weekly and yearly seasonal patterns after aggregation.
+:::
+
+## C. Compare ETS, ARIMA, and DHR for electricity demand
+
+```r
+elec_fit <- vic_elec_daily |>
+  model(
+    ets = ETS(Demand),
+    arima = ARIMA(log(Demand)),
+    dhr = ARIMA(log(Demand) ~ Temperature + I(Temperature^2) +
+      (Day_Type == "Weekday") +
+      fourier(period = "year", K = 4))
+  )
+
+accuracy(elec_fit)
+```
+
+::: {.callout-note}
+## What to notice
+
+- Which model best captures temperature effects and calendar structure?
+- Evaluate fit and residual diagnostics, not only training accuracy.
+:::
+
+## D. Build and forecast a 14-day scenario
+
+```r
+vic_elec_future <- new_data(vic_elec_daily, 14) |>
+  mutate(
+    Temperature = c(rep(32, 7), rep(25, 7)),
+    Holiday = c(TRUE, rep(FALSE, 13)),
+    Day_Type = case_when(
+      Holiday ~ "Holiday",
+      wday(Date) %in% 2:6 ~ "Weekday",
+      TRUE ~ "Weekend"
+    )
+  )
+```
+
+Then run the forecast blocks in [week11.R](week11.R).
+
+::: {.callout-important}
+## Exam Practice
+
+2024:
+- Section A: Q4
+- Section B: Q3 (i-j)
+- Section E: all questions
+
+2023:
+- Section A: Q6
+- Section B: Q3 (i-j)
+- Section D: all questions
+- Section E: all questions
+:::
+

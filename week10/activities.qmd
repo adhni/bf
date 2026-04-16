@@ -1,0 +1,67 @@
+---
+title: "Workshop Activities: Week 10"
+---
+
+# Week 10 Mini-Studio
+
+::: {.callout-note icon=false}
+[Back to Week 10 overview](index.qmd)
+:::
+
+This page follows [week10.R](week10.R). Focus on regression-based forecasting, variable selection, and harmonic terms.
+
+## A. Multiple regression for `us_change`
+
+Core objective: forecast US consumption growth using economic regressors.
+
+```r
+fit_cons <- us_change |>
+      model(TSLM(Consumption ~ Income + Savings + Production + Unemployment))
+
+report(fit_cons)
+fit_cons |> gg_tsresiduals()
+```
+
+Then run the full model-comparison and scenario sections in [week10.R](week10.R).
+
+::: {.callout-note}
+## What to notice
+
+- Which regressors are consistently useful across candidate models?
+- How do AICc/CV trade-offs affect your final model choice?
+- Do residual plots suggest missing nonlinear terms or interactions?
+:::
+
+## B. Harmonic regression for `us_gasoline`
+
+Core objective: model weekly seasonality with Fourier terms.
+
+```r
+us_gasoline |>
+      model(
+            K06 = TSLM(log(Barrels) ~ trend(knots = yearweek(c("2006 W1", "2011 W1"))) + fourier(K = 6)),
+            K10 = TSLM(log(Barrels) ~ trend(knots = yearweek(c("2006 W1", "2011 W1"))) + fourier(K = 10))
+      ) |>
+      glance()
+```
+
+Use [week10.R](week10.R) to inspect diagnostics and produce forecasts.
+
+::: {.callout-note}
+## What to notice
+
+- How does increasing $K$ change fit quality vs complexity?
+- Which model balances smooth seasonality and residual behavior best?
+- Explain why harmonic terms are useful for high-frequency seasonal data.
+:::
+
+## Exam Practice
+
+::: {.callout-important}
+## 2023 Exam Questions
+
+- Section A: Q4, Q5
+- Section B: Q3 (g-h)
+
+Write responses in model-selection language: data features, candidate models, diagnostics, and forecast implications.
+:::

@@ -4,6 +4,10 @@ title: "Workshop Activities: Week 5"
 
 # Week 5 Mini-Studio
 
+::: {.callout-note icon=false}
+[Back to Week 5 overview](index.qmd)
+:::
+
 This page follows the same sequence as [week5-code.R](week5-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
 ::: {.callout-tip}

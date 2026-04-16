@@ -1,0 +1,71 @@
+---
+title: "Workshop Activities: Week 9"
+---
+
+# Week 9 Mini-Studio
+
+::: {.callout-note icon=false}
+[Back to Week 9 overview](index.qmd)
+:::
+
+This page follows [week9.R](week9.R). The goal is to practise complete ARIMA workflows: identify, estimate, diagnose, then forecast.
+
+## A. ARIMA practice sets: `usmelec`, `leisure`, `h02`
+
+```r
+usmelec <- as_tsibble(fpp2::usmelec) |>
+  rename(Month = index, Generation = value)
+
+leisure <- us_employment |>
+  filter(Title == "Leisure and Hospitality", year(Month) > 2000) |>
+  mutate(Employed = Employed/1000) |>
+  select(Month, Employed)
+
+h02 <- PBS |>
+  filter(ATC2 == "H02") |>
+  summarise(Cost = sum(Cost))
+```
+
+Run the corresponding sections in [week9.R](week9.R), including diagnostics and forecasts.
+
+::: {.callout-note}
+## What to notice
+
+- For each series, state the differencing decision and seasonal structure.
+- Compare manual model choices with automated ARIMA output.
+- Check whether residual autocorrelation remains and what that means for intervals.
+:::
+
+## B. ARIMA vs ETS: `aus_economy` and `cement`
+
+```r
+aus_economy <- global_economy |>
+  filter(Code == "AUS") |>
+  mutate(Population = Population / 1e6)
+
+cement <- aus_production |>
+  select(Cement) |>
+  filter_index("1988 Q1" ~ .)
+```
+
+Use the train/test and forecasting sections in [week9.R](week9.R) to compare ARIMA and ETS.
+
+::: {.callout-note}
+## What to notice
+
+- Which model wins on forecast accuracy for each dataset?
+- Is the numerical win practically meaningful or marginal?
+- How do model assumptions differ between ARIMA and ETS here?
+:::
+
+## Exam Practice
+
+::: {.callout-important}
+## 2024 Exam Questions
+
+- Section A: Q5
+- Section B: Q3 (g-h)
+- Section D: all questions
+
+Frame each answer using the workflow: identify -> estimate -> diagnose -> forecast -> justify.
+:::

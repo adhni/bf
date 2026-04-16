@@ -9,6 +9,7 @@ source(here::here("course_info.R"))
 
 ```{r}
 #| output: asis
+# Refresh weekly overview links from course_info.R during render.
 show_week_overview(week)
 ```
 
@@ -28,8 +29,7 @@ Read [Chapter 7 of the textbook](https://otexts.com/fpp3/regression.html) and wa
 ::: {.callout-note}
 
 ## Tutorial Learning Objectives
-
-
+[Tutorial learning objectives](tute-lo.qmd)
 
 :::
 

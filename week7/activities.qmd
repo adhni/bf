@@ -1,0 +1,336 @@
+---
+title: "Workshop Activities: Week 7"
+---
+
+# Week 7 Mini-Studio
+
+::: {.callout-note icon=false}
+[Back to Week 7 overview](index.qmd)
+:::
+
+This page follows the same sequence as [week7.R](week7.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
+
+::: {.callout-tip}
+## How to use this page
+
+1. Open [week7.R](week7.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
+
+## A. Stationarity of the Cement series
+
+This section explores transformations and differencing for the Cement production series.
+
+```r
+# Australia Cement production
+aus_production |>
+  autoplot(Cement) +
+  labs(title = "Cement production in Australia")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the raw Cement production series from aus_production.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The series shows trending behavior and seasonal patterns.
+- Variance appears to increase over time.
+:::
+
+```r
+# Stabilise variance
+aus_production |>
+  autoplot(
+    log(Cement)
+    ) +
+  labs(title = "Cement production in Australia")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies a log transformation to stabilize variance.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The log transformation reduces the increasing variance.
+:::
+
+```r
+# Account for seasonality
+aus_production |>
+  autoplot(
+    log(Cement) |> difference(lag=12)
+    ) +
+  labs(title = "Cement production in Australia")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies seasonal differencing (lag=12) to the log-transformed series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Seasonal differencing removes the seasonal component.
+- The series may still show trends.
+:::
+
+```r
+# Let's get some help from gg_tsdisplay
+aus_production |>
+  gg_tsdisplay(
+    log(Cement) |> difference(lag=12)
+  )
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Uses gg_tsdisplay to examine ACF and PACF of the seasonally differenced series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The ACF suggests further differencing may be needed.
+:::
+
+```r
+aus_production |>
+  autoplot(
+    log(Cement) |> difference(12) |> difference(1)
+    ) +
+  labs(title = "Cement production in Australia")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies both seasonal and first differencing to the log series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The doubly differenced series appears stationary.
+:::
+
+```r
+aus_production |>
+  gg_tsdisplay(
+    log(Cement) |> difference(12) |> difference(1)
+  )
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Displays ACF and PACF of the doubly differenced series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The ACF decays quickly, indicating stationarity.
+- The series is not white noise.
+:::
+
+```r
+# Let's verify through more official 
+aus_production |>
+  features(log(Cement), feat_stl)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Computes STL decomposition features for the log series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Checks seasonal strength and other features.
+:::
+
+```r
+aus_production |>
+  features(log(Cement), 
+           unitroot_nsdiffs)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Determines the number of seasonal differences needed.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Based on seasonal strength.
+:::
+
+```r
+aus_production |>
+  features(log(Cement) |> difference(12), 
+           unitroot_ndiffs)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Determines the number of first differences needed after seasonal differencing.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Uses KPSS test for non-seasonal differences.
+:::
+
+## B. Stationarity of PBS series (A10 and H02)
+
+This section examines the A10 and H02 series from PBS data.
+
+```r
+a10 <- PBS |>
+  filter(ATC2 == "A10") |>
+  summarise(Cost = sum(Cost))
+
+a10 |> autoplot(Cost)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Creates the A10 series by filtering and summarizing PBS data.
+- Plots the A10 cost series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Features of the series in terms of stationarity.
+:::
+
+```r
+# Difference without transformation - what do you see?
+a10 |> autoplot(
+  difference(Cost,12)
+  )
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies seasonal differencing to A10 without transformation.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Effect of differencing on the series.
+:::
+
+```r
+a10 |> autoplot(
+  difference(log(Cost),12)
+  )
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Applies seasonal differencing to the log-transformed A10 series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Comparison with previous plot.
+:::
+
+```r
+a10 |> 
+  features(
+    difference(log(Cost),12), 
+    unitroot_ndiffs)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Checks if further differencing is needed for the log-differenced A10.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Number of additional differences required.
+:::
+
+```r
+## h02
+h02 <- PBS |>
+  filter(ATC2 == "H02") |>
+  summarise(Cost = sum(Cost))
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Creates the H02 series similarly to A10.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Initial features of the H02 series.
+:::
+
+## C. Algerian exports series
+
+This section explores the Algerian exports from global_economy.
+
+```r
+# Explore the Algerian exports series
+global_economy |>
+  filter(Country == "Algeria") |>
+  autoplot(Exports)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the Exports series for Algeria.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Is the series stationary? Is it white noise?
+:::
+
+## Exam Practice
+
+::: {.callout-important}
+## 2023 Exam Questions
+
+- Section A: Q2, Q3
+- Section B: Q1, Q2, Q3 (a-f) 
+- Section C: all questions
+
+Use the code patterns from this week to approach these questions. Focus on stationarity tests and transformations.
+:::
