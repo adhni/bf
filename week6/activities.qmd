@@ -1,31 +1,282 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "Workshop Activities: Week 6"
 ---
 
-1. Use the tsibble created from `tourism` for holiday travel in Victoria and Queensland. Plot the series to remind yourself what these look like.
+# Week 6 Mini-Studio
 
-2. Use the `ETS()` function to fit models with additive and multiplicative errors to both series. Also let `ETS()` auto select models. Explore the fitted models and their residuals. 
+This page follows the same sequence as [week6-code.R](week6-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
-3. Generate forecasts from the fitted models. Why is the multiplicative model needed for Victoria? 
+::: {.callout-tip}
+## How to use this page
 
-4. Generate the `h02` series from the `PBS` tsibble using the code below. Plot the data and study it's features. What ETS model would be appropriate for forecasting this data?
+1. Open [week6-code.R](week6-code.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
 
-    ```r
-    h02 <- PBS |>
-    filter(ATC2 == "H02") |>
-    summarise(Cost = sum(Cost))
-    ```
+## A. Build the `holidays` series
 
-5. Find an `ETS` model and study it.
+This opening block creates the tourism series used in the first half of the seminar.
 
-6. Generate forecasts for the next few years. 
+```r
+holidays <- tourism |>
+  filter(State %in% c("Victoria", "Queensland")) |>
+  filter(Purpose == "Holiday") |>
+  as_tibble() |>
+  summarise(Trips = sum(Trips), .by = c("State", "Quarter")) |>
+  as_tsibble(index = Quarter, key = State)
 
-7. Combine `STL` decomposition with `ETS` to forecast the `h02` series.
+holidays |>
+  autoplot()
+```
 
-8. Exam 2024 - *Review this*
- 
-      - Section A: Q1, Q2
-      - Section B: Q3d, Q3e, Q3f 
-      - Section C: all questions
+::: {.callout-note}
+## What to notice
+
+- Compare the overall level of Victoria and Queensland.
+- Look at whether the seasonal swings stay roughly constant or get larger when the series level gets larger.
+- Keep that visual impression in mind before fitting any ETS models.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+Before fitting anything, which series looks more likely to need multiplicative seasonality, and why?
+:::
+
+## B. Fit competing ETS models
+
+This is the core model comparison block from the seminar. The point is not just to run `ETS()`, but to compare several reasonable choices.
+
+```r
+fit <- holidays |>
+  model(
+    additive = ETS(Trips ~ error("A")),
+    multiplicative = ETS(Trips ~ error("M")),
+    auto = ETS(Trips)
+  )
+
+fit
+fit |>
+  glance()
+```
+
+```r
+fit |>
+  filter(State == "Victoria") |>
+  select(multiplicative) |>
+  report()
+```
+
+::: {.callout-note}
+## What to notice
+
+- `glance()` is the quick comparison table.
+- `report()` tells you the actual selected structure and smoothing parameters.
+- The important habit is to connect the formal model output back to the visual behaviour of the series.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+For Victoria, which model looks most appropriate? Use evidence from both `glance()` and `report()`, not just one or the other.
+:::
+
+## C. Check components and residuals
+
+Good model choice is not just about a criterion value. You also need to inspect what the fitted model is doing and whether the residuals look reasonable.
+
+```r
+fit |>
+  filter(State == "Victoria") |>
+  select(multiplicative) |>
+  components() |>
+  autoplot()
+```
+
+```r
+fit |>
+  filter(State == "Victoria") |>
+  select(multiplicative) |>
+  gg_tsresiduals()
+```
+
+::: {.callout-note}
+## Try this
+
+Change `State == "Victoria"` to `State == "Queensland"` and compare the outputs.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- In the components plot, ask what trend and seasonal pattern the model is trying to capture.
+- In the residual diagnostics, ask whether there is still obvious structure left behind.
+- You do not need perfect residuals to say something useful, but you should be able to explain whether the model seems adequate.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+How would you justify the Victoria model in words after checking both the fitted components and the residual diagnostics?
+:::
+
+## D. Forecast and defend the model choice
+
+This section turns model choice into forecast interpretation, which is much closer to exam reasoning than simply listing the chosen ETS form.
+
+```r
+fc <- fit |>
+  forecast()
+
+fc |>
+  autoplot(holidays) +
+  labs(title = "Overnight trips (thousands)")
+```
+
+```r
+fc |>
+  filter(State == "Victoria", !.model == "auto") |>
+  autoplot(holidays) +
+  labs(title = "Victoria: Overnight trips (thousands)") +
+  facet_wrap(vars(.model), ncol = 1)
+```
+
+::: {.callout-note}
+## What to notice
+
+- Compare the shape of the forecasts, not just the labels.
+- Ask whether the amplitude of the seasonal pattern scales with the level.
+- That scaling idea is the main reason multiplicative seasonality becomes attractive here.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+Write two or three sentences answering this question: why is the multiplicative model needed for Victoria?
+:::
+
+## E. Build and inspect `h02`
+
+The seminar then switches to the `PBS` example. This is a fresh model-choice problem, so start again from the series features.
+
+```r
+h02 <- PBS |>
+  filter(ATC2 == "H02") |>
+  summarise(Cost = sum(Cost))
+
+h02 |>
+  autoplot(Cost)
+```
+
+::: {.callout-note}
+## What to notice
+
+- Look for trend.
+- Look for seasonality.
+- Look for whether the variation changes with the level.
+- Try to predict the sort of ETS structure you expect before asking the software.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+Based on the time plot alone, what ETS features look plausible for `h02`?
+:::
+
+## F. Auto ETS and damped trend
+
+Now compare what automatic ETS suggests with a more deliberate trend choice.
+
+```r
+h02 |>
+  model(ETS(Cost)) |>
+  report()
+```
+
+```r
+h02 |>
+  model(ETS(Cost ~ trend("A"))) |>
+  forecast(h = "8 years") |>
+  autoplot(h02)
+```
+
+::: {.callout-note}
+## Try this
+
+Change `trend("A")` to `trend("Ad")`. Then change `h = "8 years"` to `h = "20 years"`.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- A damped trend matters most when the forecast horizon gets longer.
+- The question is not whether the trend exists, but whether it should continue indefinitely at the same rate.
+- That is an interpretation question, not just a software question.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+Why might a damped trend be more sensible than a plain additive trend for `h02`?
+:::
+
+## G. STL plus ETS
+
+The last block combines decomposition and forecasting. This is useful when you want to separate pattern description from the final forecasting step.
+
+```r
+h02 |>
+  model(STL(Cost)) |>
+  components() |>
+  autoplot()
+```
+
+```r
+stl_fit <- h02 |>
+  model(
+    decomposition_model(
+      STL(Cost),
+      ETS(season_adjust),
+      SNAIVE(season_year)
+    )
+  )
+
+stl_fit |>
+  report()
+
+stl_fit |>
+  forecast(h = "20 years") |>
+  autoplot(h02)
+```
+
+::: {.callout-note}
+## Try this
+
+Change `STL(Cost)` to `STL(log(Cost) ~ season(window = "periodic"))` and compare how that changes the decomposition story.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- STL helps you think separately about trend, seasonality, and remainder.
+- After decomposition, you still have to justify the final forecasting choice.
+- The aim is not “use STL because it is fancy”; the aim is to explain when decomposition gives a more sensible forecasting workflow.
+:::
+
+::: {.callout-note}
+## Exam-style prompt
+
+When would you prefer an STL plus ETS approach over fitting a single ETS model directly?
+:::
+
+## Final Week 6 check
+
+If you revise only three things from Week 6, make them these:
+
+1. Start with the series features before naming a model.
+2. Use `glance()`, `report()`, residual checks, and forecast shape together.
+3. Explain why a model is sensible in words, not just by quoting the chosen ETS form.
+
+For the full seminar workflow, keep [week6-code.R](week6-code.R) open while you work through this page. For additional worked material, you can also compare with [Week 6 Tutorial Solution.html](Week6.html).
