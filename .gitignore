@@ -1,3 +1,4 @@
+.DS_Store
 .Rproj.user
 .Rhistory
 .RData
@@ -6,5 +7,7 @@
 /.quarto/
 /_site/
 /site_libs/
+/.playwright-mcp/
+*_cache/
 
 **/*.quarto_ipynb

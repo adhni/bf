@@ -14,19 +14,21 @@ Quarto website for ETF3231/ETF5231 Business Forecasting.
 From repo root:
 
 ```bash
-/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto render
+make build
 ```
 
 Start live preview:
 
 ```bash
-/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto preview --no-browser --port 8003
+make preview
 ```
 
 Then open:
 
 - http://localhost:8003/
 - http://127.0.0.1:8003/
+
+`Makefile` will use `quarto` from `PATH` when available, and otherwise fall back to the Quarto binary bundled with RStudio at `/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto`.
 
 ## Deployment
 

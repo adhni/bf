@@ -20,6 +20,7 @@ You are to submit both an `IA3_NameSurname.qmd` file and a compiled `IA3_NameSur
 
 ```{r}
 #| output: asis
+# Refresh helper-driven submission links from course_info.R during render.
 source(here::here("course_info.R"))
 submit(schedule, "IA3")
 ```

@@ -31,6 +31,7 @@ You will be using this data in future assignments as you will build on the analy
 
 ```{r}
 #| output: asis
+# Refresh helper-driven submission links from course_info.R during render.
 source(here::here("course_info.R"))
 submit(schedule, "GA2")
 ```

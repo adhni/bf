@@ -87,13 +87,21 @@ lastmon <- function(x) {
 assignments <- read_csv(here::here("assignments.csv")) |>
   mutate(
     Date = lastmon(Due),
-    Moodle = paste0(
-      "https://learning.monash.edu/mod/",
-      c("quiz", rep("assign", 3)), "/view.php?id=", Moodle
+    Moodle = if_else(
+      is.na(Moodle),
+      NA_character_,
+      paste0(
+        "https://learning.monash.edu/mod/",
+        c("quiz", rep("assign", 3)), "/view.php?id=", Moodle
+      )
     ),
-    Moodle3231 = paste0(
-      "https://learning.monash.edu/mod/",
-      c("quiz", rep("assign", 3)), "/view.php?id=", Moodle3231
+    Moodle3231 = if_else(
+      is.na(Moodle3231),
+      NA_character_,
+      paste0(
+        "https://learning.monash.edu/mod/",
+        c("quiz", rep("assign", 3)), "/view.php?id=", Moodle3231
+      )
     ),
     File = paste0("assignments/", File)
   )
@@ -101,15 +109,21 @@ assignments <- read_csv(here::here("assignments.csv")) |>
 quizzes <- read_csv(here::here("quizzes.csv")) |>
   mutate(
     Date = lastmon(QDue),
-
-    QMoodle3231 = paste0(
-      "https://learning.monash.edu/mod/quiz/view.php?id=",
-      QMoodle3231
+    QMoodle3231 = if_else(
+      is.na(QMoodle3231),
+      NA_character_,
+      paste0(
+        "https://learning.monash.edu/mod/quiz/view.php?id=",
+        QMoodle3231
+      )
     ),
-
-    QMoodle5231 = paste0(
-      "https://learning.monash.edu/mod/quiz/view.php?id=",
-      QMoodle5231
+    QMoodle5231 = if_else(
+      is.na(QMoodle5231),
+      NA_character_,
+      paste0(
+        "https://learning.monash.edu/mod/quiz/view.php?id=",
+        QMoodle5231
+      )
     )
   )
 
@@ -208,6 +222,53 @@ site_path <- function(path, depth = 0) {
   paste0(prefix, path)
 }
 
+course_only_html <- function(html, course) {
+  if (is.null(html) || identical(html, "") || is.na(html)) {
+    return(NULL)
+  }
+
+  paste0("<span data-course-only='", course, "'>", html, "</span>")
+}
+
+course_variant_html <- function(html_3231, html_5231) {
+  paste0(
+    course_only_html(html_3231, "3231"),
+    course_only_html(html_5231, "5231")
+  )
+}
+
+course_link_html <- function(url, label, course, class_name = "mini-link") {
+  if (is.null(url) || identical(url, "") || is.na(url)) {
+    return(NULL)
+  }
+
+  paste0(
+    "<a class='", class_name, "' data-course-only='", course,
+    "' href='", url, "'>", label, "</a>"
+  )
+}
+
+assignment_link_html <- function(assignment, file, prefix = "../", class_name = NULL) {
+  path <- paste0(prefix, tools::file_path_sans_ext(file), ".html")
+  class_attr <- if (!is.null(class_name)) paste0(" class='", class_name, "'") else ""
+  link <- paste0("<a", class_attr, " href='", path, "'>", assignment, "</a>")
+
+  if (str_detect(assignment, "^GA")) {
+    course_only_html(link, "5231")
+  } else {
+    link
+  }
+}
+
+quiz_links_html <- function(url_3231, url_5231, class_name = "mini-link") {
+  links <- list(
+    course_link_html(url_3231, "Open ETF3231 quiz", "3231", class_name),
+    course_link_html(url_5231, "Open ETF5231 quiz", "5231", class_name)
+  )
+
+  paste(Filter(Negate(is.null), links), collapse = " ")
+}
+
 render_focus_list <- function(items, class_name) {
   if (length(items) == 0) {
     return("<p class='muted'>No focus items listed yet.</p>")
@@ -251,8 +312,15 @@ assessment_events <- bind_rows(
 ) |>
   arrange(Date)
 
-format_upcoming_assessment <- function(start_date, end_date = start_date + 7) {
-  events <- assessment_events |>
+format_upcoming_assessment <- function(start_date, end_date = start_date + 7, course = "5231") {
+  events <- assessment_events
+
+  if (identical(course, "3231")) {
+    events <- events |>
+      filter(!str_detect(Label, "^GA"))
+  }
+
+  events <- events |>
     filter(Date >= start_date, Date < end_date) |>
     arrange(Date)
 
@@ -313,6 +381,53 @@ get_current_week_context <- function(reference_date = Sys.Date()) {
   )
 }
 
+get_quiz_for_week <- function(week) {
+  schedule |>
+    filter(Week == week, !is.na(Quiz)) |>
+    select(Quiz, QDue, QMoodle3231, QMoodle5231) |>
+    slice_head(n = 1)
+}
+
+render_quiz_spotlight <- function(week, kicker = "This week's quiz", heading = NULL, text = NULL, actions = NULL) {
+  quiz <- get_quiz_for_week(week)
+
+  if (NROW(quiz) == 0) {
+    return(NULL)
+  }
+
+  heading <- heading %||% quiz$Quiz[[1]]
+  due_text <- format(quiz$QDue[[1]], "%A %d %B")
+  text <- text %||% "Quiz links switch with your selected course, so this stays as the main weekly action."
+  actions <- actions %||% c(
+    course_link_html(
+      quiz$QMoodle3231[[1]],
+      "Open ETF3231 quiz",
+      "3231",
+      "button-link quiz-spotlight__button"
+    ),
+    course_link_html(
+      quiz$QMoodle5231[[1]],
+      "Open ETF5231 quiz",
+      "5231",
+      "button-link quiz-spotlight__button"
+    )
+  )
+
+  paste0(
+    "<div class='quiz-spotlight'>",
+    "<div class='quiz-spotlight__copy'>",
+    "<span class='quiz-spotlight__kicker'>", kicker, "</span>",
+    "<h3>", heading, "</h3>",
+    "<p class='quiz-spotlight__due'>Due ", due_text, "</p>",
+    "<p class='quiz-spotlight__text'>", text, "</p>",
+    "</div>",
+    "<div class='quiz-spotlight__actions'>",
+    paste(Filter(Negate(is.null), actions), collapse = ""),
+    "</div>",
+    "</div>"
+  )
+}
+
 show_week_dashboard <- function(reference_date = Sys.Date()) {
   context <- get_current_week_context(reference_date)
   current <- context$current
@@ -360,7 +475,10 @@ show_week_dashboard <- function(reference_date = Sys.Date()) {
     )
   }
 
-  assessment_text <- format_upcoming_assessment(current$Date)
+  assessment_text <- course_variant_html(
+    paste0("<p>", format_upcoming_assessment(current$Date, course = "3231"), "</p>"),
+    paste0("<p>", format_upcoming_assessment(current$Date, course = "5231"), "</p>")
+  )
   week_page <- if (is_break && NROW(next_week) > 0) {
     site_path(paste0("week", next_week$Week, "/index.html"))
   } else if (is_break) {
@@ -388,6 +506,35 @@ show_week_dashboard <- function(reference_date = Sys.Date()) {
   } else {
     render_focus_list(details$Focus[[1]], "week-dashboard__focus-list")
   }
+  quiz <- if (!is_break) get_quiz_for_week(current$Week[[1]]) else tibble()
+  quiz_action_buttons <- if (!is_break && NROW(quiz) > 0) c(
+    course_link_html(
+      quiz$QMoodle3231[[1]],
+      "Open ETF3231 quiz",
+      "3231",
+      "button-link button-link--ghost"
+    ),
+    course_link_html(
+      quiz$QMoodle5231[[1]],
+      "Open ETF5231 quiz",
+      "5231",
+      "button-link button-link--ghost"
+    )
+  ) else NULL
+  activity_url <- if (!is_break && fs::file_exists(here::here(paste0("week", current$Week[[1]], "/activities.qmd")))) {
+    site_path(paste0("week", current$Week[[1]], "/activities.html"))
+  } else {
+    NULL
+  }
+  quiz_spotlight <- if (!is_break) {
+    render_quiz_spotlight(
+      current$Week[[1]],
+      text = "Open the full week page for the reading sequence, workshop flow, and quiz context.",
+      actions = c(paste0("<a class='button-link quiz-spotlight__button' href='", week_page, "'>", week_page_label, "</a>"))
+    )
+  } else {
+    NULL
+  }
 
   html <- c(
     "<div class='week-dashboard'>",
@@ -396,6 +543,7 @@ show_week_dashboard <- function(reference_date = Sys.Date()) {
     paste0("<h2>", heading, "</h2>"),
     paste0("<p>", summary, "</p>"),
     "</div>",
+    quiz_spotlight,
     "<div class='week-dashboard__grid'>",
     "<div class='week-dashboard__card'>",
     "<span class='week-dashboard__label'>Prepare before class</span>",
@@ -411,14 +559,15 @@ show_week_dashboard <- function(reference_date = Sys.Date()) {
     "</div>",
     "<div class='week-dashboard__card'>",
     "<span class='week-dashboard__label'>Assessment</span>",
-    paste0("<p>", assessment_text, "</p>"),
+    assessment_text,
     "</div>",
     "</div>",
     if (!is_break) paste0("<p class='week-dashboard__next'>Coming up next: ", next_up, "</p>"),
     "<div class='week-dashboard__actions'>",
-    paste0("<a class='button-link' href='", week_page, "'>", week_page_label, "</a>"),
+    paste(Filter(Negate(is.null), quiz_action_buttons), collapse = ""),
     if (!is.null(slides_url)) paste0("<a class='button-link button-link--ghost' href='", slides_url, "'>Slides PDF</a>"),
     paste0("<a class='button-link button-link--ghost' href='", resource_url, "'>", resource_label, "</a>"),
+    if (!is.null(activity_url)) paste0("<a class='button-link button-link--ghost' href='", activity_url, "'>Workshop Activities</a>"),
     "<a class='button-link button-link--ghost' href='https://echo360.net.au/section/630d3bbb-85b4-47c8-842d-4bafc932413d/home'>Recordings</a>",
     "</div>",
     "</div>"
@@ -435,7 +584,15 @@ show_week_overview <- function(week, depth = 1) {
     filter(Week == week) |>
     slice_head(n = 1)
 
-  assessment_text <- format_upcoming_assessment(this_week$Date, this_week$Date + 7)
+  assessment_text <- course_variant_html(
+    paste0("<p>", format_upcoming_assessment(this_week$Date, this_week$Date + 7, course = "3231"), "</p>"),
+    paste0("<p>", format_upcoming_assessment(this_week$Date, this_week$Date + 7, course = "5231"), "</p>")
+  )
+  quiz_spotlight <- render_quiz_spotlight(
+    week,
+    kicker = "Quiz highlight",
+    heading = paste0("Week ", week, " quiz")
+  )
   slides_url <- site_path(slide_asset_for_week(week), depth)
   resource_url <- details$ResourceUrl[[1]]
 
@@ -445,6 +602,7 @@ show_week_overview <- function(week, depth = 1) {
     paste0("<span class='week-overview__status'>Week ", week, "</span>"),
     paste0("<p>", details$Summary[[1]], "</p>"),
     "</div>",
+    quiz_spotlight,
     "<div class='week-overview__grid'>",
     "<div class='week-overview__card'>",
     "<span class='week-overview__label'>Prepare before class</span>",
@@ -460,7 +618,7 @@ show_week_overview <- function(week, depth = 1) {
     "</div>",
     "<div class='week-overview__card'>",
     "<span class='week-overview__label'>Assessment</span>",
-    paste0("<p>", assessment_text, "</p>"),
+    assessment_text,
     "</div>",
     "</div>",
     "<div class='week-overview__actions'>",
@@ -486,7 +644,7 @@ show_assignments <- function(week) {
   if(NROW(ass) > 0) {
     cat("\n\n## Assignments\n\n")
     for(i in seq(NROW(ass))) {
-      cat("* [", ass$Assignment[i], "](../", ass$File[i], ") is due on ",
+      cat("* ", assignment_link_html(ass$Assignment[i], ass$File[i]), " is due on ",
           format(ass$Due[i], "%A %d %B.\n"), sep="")
     }
   }
@@ -502,10 +660,8 @@ show_quiz <- function(week){
     cat("\n\n## Weekly quiz\n\n")
 
     for (i in seq_len(NROW(ass))) {
-
       cat("* ", ass$Quiz[i], " quiz: ",
-          "[ETF3231](", ass$QMoodle3231[i], ") | ",
-          "[ETF5231](", ass$QMoodle5231[i], ")",
+          quiz_links_html(ass$QMoodle3231[i], ass$QMoodle5231[i]),
           " — Due ",
           format(ass$QDue[i], "%A %d %B."),
           "\n",
@@ -540,7 +696,7 @@ show_slides_ann <- function(week) {
 
 show_activity <- function(week, title = TRUE, show_solutions = TRUE) {
   today <- Sys.Date()
-  monday <- monday <- schedule |>
+  monday <- schedule |>
     filter(Week == week) |>
     pull(Date) |>
     as.Date()
@@ -553,44 +709,38 @@ show_activity <- function(week, title = TRUE, show_solutions = TRUE) {
   }
 }
 
-#
-#
-# show_activity <- function(week, title = TRUE) {
-#   file <- here::here(paste0("week",week,"/activities.qmd"))
-#   if(!fs::file_exists(file)) {
-#     file <- here::here(paste0("week",week,"/activities.md"))
-#   }
-#   activities <- read_file(file)
-#   if(title) {
-#     cat("\n\n## Seminar activities\n\n")
-#   }
-#   cat(activities)
-#   cat("\n")
-# }
-
 submit <- function(schedule, assignment) {
   ass <- schedule  |>
     filter(Assignment == !!assignment)
+  assignment_name <- ass$Assignment[[1]]
   due <- format(ass$Due, "%e %B %Y") |> stringr::str_trim()
-  url <- ass$Moodle
+  buttons <- c(
+    course_link_html(ass$Moodle3231[[1]], "Open ETF3231 submission", "3231", "button-link assignment-cta__button"),
+    course_link_html(ass$Moodle[[1]], "Open ETF5231 submission", "5231", "button-link assignment-cta__button")
+  )
+  button_group <- paste0(
+    "<div class='assignment-cta__buttons'>",
+    paste(Filter(Negate(is.null), buttons), collapse = ""),
+    "</div>"
+  )
+  assignment_note <- if (str_detect(assignment_name, "^GA")) {
+    course_only_html(
+      "<p class='assignment-cta__notice'>This assessment is for ETF5231 group work only. ETF3231 students do not submit this task.</p>",
+      "3231"
+    )
+  } else {
+    NULL
+  }
   button1 <- paste0(
     "<div class='assignment-cta'>",
     "<div>",
     "<p class='assignment-cta__label'>Submission</p>",
     "<p class='assignment-cta__due'>Due ", due, "</p>",
     "<p class='assignment-cta__text'>Open the Moodle submission page for instructions, links and final upload details.</p>",
+    paste0(Filter(Negate(is.null), assignment_note), collapse = ""),
     "</div>",
-    "<a href='", url, "' class='button-link assignment-cta__button'>Open ETF5231 submission</a>",
+    button_group,
     "</div>"
   )
   cat(button1)
-  if (str_detect(ass$Assignment, "IA")) {
-  url <- ass$Moodle3231
-  button2 <- paste0(
-    "<div class='resource-actions'>",
-    "<a href='", url, "' class='button-link button-link--ghost'>Open ETF3231 submission</a>",
-    "</div>"
-  )
-  cat(button2)
-  }
 }

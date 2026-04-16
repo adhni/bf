@@ -47,28 +47,6 @@ Read [Sections 9.1-9.2 of the textbook](https://otexts.com/fpp3/arima.html) and 
 <!-- -   <i class="bi bi-download"></i> [Week 7 Tutorial Solution.html](Week7.html){download="Week 7 Tutorial Solution.html"} -->
 
 
-
-
-<!-- ```{r} -->
-<!-- #| output: asis -->
-<!-- show_slides(week) -->
-<!-- ``` -->
-
-<!-- ## Lectorial activities -->
-
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
-
-
-<!-- ## Seminar code -->
-
-<!-- ::: {.callout appearance="minimal"} -->
-<!-- <i class="bi bi-download"></i> [week7.R](week7.R){download="week7.R"} -->
-<!-- ::: -->
-
-
-
 ```{r, echo=FALSE}
 #| output: asis
 show_assignments(week)

@@ -37,7 +37,6 @@ show_slides_ann(week)
 ## Seminar Code
 
 ::: {.callout appearance="minimal"}
-<!-- <i class="bi bi-download"></i> [week4-code-incomplete.R](week4-code-incomplete.R){download="week4-code-incomplete.R"} -->
 <i class="bi bi-download"></i> [week4-code.R](week4-code.R){download="week4-code.R"}
 :::
 
@@ -67,28 +66,6 @@ show_slides_ann(week)
 
 
 -   <i class="bi bi-download"></i> [Week 4 Tutorial Solution.html](Tutorial4Solution.html){download="Tutorial4Solution.html"}
-
-
-<!-- # ```{r} -->
-<!-- # #| output: asis -->
-<!-- # show_slides(week) -->
-<!-- # ``` -->
-
-<!-- ## Lectorial activities -->
-
-<!-- ```{r} -->
-<!-- #| child: activities.md -->
-<!-- ``` -->
-
-
-<!-- ## Seminar code -->
-
-<!-- ::: {.callout appearance="minimal"} -->
-<!-- <i class="bi bi-download"></i> [week4.R](week4.R){download="week4.R"} -->
-<!-- ::: -->
-
-
-
 ```{r, echo=FALSE}
 #| output: asis
 

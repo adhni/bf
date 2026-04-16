@@ -1,2 +1,101 @@
 <link href='https://fonts.googleapis.com/css?family=Fira+Sans|Merriweather' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css">
+<script>
+  (() => {
+    const STORAGE_KEY = "bf-selected-course";
+    const DEFAULT_COURSE = "5231";
+    const COURSES = ["3231", "5231"];
+
+    const readCourse = () => {
+      try {
+        const saved = window.localStorage.getItem(STORAGE_KEY);
+        return COURSES.includes(saved) ? saved : DEFAULT_COURSE;
+      } catch {
+        return DEFAULT_COURSE;
+      }
+    };
+
+    const writeCourse = (course) => {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, course);
+      } catch {
+        return;
+      }
+    };
+
+    const syncToggle = (course) => {
+      document.querySelectorAll("[data-course-toggle-button]").forEach((button) => {
+        const active = button.dataset.courseToggleButton === course;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+    };
+
+    const syncGroupAssignmentLinks = (course) => {
+      document.querySelectorAll("a[href*='assignments/G']").forEach((link) => {
+        if (link.closest("[data-course-only='5231']")) {
+          return;
+        }
+        link.hidden = course === "3231";
+      });
+    };
+
+    const syncHeroTitle = (course) => {
+      const title = document.querySelector("#title-block-header .title");
+      if (!title) {
+        return;
+      }
+
+      const baseTitle = title.dataset.baseTitle || title.textContent.trim();
+      title.dataset.baseTitle = baseTitle;
+
+      if (baseTitle === "ETF3231/5231 Business Forecasting") {
+        title.textContent = `ETF${course} Business Forecasting`;
+      }
+    };
+
+    const applyCourse = (course) => {
+      document.documentElement.dataset.course = course;
+      writeCourse(course);
+      syncToggle(course);
+      syncGroupAssignmentLinks(course);
+      syncHeroTitle(course);
+    };
+
+    const createToggle = () => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "course-toggle course-toggle--nav";
+      wrapper.dataset.courseToggle = "true";
+      wrapper.innerHTML = `
+        <div class="course-toggle__buttons" role="group" aria-label="Select course">
+          <button type="button" class="course-toggle__button" data-course-toggle-button="3231">ETF3231</button>
+          <button type="button" class="course-toggle__button" data-course-toggle-button="5231">ETF5231</button>
+        </div>
+      `;
+
+      wrapper.querySelectorAll("[data-course-toggle-button]").forEach((button) => {
+        button.addEventListener("click", () => applyCourse(button.dataset.courseToggleButton));
+      });
+
+      return wrapper;
+    };
+
+    const insertToggle = () => {
+      if (document.querySelector("[data-course-toggle='true']")) {
+        return;
+      }
+
+      const brandContainer = document.querySelector(".navbar-brand-container");
+      const toggle = createToggle();
+
+      if (brandContainer) {
+        brandContainer.append(toggle);
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      insertToggle();
+      applyCourse(readCourse());
+    });
+  })();
+</script>

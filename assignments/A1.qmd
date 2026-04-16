@@ -28,6 +28,7 @@ Submit your forecasts using the links below.
 
 ```{r}
 #| output: asis
+# Refresh helper-driven submission links from course_info.R during render.
 source(here::here("course_info.R"))
 submit(schedule, "IA1")
 ```
@@ -88,4 +89,3 @@ readRDS(here::here("assignments/leaders.rds")) |>
 <!-- <!-- ### Leaderboard --> 
 
 <!-- <!-- <iframe src="https://docs.google.com/spreadsheets/d/1_3RcdspMIL7TIaD7566bEbUEe8LHcg4UNQS1-ex-NZg/edit?usp=sharing" width = "110%" height = 500></iframe> --> 
-

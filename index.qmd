@@ -68,8 +68,14 @@ show_week_dashboard()
 </div>
 <div class="metric-card">
   <span class="metric-card__label">Assessment</span>
-  <strong>Quizzes, IAs, GAs, final exam</strong>
-  <span>In-semester work contributes 40%; the final exam contributes 60%.</span>
+  <strong>
+    <span data-course-only="3231">Quizzes, IAs, final exam</span>
+    <span data-course-only="5231">Quizzes, IAs, GAs, final exam</span>
+  </strong>
+  <span>
+    <span data-course-only="3231">In-semester work is quizzes plus individual assignments; the final exam contributes 60%.</span>
+    <span data-course-only="5231">In-semester work includes quizzes, individual assignments, and group assignments; the final exam contributes 60%.</span>
+  </span>
 </div>
 :::
 
@@ -162,15 +168,14 @@ schedule |>
       TRUE ~ glue::glue("<a href='{Chapter_URL}'>{Chapter}</a>")
     ),
     Deadlines = pmap_chr(
-      list(Assignment, File, Quiz),
-      \(assignment, file, quiz) {
+      list(Assignment, File, Quiz, QMoodle3231, QMoodle5231),
+      \(assignment, file, quiz, q_moodle_3231, q_moodle_5231) {
         links <- character()
         if (!is.na(assignment)) {
-          html_file <- paste0(tools::file_path_sans_ext(file), ".html")
-          links <- c(links, glue::glue("<a class='mini-link' href='{html_file}'>{assignment}</a>"))
+          links <- c(links, assignment_link_html(assignment, file, prefix = "", class_name = "mini-link"))
         }
         if (!is.na(quiz)) {
-          links <- c(links, glue::glue("<span class='mini-link'>{quiz}</span>"))
+          links <- c(links, quiz_links_html(q_moodle_3231, q_moodle_5231))
         }
         if (length(links) == 0) "<span class='muted'>&mdash;</span>" else paste(links, collapse = " ")
       }
@@ -192,11 +197,16 @@ schedule |>
   <strong>IA1 to IA4</strong>
   <span>Four individual assignments across the semester, increasing in weight from 2% to 15%.</span>
 </a>
-<a class="assessment-card" href="assignments/G1.html">
+<a class="assessment-card" href="assignments/G1.html" data-course-only="5231">
   <span class="assessment-card__kicker">Group work</span>
   <strong>GA1 to GA4</strong>
   <span>ETF5231 group assignments running alongside the individual tasks.</span>
 </a>
+<div class="assessment-card" data-course-only="3231">
+  <span class="assessment-card__kicker">Course structure</span>
+  <strong>ETF3231 has no group assignments</strong>
+  <span>Your in-semester assessment is quizzes plus the four individual assignments.</span>
+</div>
 <a class="assessment-card" href="https://learning.monash.edu/course/view.php?id=26702">
   <span class="assessment-card__kicker">Weekly rhythm</span>
   <strong>Workshop quizzes</strong>
@@ -209,11 +219,12 @@ schedule |>
 </a>
 :::
 
-ETF5231 students combine individual and group assignment results with weights 0.7 and 0.3 respectively. The due dates can move slightly as the semester unfolds, so Moodle remains the final source of truth for submission timing.
+<span data-course-only="3231">ETF3231 students complete the quiz stream plus the individual assignments only. The due dates can move slightly as the semester unfolds, so Moodle remains the final source of truth for submission timing.</span>
+<span data-course-only="5231">ETF5231 students combine individual and group assignment results with weights 0.7 and 0.3 respectively. The due dates can move slightly as the semester unfolds, so Moodle remains the final source of truth for submission timing.</span>
 
 Presentation requirements remain Quarto-based unless otherwise specified, and AI use must be declared according to the assessment instructions. Standard Monash late penalties apply; see the [Marking and Feedback Procedure](https://publicpolicydms.monash.edu/Monash/documents/1935752) for the formal policy.
 
-::: {.callout-tip title="Group Participation - ETF5231 Students ONLY"}
+::: {.callout-tip title="Group Participation - ETF5231 Students ONLY" data-course-only="5231"}
 
 Group participation rules for group assignments (GAs): It is expected that all group members participate equally to the group assignments. It sometimes helps to keep a log of the tasks each member is to complete. This may assist in keeping some balance throughout the semester. To ensure that all group members are contributing the following rules will apply for all the group assignments throughout the semester.
 

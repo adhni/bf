@@ -20,6 +20,7 @@ Moodle by **11.55pm, on Tuesday, 24 March**.
 
 ```{r}
 #| output: asis
+# Refresh helper-driven submission links from course_info.R during render.
 source(here::here("course_info.R"))
 submit(schedule, "GA1")
 ```

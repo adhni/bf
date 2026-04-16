@@ -9,7 +9,7 @@ project:
   - "!/assignment_data"
 
 website:
-  title: "ETF3231/ETF5231 Business Forecasting"
+  title: "Business Forecasting"
   site-url: "https://adhni.github.io/bf/"
   navbar:
     background: "#006dae"
@@ -17,7 +17,7 @@ website:
       - href: index.qmd
         text: Home
         icon: house-fill
-      - text: Weekly schedule
+      - text: Schedule
         icon: calendar2-week-fill
         menu:
           - week1/index.qmd
