@@ -1,8 +1,5 @@
 ---
 title: "Workshop Activities: Week 6"
-format:
-  html:
-    code-fold: true
 ---
 
 # Week 6 Mini-Studio
@@ -43,12 +40,7 @@ holidays |>
 ::: {.callout-note collapse="true"}
 ## Expected Output
 A time series plot showing holiday trips for Victoria and Queensland over quarters, with clear seasonal patterns and potential multiplicative seasonality in Victoria.
-:::
-
-::: {.callout-note}
-## What this code is doing
-
-- Filters the tourism data down to holiday travel for Victoria and Queensland.
+:::ism data down to holiday travel for Victoria and Queensland.
 - Aggregates trips by quarter.
 - Turns the result into a tsibble so it is ready for plotting and modelling.
 :::
@@ -99,12 +91,7 @@ Model table showing fitted ETS models, glance() with AIC/BIC, and report() detai
 ::: {.callout-note}
 ## What this code is doing
 
-- `model()` fits three ETS choices to each state.
-- `glance()` gives the quick model comparison table.
-- `report()` shows the selected structure and smoothing parameters for a specific fitted model.
-:::
-
-::: {.callout-note}
+- `model()` fits t}
 ## What to notice
 
 - Do not treat `glance()` as the whole answer.
@@ -147,12 +134,7 @@ Components plot showing level, trend, and seasonal patterns; residuals plot with
 
 Change `State == "Victoria"` to `State == "Queensland"` and compare the outputs.
 :::
-
-::: {.callout-note}
-## What this code is doing
-
-- `components()` breaks the fitted model into pieces you can inspect.
-- `gg_tsresiduals()` checks whether the residuals look roughly well-behaved.
+)` checks whether the residuals look roughly well-behaved.
 - Together they move you past “the software picked this” toward “does this model make sense?”
 :::
 
