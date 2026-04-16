@@ -1,29 +1,307 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "Workshop Activities: Week 5"
 ---
 
-1. Use the tsibble created from `tourism` for holiday travel in Victoria and Queensland. 
+# Week 5 Mini-Studio
 
-    a. Plot the series to remind yourself what these look like.
-    b. Use the `ETS()` function to fit models to both series. Explore the resulting `mable` using `report()`, `glance()` and `tidy()`
-    c. Plot the estimated components of each model.
-    d. Generate forecasts using `forecast()`.
+This page follows the same sequence as [week5-code.R](week5-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
-2. Use the exports data exports data for Algeria from the `global_economy` tsibble. 
+::: {.callout-tip}
+## How to use this page
 
-    a. Plot the data. Is this time series white noise? What ETS model would be appropriate?
-    b. Use the `ETS()` function to fit appropriate models with both additive and multiplicative errors. What model is chosen automatically? Explore the estimated models.
-    c. Plot the components of the two models. What do you see?
-    d. Explore the residuals of the two models. What do you see?
-    e. Generate and plot forecasts.
+1. Open [week5-code.R](week5-code.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
 
-3. Use the population data for Australia `(country == "AUS")` from the `global_economy` tsibble.
+## A. Build the `holidays` series
 
-    a. Scale the data to be in millions and plot it. 
-    b. Fit both a model with a linear and a damped trend and study the estimated parameters. 
-    c. Generate forecasts for 30 years ahead from both models and plot them. What do you see? 
-    d. Fit both models using data up to 2010. Generate forecasts for the remainder of the sample and evaluate their accuracy.
-    
-4. Do Exercise 6 from [Section 8.8](https://otexts.com/fpp3/expsmooth-exercises.html).
+This opening block creates the tourism series used in the first activity.
+
+```r
+holidays <- tourism |>
+  filter(State %in% c("Victoria", "Queensland")) |> 
+  filter(Purpose == "Holiday") |>
+  as_tibble() |>
+  summarise(Trips = sum(Trips), .by = c("State", "Quarter")) |>
+  as_tsibble(index = Quarter, key = State)
+
+holidays |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Filters the `tourism` data to holiday trips in Victoria and Queensland.
+- Aggregates trips by state and quarter.
+- Converts to a tsibble for time series analysis.
+- Plots the series to visualize the data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Compare the overall level and seasonal patterns between Victoria and Queensland.
+- Look for any trends or changes in variability over time.
+:::
+
+## B. Fit ETS models to the holidays series
+
+This block fits ETS models to both series and explores the results.
+
+```r
+fit <- holidays |>
+  model(ets = ETS(Trips))
+
+fit
+fit |> glance()
+fit |> tidy()
+```
+
+```r
+fit |>
+  filter(State == "Queensland") |>
+  report()
+
+fit |>
+  filter(State == "Victoria") |>
+  report()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits automatic ETS models to each state's series.
+- Uses `glance()` for model summaries, `tidy()` for parameters, and `report()` for detailed model info.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Note the different models selected for each state.
+- Compare the parameter estimates and model fits.
+- Pay attention to any warnings or automatic selections.
+:::
+
+## C. Plot components and generate forecasts
+
+This section visualizes model components and produces forecasts.
+
+```r
+fit |> components() |> autoplot()
+fit |> forecast(h = 8) |> autoplot(holidays)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots the estimated components (trend, seasonal, error) of the fitted models.
+- Generates 8-step-ahead forecasts and plots them with the original data.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Examine how the components differ between states.
+- Assess the forecast patterns and uncertainty intervals.
+:::
+
+## D. Analyze Algeria exports data
+
+This activity shifts to exports data for Algeria.
+
+```r
+algeria_exports <- global_economy |>
+  filter(Country == "Algeria") |>
+  select(Year, Exports)
+
+algeria_exports |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Extracts exports data for Algeria from `global_economy`.
+- Plots the series to assess its characteristics.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Determine if the series resembles white noise or has structure.
+- Consider what ETS model might be appropriate.
+:::
+
+## E. Fit ETS models to Algeria exports
+
+Fit both additive and multiplicative error models.
+
+```r
+fit_algeria <- algeria_exports |>
+  model(
+    additive = ETS(Exports ~ error("A")),
+    multiplicative = ETS(Exports ~ error("M"))
+  )
+
+fit_algeria |> glance()
+fit_algeria |> report()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits ETS models with additive and multiplicative errors.
+- Compares model summaries and reports.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- See which model is selected automatically.
+- Compare the fitted parameters and performance.
+:::
+
+## F. Check components and residuals for Algeria
+
+Analyze the model internals and residuals.
+
+```r
+fit_algeria |> components() |> autoplot()
+fit_algeria |> gg_tsresiduals()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Plots components and residual diagnostics for both models.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Look for patterns in residuals that indicate model adequacy.
+- Compare component plots between additive and multiplicative models.
+:::
+
+## G. Forecast Algeria exports
+
+Generate and plot forecasts.
+
+```r
+fit_algeria |> forecast(h = 5) |> autoplot(algeria_exports)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Produces 5-year-ahead forecasts and visualizes them.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Assess the forecast behavior and differences between models.
+:::
+
+## H. Analyze Australia population data
+
+This final activity uses population data.
+
+```r
+aus_pop <- global_economy |>
+  filter(Country == "Australia") |>
+  mutate(Population = Population / 1e6) |>
+  select(Year, Population)
+
+aus_pop |> autoplot()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Extracts and scales Australia's population data to millions.
+- Plots the series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Identify the trend pattern in the population growth.
+:::
+
+## I. Fit trend models to Australia population
+
+Fit linear and damped trend models.
+
+```r
+fit_aus <- aus_pop |>
+  model(
+    linear = ETS(Population ~ trend("A")),
+    damped = ETS(Population ~ trend("Ad"))
+  )
+
+fit_aus |> report()
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits ETS models with linear and damped trends.
+- Reports the estimated parameters.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Compare the trend parameters and model fits.
+:::
+
+## J. Generate long-term forecasts
+
+Forecast 30 years ahead.
+
+```r
+fit_aus |> forecast(h = 30) |> autoplot(aus_pop)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Generates 30-year forecasts and plots them.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Observe the differences in long-term projections between linear and damped trends.
+:::
+
+## K. Evaluate forecast accuracy
+
+Fit models up to 2010 and forecast the rest.
+
+```r
+train <- aus_pop |> filter(Year <= 2010)
+fit_train <- train |>
+  model(
+    linear = ETS(Population ~ trend("A")),
+    damped = ETS(Population ~ trend("Ad"))
+  )
+
+fit_train |> forecast(h = 11) |> autoplot(aus_pop) +
+  labs(title = "Forecasts from models fitted to 2010 data")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Fits models to pre-2011 data and forecasts to present.
+- Plots forecasts against actual data for accuracy assessment.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Evaluate how well each model predicts the actual population growth.
+:::
