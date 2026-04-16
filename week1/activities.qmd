@@ -1,53 +1,207 @@
 ---
-title: "Activities: Week 1"
-editor: source
-engine: knitr
-filters:
-  - live
-  - quiz-teachr
-ojs-engine: true
-webr:
-  packages:
-    - qlcheckr
-    - fpp3
-    - urca
-  autoload-packages: false
-  repos:
-    - https://repo.r-wasm.org/
-    - https://learnr-academy.github.io/qlcheckr
+title: "Workshop Activities: Week 1"
 ---
 
-{{< include /_extensions/r-wasm/live/_knitr.qmd >}}
+# Week 1 Mini-Studio
 
-# Time series data 
+This page follows the same sequence as [week1-code.R](week1-code.R). It is designed as a stable seminar companion: read the code, run the matching block in R or RStudio, then answer the short prompts here in words. That keeps the focus on the class code, which is the style you are most likely to meet in the exam.
 
-## Tourism Example
+::: {.callout-tip}
+## How to use this page
 
-The `tourism` dataset contains the quarterly overnight trips from 1998 Q1 to 2016 Q4 across Australia.
+1. Open [week1-code.R](week1-code.R) beside this page.
+2. Work through the sections in order.
+3. Run the matching block in RStudio.
+4. Use the prompts here to practise explanation and model choice, not just syntax.
+:::
 
-It is disaggregated by 3 key variables:
+## A. Explore the tourism dataset
 
-* `State`: States and territories of Australia
-* `Region`: The tourism regions are formed through the aggregation of Statistical Local Areas (SLAs) which are defined by the various State and Territory tourism authorities according to their research and marketing needs
-* `Purpose`: Stopover purpose of visit: "Holiday", "Visiting friends and relatives", "Business", "Other reason".
+This opening block introduces the tourism data and basic tsibble operations.
 
-The tsibble is shown below:
-
-```{r}
+```r
 library(fpp3)
 tourism
 ```
 
-Calculate the total quarterly tourists visiting Victoria from the `tourism` dataset.
+::: {.callout-note}
+## What this code is doing
 
-```{webr}
-#| exercise: filter_summarise_tourism
+- Loads the fpp3 package.
+- Displays the tourism tsibble structure.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The key variables: State, Region, Purpose.
+- The time index is Quarter.
+- The data spans 1998 Q1 to 2016 Q4.
+:::
+
+## B. Filter and summarise tourism data
+
+This section shows how to filter for Victoria and summarise trips.
+
+```r
 tourism |>
-  filter(______) |>
-  summarise(______)
+  filter(State == "Victoria") |>
+  summarise(Total_Trips = sum(Trips))
 ```
 
-```{webr}
+::: {.callout-note}
+## What this code is doing
+
+- Filters the data to Victoria only.
+- Sums the trips across all regions and purposes.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- The result is a single time series for Victoria's total trips.
+- The index remains Quarter.
+:::
+
+## C. Explore PBS data
+
+Shifting to the PBS dataset for pharmaceutical costs.
+
+```r
+PBS
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Displays the PBS tsibble.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Disaggregated by ATC2, Concession, Type.
+- Time index is Month.
+- Many series (84 × 2 × 2 = 336).
+:::
+
+## D. Filter PBS data
+
+Filter for A10 drug type.
+
+```r
+PBS |> 
+  filter(ATC2 == "A10")
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Selects rows where ATC2 is "A10".
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Reduces to 4 series (2 Concession × 2 Type).
+:::
+
+## E. Select columns
+
+Select specific columns from the filtered data.
+
+```r
+PBS |> 
+  filter(ATC2 == "A10") |> 
+  select(Month, Concession, Type, Cost)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Keeps only the specified columns.
+- Index is always included.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Focuses on the cost variable.
+:::
+
+## F. Summarise over keys
+
+Summarise total cost for A10.
+
+```r
+PBS |>
+  filter(ATC2 == "A10") |>
+  select(Month, Concession, Type, Cost) |>
+  summarise(total_cost = sum(Cost))
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Sums cost over the key variables.
+- Results in a single time series.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Aggregation reduces multiple series to one.
+:::
+
+## G. Mutate to create new variables
+
+Scale the cost to millions.
+
+```r
+PBS |>
+  filter(ATC2 == "A10") |>
+  select(Month, Concession, Type, Cost) |>
+  summarise(total_cost = sum(Cost)) |>
+  mutate(total_cost = total_cost / 1e6)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Divides total_cost by 1e6 to get millions.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Mutate adds or modifies columns.
+- Useful for scaling or transformations.
+:::
+
+## H. Assign to variable
+
+Create and assign the a10 object.
+
+```r
+a10 <- PBS |>
+  filter(ATC2 == "A10") |>
+  select(Month, Concession, Type, Cost) |>
+  summarise(total_cost = sum(Cost)) |>
+  mutate(total_cost = total_cost / 1e6)
+```
+
+::: {.callout-note}
+## What this code is doing
+
+- Pipes the operations and assigns to a10.
+:::
+
+::: {.callout-note}
+## What to notice
+
+- Assignment creates reusable objects.
+- The pipe (%>%) chains operations.
+:::
 #| exercise: filter_summarise_tourism
 #| check: true
 library(qlcheckr)
