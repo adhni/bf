@@ -1,5 +1,8 @@
 ---
 title: "Workshop Activities: Week 6"
+format:
+  html:
+    code-fold: true
 ---
 
 # Week 6 Mini-Studio
@@ -36,6 +39,11 @@ holidays <- tourism |>
 holidays |>
   autoplot()
 ```
+
+::: {.callout-note collapse="true"}
+## Expected Output
+A time series plot showing holiday trips for Victoria and Queensland over quarters, with clear seasonal patterns and potential multiplicative seasonality in Victoria.
+:::
 
 ::: {.callout-note}
 ## What this code is doing
@@ -83,6 +91,11 @@ fit |>
   report()
 ```
 
+::: {.callout-note collapse="true"}
+## Expected Output
+Model table showing fitted ETS models, glance() with AIC/BIC, and report() detailing the multiplicative model structure for Victoria (likely ETS(M,N,M)).
+:::
+
 ::: {.callout-note}
 ## What this code is doing
 
@@ -123,6 +136,11 @@ fit |>
   select(multiplicative) |>
   gg_tsresiduals()
 ```
+
+::: {.callout-note collapse="true"}
+## Expected Output
+Components plot showing level, trend, and seasonal patterns; residuals plot with ACF/PACF and histogram showing approximate white noise.
+:::
 
 ::: {.callout-note}
 ## Try this
